@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ORDER>
+  <ITEM>
+    <SN>132487A-J</SN>
+    <NAME>crank casing</NAME>
+    <QTY>1</QTY>
+  </ITEM>
+  <ITEM>
+    <SN>4238764-A</SN>
+    <NAME>bearing</NAME>
+    <QTY>15</QTY>
+  </ITEM>
+  <SHIPMENT>
+    <POC type="non-emergency">
+      <NAME>John Smith</NAME>
+      <TEL>555-1234</TEL>
+    </POC>
+  </SHIPMENT>
+</ORDER>
