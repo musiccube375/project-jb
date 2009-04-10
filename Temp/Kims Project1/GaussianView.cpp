@@ -180,6 +180,8 @@ void CGaussianView::OnMouseMove(UINT nFlags, CPoint point)
 
 void CGaussianView::RenderMouseRect(CDC* pDC)
 { 
+	pDC->DPtoLP(&m_rtMouse);
+
 	pDC->MoveTo(m_rtMouse.left, m_rtMouse.top);
 	pDC->LineTo(m_rtMouse.right, m_rtMouse.top);
 	pDC->LineTo(m_rtMouse.right, m_rtMouse.bottom);
@@ -208,7 +210,7 @@ void CGaussianView::OnRButtonDown(UINT nFlags, CPoint point)
 
 void CGaussianView::RectImageCoordinate()
 {
-	if( m_rtMouse == 0 )
+	if( m_rtMouse == NULL )
 	{
 		AfxMessageBox(_T("저장하고 싶은 사각 공간을 선택하십시오."));
 		return;
@@ -225,6 +227,7 @@ void CGaussianView::RectImageCoordinate()
 
 	CDib dib2;
 	dib2 = pDoc->m_Dib;
+
 	if( dib2.GetBitCount() == 8 )
 	{
 		m_View_Dib.CreateGrayImage(w, h);
@@ -281,5 +284,4 @@ void CGaussianView::OnSelectsaveSelect()
 	AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_FILE_SAVE_AS);
 
 	pDoc->m_Dib = dib;
-
 }
