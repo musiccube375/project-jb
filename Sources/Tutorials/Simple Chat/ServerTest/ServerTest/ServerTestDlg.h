@@ -33,6 +33,7 @@ class CServerTestDlg : public CDialog
 // 생성
 public:
 	CServerTestDlg(CWnd* pParent = NULL);	// 표준 생성자
+	~CServerTestDlg();
 
 // 대화 상자 데이터
 	enum { IDD = IDD_SERVERTEST_DIALOG };

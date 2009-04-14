@@ -51,6 +51,11 @@ CServerTestDlg::CServerTestDlg(CWnd* pParent /*=NULL*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
+CServerTestDlg::~CServerTestDlg()
+{
+	ClearClient();
+}
+
 void CServerTestDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
@@ -191,7 +196,15 @@ void CServerTestDlg::DelClient(int nIndex)
 
 void CServerTestDlg::ClearClient()
 {
+	CINFO_MAP_IT it = m_mapClient.begin();
 
+	for(int i = 0; it != m_mapClient.end(); i++, it++)
+	{
+		it->second.pSock->Close();
+		SAFE_DELETE(it->second.pSock);
+	}
+
+	m_mapClient.clear();
 }
 
 LRESULT CServerTestDlg::OnClientAccept(WPARAM wParam, LPARAM lParam)
@@ -222,6 +235,7 @@ LRESULT CServerTestDlg::OnClientAccept(WPARAM wParam, LPARAM lParam)
 	//strcpy(ClientInfo.Key.szKey, str.GetBuffer(0));
 
 	m_listboxText.AddString(str);
+	m_listboxText.SetTopIndex(m_listboxText.GetCount()-1);
 
 	AddClient(&ClientInfo);
 
