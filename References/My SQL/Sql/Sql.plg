@@ -1,0 +1,198 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Sql - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\kjh　\LOCALS~1\Temp\RSP31.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/Sql.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ  /c 
+"C:\문서\대학강좌\2006년\2학기\게임제작실무3\10 Week\Sql\Sql.cpp"
+]
+Creating command line "cl.exe @"C:\DOCUME~1\kjh　\LOCALS~1\Temp\RSP31.tmp"" 
+Creating temporary file "C:\DOCUME~1\kjh　\LOCALS~1\Temp\RSP32.tmp" with contents
+[
+mysqlpp.lib libmysql.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/Sql.pdb" /debug /machine:I386 /out:"Debug/Sql.exe" /pdbtype:sept 
+".\Debug\StdAfx.obj"
+".\Debug\Sql.obj"
+]
+Creating command line "link.exe @"C:\DOCUME~1\kjh　\LOCALS~1\Temp\RSP32.tmp""
+<h3>Output Window</h3>
+Compiling...
+Sql.cpp
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\sql_string.h(119) : error C2352: 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::=' : illegal call of non-static member function
+        c:\program files\microsoft visual studio\vc98\include\xstring(66) : see declaration of '='
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\sql_string.h(127) : error C2352: 'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::=' : illegal call of non-static member function
+        c:\program files\microsoft visual studio\vc98\include\xstring(64) : see declaration of '='
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(64) : error C2976: 'reverse_iterator' : too few template arguments
+        c:\program files\microsoft visual studio\vc98\include\utility(174) : see declaration of 'reverse_iterator'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(109) : see reference to class template instantiation 'mysqlpp::const_subscript_container<OnType,ValueType,ReturnType,SizeType,`template-parameter262'>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(66) : error C2976: 'reverse_iterator' : too few template arguments
+        c:\program files\microsoft visual studio\vc98\include\utility(174) : see declaration of 'reverse_iterator'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(109) : see reference to class template instantiation 'mysqlpp::const_subscript_container<OnType,ValueType,ReturnType,SizeType,`template-parameter262'>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(64) : error C2976: 'reverse_iterator' : too few template arguments
+        c:\program files\microsoft visual studio\vc98\include\utility(174) : see declaration of 'reverse_iterator'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\fields.h(42) : see reference to class template instantiation 'mysqlpp::const_subscript_container<class mysqlpp::Fields,struct st_mysql_field,struct st_mysql_field const &,unsigned int,int>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(66) : error C2976: 'reverse_iterator' : too few template arguments
+        c:\program files\microsoft visual studio\vc98\include\utility(174) : see declaration of 'reverse_iterator'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\fields.h(42) : see reference to class template instantiation 'mysqlpp::const_subscript_container<class mysqlpp::Fields,struct st_mysql_field,struct st_mysql_field const &,unsigned int,int>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(266) : error C2258: illegal pure syntax, must be '= 0'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(266) : error C2252: 'string_type' : pure specifier can only be specified for functions
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(277) : error C2252: 'offset' : pure specifier can only be specified for functions
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(278) : error C2258: illegal pure syntax, must be '= 0'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(278) : error C2252: 'unsigned_offset' : pure specifier can only be specified for functions
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(279) : error C2258: illegal pure syntax, must be '= 0'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(279) : error C2252: 'null_offset' : pure specifier can only be specified for functions
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(280) : error C2258: illegal pure syntax, must be '= 0'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(280) : error C2252: 'unsigned_null_offset' : pure specifier can only be specified for functions
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(108) : error C2039: 'string_type' : is not a member of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(120) : see declaration of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(231) : see reference to class template instantiation 'mysqlpp::ColData_Tmpl<Str>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(120) : error C2039: 'string_type' : is not a member of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(120) : see declaration of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(231) : see reference to class template instantiation 'mysqlpp::ColData_Tmpl<Str>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(297) : error C2059: syntax error : ''template<''
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(298) : error C2065: 'Str' : undeclared identifier
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(298) : error C2065: 'T' : undeclared identifier
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(298) : error C2065: 'B' : undeclared identifier
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(314) : error C2143: syntax error : missing ';' before '{'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(314) : error C2447: missing function header (old-style formal list?)
+c:\program files\microsoft visual studio\vc98\include\algorithm(17) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(18) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(20) : error C2954: template definitions cannot nest
+c:\program files\microsoft visual studio\vc98\include\algorithm(41) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(69) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(126) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(130) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(144) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(146) : error C2995: 'search_n' : template function has already been defined
+        c:\program files\microsoft visual studio\vc98\include\algorithm(126) : see declaration of 'search_n'
+c:\program files\microsoft visual studio\vc98\include\algorithm(150) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(160) : error C2995: '_Search_n' : template function has already been defined
+        c:\program files\microsoft visual studio\vc98\include\algorithm(129) : see declaration of '_Search_n'
+c:\program files\microsoft visual studio\vc98\include\algorithm(253) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(259) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(266) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(273) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(289) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(307) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(846) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(849) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(863) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(864) : error C2995: 'lower_bound' : template function has already been defined
+        c:\program files\microsoft visual studio\vc98\include\algorithm(846) : see declaration of 'lower_bound'
+c:\program files\microsoft visual studio\vc98\include\algorithm(866) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(877) : error C2995: '_Lower_bound' : template function has already been defined
+        c:\program files\microsoft visual studio\vc98\include\algorithm(849) : see declaration of '_Lower_bound'
+c:\program files\microsoft visual studio\vc98\include\algorithm(880) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(883) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(897) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(898) : error C2995: 'upper_bound' : template function has already been defined
+        c:\program files\microsoft visual studio\vc98\include\algorithm(880) : see declaration of 'upper_bound'
+c:\program files\microsoft visual studio\vc98\include\algorithm(900) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(911) : error C2995: '_Upper_bound' : template function has already been defined
+        c:\program files\microsoft visual studio\vc98\include\algorithm(883) : see declaration of '_Upper_bound'
+c:\program files\microsoft visual studio\vc98\include\algorithm(914) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(918) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(937) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(939) : error C2995: 'equal_range' : template function has already been defined
+        c:\program files\microsoft visual studio\vc98\include\algorithm(914) : see declaration of 'equal_range'
+c:\program files\microsoft visual studio\vc98\include\algorithm(941) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(958) : error C2995: '_Equal_range' : template function has already been defined
+        c:\program files\microsoft visual studio\vc98\include\algorithm(917) : see declaration of '_Equal_range'
+c:\program files\microsoft visual studio\vc98\include\algorithm(961) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(966) : error C2059: syntax error : 'const'
+c:\program files\microsoft visual studio\vc98\include\algorithm(968) : error C2995: 'binary_search' : template function has already been defined
+        c:\program files\microsoft visual studio\vc98\include\algorithm(961) : see declaration of 'binary_search'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_names.h(49) : error C2629: unexpected 'class mysqlpp::FieldNames ('
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_names.h(49) : error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_names.h(62) : error C2059: syntax error : 'const'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_names.h(63) : error C2805: binary 'operator =' has too few parameters
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_names.h(63) : error C2333: '=' : error in function declaration; skipping function body
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_names.h(83) : error C2059: syntax error : 'const'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_names.h(84) : error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_names.h(97) : error C2059: syntax error : 'const'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_types.h(47) : error C2629: unexpected 'class mysqlpp::FieldTypes ('
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_types.h(47) : error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_types.h(59) : error C2059: syntax error : 'const'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_types.h(60) : error C2805: binary 'operator =' has too few parameters
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_types.h(60) : error C2333: '=' : error in function declaration; skipping function body
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_types.h(83) : error C2059: syntax error : 'const'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_types.h(84) : error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\field_types.h(89) : error C2059: syntax error : 'const'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\stream2string.h(44) : error C2059: syntax error : 'const'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(108) : error C2039: 'string_type' : is not a member of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(120) : see declaration of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\manip.h(178) : see reference to class template instantiation 'mysqlpp::ColData_Tmpl<class mysqlpp::const_string>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(120) : error C2039: 'string_type' : is not a member of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(120) : see declaration of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\manip.h(178) : see reference to class template instantiation 'mysqlpp::ColData_Tmpl<class mysqlpp::const_string>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(108) : error C2039: 'string_type' : is not a member of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(120) : see declaration of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\manip.h(178) : see reference to class template instantiation 'mysqlpp::ColData_Tmpl<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\coldata.h(120) : error C2039: 'string_type' : is not a member of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\type_info.h(120) : see declaration of 'mysql_type_info'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\manip.h(178) : see reference to class template instantiation 'mysqlpp::ColData_Tmpl<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > >' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(64) : error C2976: 'reverse_iterator' : too few template arguments
+        c:\program files\microsoft visual studio\vc98\include\utility(174) : see declaration of 'reverse_iterator'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\row.h(49) : see reference to class template instantiation 'mysqlpp::const_subscript_container<class mysqlpp::Row,class mysqlpp::ColData_Tmpl<class mysqlpp::const_string>,class mysqlpp::ColData_Tmpl<class mysqlpp::const_string> const ,unsigned int,int>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(66) : error C2976: 'reverse_iterator' : too few template arguments
+        c:\program files\microsoft visual studio\vc98\include\utility(174) : see declaration of 'reverse_iterator'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\row.h(49) : see reference to class template instantiation 'mysqlpp::const_subscript_container<class mysqlpp::Row,class mysqlpp::ColData_Tmpl<class mysqlpp::const_string>,class mysqlpp::ColData_Tmpl<class mysqlpp::const_string> const ,unsigned int,int>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\row.h(364) : error C2784: 'struct mysqlpp::value_list_ba<class mysqlpp::FieldNames,Manip> __thiscall mysqlpp::Row::field_list(const char *,Manip) const' : could not deduce template argument for 'struct mysqlpp::value_list_ba<class mysqlpp::FieldNames,Seq>' from 'struct mysqlpp::value_list_b<class mysqlpp::FieldNames,enum mysqlpp::quote_type0>'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\row.h(364) : error C2785: 'struct mysqlpp::value_list_ba<class mysqlpp::FieldNames,Manip> __thiscall mysqlpp::Row::field_list(const char *,Manip) const' and 'struct mysqlpp::value_list_b<class mysqlpp::FieldNames,enum mysqlpp::quote_type0> __thiscall mysqlpp::Row::field_list(const char *,const class std::vector<bool,class std::allocator<bool> > &) const' have different return types
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\row.h(339) : see declaration of 'field_list'
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(64) : error C2976: 'reverse_iterator' : too few template arguments
+        c:\program files\microsoft visual studio\vc98\include\utility(174) : see declaration of 'reverse_iterator'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(348) : see reference to class template instantiation 'mysqlpp::const_subscript_container<class mysqlpp::Result,class mysqlpp::Row,class mysqlpp::Row const ,unsigned int,int>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\resiter.h(66) : error C2976: 'reverse_iterator' : too few template arguments
+        c:\program files\microsoft visual studio\vc98\include\utility(174) : see declaration of 'reverse_iterator'
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(348) : see reference to class template instantiation 'mysqlpp::const_subscript_container<class mysqlpp::Result,class mysqlpp::Row,class mysqlpp::Row const ,unsigned int,int>' being compiled
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(478) : error C2664: '__thiscall mysqlpp::FieldNames::mysqlpp::FieldNames(int)' : cannot convert parameter 1 from 'const class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(492) : error C2664: '__thiscall mysqlpp::FieldNames::mysqlpp::FieldNames(int)' : cannot convert parameter 1 from 'class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(500) : error C2664: '__thiscall mysqlpp::FieldNames::mysqlpp::FieldNames(int)' : cannot convert parameter 1 from 'const class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(508) : error C2664: '__thiscall mysqlpp::FieldNames::mysqlpp::FieldNames(int)' : cannot convert parameter 1 from 'class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(516) : error C2664: '__thiscall mysqlpp::FieldNames::mysqlpp::FieldNames(int)' : cannot convert parameter 1 from 'const class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(525) : error C2664: '__thiscall mysqlpp::FieldNames::mysqlpp::FieldNames(int)' : cannot convert parameter 1 from 'class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(531) : error C2664: '__thiscall mysqlpp::FieldTypes::mysqlpp::FieldTypes(int)' : cannot convert parameter 1 from 'class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(539) : error C2664: '__thiscall mysqlpp::FieldTypes::mysqlpp::FieldTypes(int)' : cannot convert parameter 1 from 'const class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(547) : error C2664: '__thiscall mysqlpp::FieldTypes::mysqlpp::FieldTypes(int)' : cannot convert parameter 1 from 'class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(555) : error C2664: '__thiscall mysqlpp::FieldTypes::mysqlpp::FieldTypes(int)' : cannot convert parameter 1 from 'const class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\result.h(564) : error C2664: '__thiscall mysqlpp::FieldTypes::mysqlpp::FieldTypes(int)' : cannot convert parameter 1 from 'class mysqlpp::ResUse *const ' to 'int'
+        This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+c:\program files\microsoft visual studio\vc98\include\xtree(120) : warning C4786: 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' : identifier was truncated to '255' characters in the debug information
+        c:\program files\microsoft visual studio\vc98\include\map(46) : see reference to class template instantiation 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\query.h(633) : see reference to class template instantiation 'std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+c:\program files\microsoft visual studio\vc98\include\xtree(120) : warning C4786: 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::const_iterator' : identifier was truncated to '255' characters in the debug information
+        c:\program files\microsoft visual studio\vc98\include\map(46) : see reference to class template instantiation 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\query.h(633) : see reference to class template instantiation 'std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+c:\program files\microsoft visual studio\vc98\include\xtree(120) : warning C4786: 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::iterator' : identifier was truncated to '255' characters in the debug information
+        c:\program files\microsoft visual studio\vc98\include\map(46) : see reference to class template instantiation 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\query.h(633) : see reference to class template instantiation 'std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+c:\program files\microsoft visual studio\vc98\include\xtree(120) : warning C4786: 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Node' : identifier was truncated to '255' characters in the debug information
+        c:\program files\microsoft visual studio\vc98\include\map(46) : see reference to class template instantiation 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\query.h(633) : see reference to class template instantiation 'std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+c:\program files\microsoft visual studio\vc98\include\xtree(120) : warning C4786: 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::const_iterator' : identifier was truncated to '255' characters in the debug information
+        c:\program files\microsoft visual studio\vc98\include\map(46) : see reference to class template instantiation 'std::_Tree<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const ,short>,std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >::_Kfn,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+        c:\문서\대학강좌\2006년\2학기\게임제작실무3\10 week\mysql\include\query.h(633) : see reference to class template instantiation 'std::map<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,short,std::less<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::allocator<short> >' being compiled
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+Sql.exe - 99 error(s), 5 warning(s)
+</pre>
+</body>
+</html>
