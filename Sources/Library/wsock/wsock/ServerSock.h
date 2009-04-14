@@ -19,18 +19,15 @@
 
 #include "afxsock.h"
 
-#define WM_SERVER_ACCEPT	0x0001
+#define WM_SERVER_ACCEPT	WM_USER + 0
+
+HWND g_ServerhWnd;
 
 class _DLL CServerSock : public CAsyncSocket
 {
-// Attributes
-public:
-	HWND m_hWnd;
-
 // Operations
 public:
 	CServerSock();
-	CServerSock(HWND hWnd);
 	virtual ~CServerSock();
 
 // Overrides

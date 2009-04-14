@@ -15,11 +15,6 @@ CServerSock::CServerSock()
 {
 }
 
-CServerSock::CServerSock(HWND hWnd)
-{
-	m_hWnd = hWnd;
-}
-
 CServerSock::~CServerSock()
 {
 
@@ -41,7 +36,7 @@ void CServerSock::OnAccept(int nErrorCode)
 {
 	// TODO: Add your specialized code here and/or call the base class
 
-	if(nErrorCode == 0) SendMessage(m_hWnd, WM_SERVER_ACCEPT, (WPARAM) m_hSocket, 0);
+	if(nErrorCode == 0) SendMessage(g_ServerhWnd, WM_SERVER_ACCEPT, (WPARAM) m_hSocket, 0);
 
 	CAsyncSocket::OnAccept(nErrorCode);
 }

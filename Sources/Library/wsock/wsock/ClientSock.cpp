@@ -17,11 +17,6 @@ CClientSock::CClientSock()
 	m_Tag = -1;
 }
 
-CClientSock::CClientSock(HWND hWnd)
-{
-	m_hWnd = hWnd;
-}
-
 CClientSock::~CClientSock()
 {
 	
@@ -43,10 +38,10 @@ void CClientSock::OnReceive(int nErrorCode)
 {
 	// TODO: Add your specialized code here and/or call the base class
 
-	if(nErrorCode == 0) SendMessage(m_hWnd, WM_CLIENT_RECEIVE, (WPARAM) m_hSocket, (LPARAM) m_Tag);
+	if(nErrorCode == 0) SendMessage(g_ClienthWnd, WM_CLIENT_RECEIVE, (WPARAM) m_hSocket, (LPARAM) m_Tag);
 	else if(nErrorCode == WSAENETDOWN)
 	{
-		SendMessage(m_hWnd, WM_CLIENT_NETDOWN, (WPARAM) m_hSocket, (LPARAM) m_Tag);
+		SendMessage(g_ClienthWnd, WM_CLIENT_NETDOWN, (WPARAM) m_hSocket, (LPARAM) m_Tag);
 	}
 
 	CAsyncSocket::OnReceive(nErrorCode);
@@ -56,10 +51,10 @@ void CClientSock::OnSend(int nErrorCode)
 {
 	// TODO: Add your specialized code here and/or call the base class
 	
-	if(nErrorCode == 0) SendMessage(m_hWnd, WM_CLIENT_SEND, (WPARAM) m_hSocket, (LPARAM) m_Tag);
+	if(nErrorCode == 0) SendMessage(g_ClienthWnd, WM_CLIENT_SEND, (WPARAM) m_hSocket, (LPARAM) m_Tag);
 	else if(nErrorCode == WSAENETDOWN)
 	{
-		SendMessage(m_hWnd, WM_CLIENT_SEND_ERROR, (WPARAM) m_hSocket, (LPARAM) m_Tag);
+		SendMessage(g_ClienthWnd, WM_CLIENT_SEND_ERROR, (WPARAM) m_hSocket, (LPARAM) m_Tag);
 	}
 
 	CAsyncSocket::OnReceive(nErrorCode);
@@ -69,7 +64,7 @@ void CClientSock::OnConnect(int nErrorCode)
 {
 	if(nErrorCode == 0) 
 	{
-		SendMessage(m_hWnd, WM_CLIENT_CONNECT, (WPARAM) m_hSocket, 0);
+		SendMessage(g_ClienthWnd, WM_CLIENT_CONNECT, (WPARAM) m_hSocket, 0);
 
 		m_bConnect = true;
 	}
@@ -82,7 +77,7 @@ void CClientSock::OnClose(int nErrorCode)
 {
 	if(nErrorCode == 0) 
 	{
-		SendMessage(m_hWnd, WM_CLIENT_CLOSE, (WPARAM) m_hSocket, (LPARAM) m_Tag);
+		SendMessage(g_ClienthWnd, WM_CLIENT_CLOSE, (WPARAM) m_hSocket, (LPARAM) m_Tag);
 
 		m_bConnect = false;
 	}

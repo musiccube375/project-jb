@@ -19,12 +19,14 @@
 
 #include "afxsock.h"
 
-#define WM_CLIENT_RECEIVE		0x0002
-#define WM_CLIENT_SEND			0x0003
-#define WM_CLIENT_CONNECT		0x0004
-#define WM_CLIENT_CLOSE			0x0005
-#define WM_CLIENT_NETDOWN		0x0006
-#define WM_CLIENT_SEND_ERROR	0x0007
+#define WM_CLIENT_RECEIVE		WM_USER + 1
+#define WM_CLIENT_SEND			WM_USER + 2
+#define WM_CLIENT_CONNECT		WM_USER + 3
+#define WM_CLIENT_CLOSE			WM_USER + 4
+#define WM_CLIENT_NETDOWN		WM_USER + 5
+#define WM_CLIENT_SEND_ERROR	WM_USER + 6
+
+HWND g_ClienthWnd;
 
 class _DLL CClientSock : public CAsyncSocket
 {
@@ -33,12 +35,9 @@ public:
 	int		m_Tag;			// 소켓 정보를 위한 태그
 	bool	m_bConnect;		// 접속 여부 확인
 
-	HWND	m_hWnd;
-
 // Operations
 public:
 	CClientSock();
-	CClientSock(HWND hWnd);
 	virtual ~CClientSock();
 
 // Overrides
