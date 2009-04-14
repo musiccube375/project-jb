@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChatC", "ChatC.vcproj", "{D4857E19-03C1-493D-B2CC-9427CBD1B4D6}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChatS", "..\ChatS\ChatS.vcproj", "{647C6B73-412D-4A44-9533-0BBE46F0ACF1}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{D4857E19-03C1-493D-B2CC-9427CBD1B4D6}.Debug.ActiveCfg = Debug|Win32
+		{D4857E19-03C1-493D-B2CC-9427CBD1B4D6}.Debug.Build.0 = Debug|Win32
+		{D4857E19-03C1-493D-B2CC-9427CBD1B4D6}.Release.ActiveCfg = Release|Win32
+		{D4857E19-03C1-493D-B2CC-9427CBD1B4D6}.Release.Build.0 = Release|Win32
+		{647C6B73-412D-4A44-9533-0BBE46F0ACF1}.Debug.ActiveCfg = Debug|Win32
+		{647C6B73-412D-4A44-9533-0BBE46F0ACF1}.Debug.Build.0 = Debug|Win32
+		{647C6B73-412D-4A44-9533-0BBE46F0ACF1}.Release.ActiveCfg = Release|Win32
+		{647C6B73-412D-4A44-9533-0BBE46F0ACF1}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
