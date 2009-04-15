@@ -45,6 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="..\Sources\Log;..\Sources\Util;..\Sources\Manager;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -68,6 +69,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/FORCE:multiple  "
+				AdditionalDependencies="log.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_D.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
@@ -127,6 +130,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\Sources\Log;..\Sources\Util;..\Sources\Manager;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
 				MinimalRebuild="false"
 				RuntimeLibrary="0"
@@ -149,6 +153,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/FORCE:multiple  "
+				AdditionalDependencies="log.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -183,24 +189,30 @@
 	</References>
 	<Files>
 		<Filter
-			Name="소스 파일"
-			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			Name="Include"
+			>
+			<Filter
+				Name="Log"
+				>
+				<File
+					RelativePath="..\Sources\Log\Log.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Util"
+				>
+				<File
+					RelativePath="..\Sources\Util\T_Singleton.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Main"
 			>
 			<File
-				RelativePath=".\M-Server Manager.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\M-Server ManagerDoc.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\M-Server ManagerView.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\MainFrm.cpp"
+				RelativePath=".\Resource.h"
 				>
 			</File>
 			<File
@@ -223,38 +235,16 @@
 					/>
 				</FileConfiguration>
 			</File>
-		</Filter>
-		<Filter
-			Name="헤더 파일"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
-			>
-			<File
-				RelativePath=".\M-Server Manager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\M-Server ManagerDoc.h"
-				>
-			</File>
-			<File
-				RelativePath=".\M-Server ManagerView.h"
-				>
-			</File>
-			<File
-				RelativePath=".\MainFrm.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Resource.h"
-				>
-			</File>
 			<File
 				RelativePath=".\stdafx.h"
 				>
 			</File>
 			<File
 				RelativePath=".\targetver.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Tool_Define.h"
 				>
 			</File>
 		</Filter>
@@ -289,6 +279,54 @@
 			</File>
 			<File
 				RelativePath=".\UserImages.bmp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="MFC"
+			>
+			<File
+				RelativePath=".\M-Server Manager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\M-Server Manager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\M-Server ManagerDoc.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\M-Server ManagerDoc.h"
+				>
+			</File>
+			<File
+				RelativePath=".\M-Server ManagerView.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\M-Server ManagerView.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MainFrm.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MainFrm.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Manager"
+			>
+			<File
+				RelativePath="..\Sources\Manager\ToolMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Manager\ToolMgr.h"
 				>
 			</File>
 		</Filter>

@@ -60,6 +60,8 @@ void CMServerManagerView::OnInitialUpdate()
 	SetScaleToFitSize(rcClient.Size());
 
 	m_Brush.CreateSolidBrush(RGB(64, 64, 64)); 
+
+	g_sToolMgr.InitToolMgr(m_hWnd);
 }
 
 void CMServerManagerView::OnRButtonUp(UINT nFlags, CPoint point)
