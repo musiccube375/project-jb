@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Common_Util.h"
 
-void GetMyIP(CString strIP)
+void GetMyIP(CString& strIP)
 {
 	char name[255];
 	PHOSTENT hostinfo;
