@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "Log.h"
+
 /*
 	Class : Tool Manager Class
 
@@ -29,9 +31,14 @@ class CToolMgr
 private:
 	HWND m_hWnd;
 
+	CLog m_Log;
+
 public:
 	inline HWND GethWnd() { return m_hWnd; }
 
+	inline CLog* GetLog() { return &m_Log; }
+
 public:
 	HRESULT	InitToolMgr(HWND hWnd);
+	void ReleaseToolMgr();
 };

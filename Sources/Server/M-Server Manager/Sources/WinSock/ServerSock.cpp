@@ -36,7 +36,7 @@ void CServerSock::OnAccept(int nErrorCode)
 {
 	// TODO: Add your specialized code here and/or call the base class
 
-	if(nErrorCode == 0) SendMessage(g_MainhWnd, WM_SERVER_ACCEPT, (WPARAM) m_hSocket, 0);
+	if(nErrorCode == 0) SendMessage(g_sToolMgr.GethWnd(), WM_SERVER_ACCEPT, (WPARAM) m_hSocket, 0);
 
 	CAsyncSocket::OnAccept(nErrorCode);
 }
