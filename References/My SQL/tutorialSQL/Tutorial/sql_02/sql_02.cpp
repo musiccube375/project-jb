@@ -5,9 +5,6 @@
 
 #include <mysql++.h>
 
-#include <iomanip>
-#include <iostream>
-
 using namespace std;
 using namespace mysqlpp;
 
