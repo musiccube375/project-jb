@@ -17,4 +17,4 @@
 
 #pragma once
 
-void GetMyIP(CString strIP);
+void GetMyIP(CString& strIP);
