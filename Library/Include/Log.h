@@ -93,12 +93,14 @@ public:
 	Class : Log Class
 
 	Release Date		: 2008. 11. 02.
-	Version				: 1.00.06
+	Version				: 1.00.07
 */
 
 class CLog
 {
 protected:
+	bool		m_bEnable;
+
 	CLogInfo	m_LogInfo;			// Log Info
 	int			m_nLogCnt;			// Log Info Count
 
@@ -107,6 +109,10 @@ public:
 	int			GetLogSize();
 
 	void		GetLog(int nType, CLogInfo* pLogInfo);
+
+public:
+	void		EnableLog();
+	void		DisableLog();
 
 public:
 	// 로그 추가(fmt)

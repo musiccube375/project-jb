@@ -19,6 +19,7 @@ IMPLEMENT_DYNCREATE(CMServerManagerView, CFormView)
 
 BEGIN_MESSAGE_MAP(CMServerManagerView, CFormView)
 	ON_WM_CTLCOLOR()
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 // CMServerManagerView 생성/소멸
@@ -32,11 +33,13 @@ CMServerManagerView::CMServerManagerView()
 
 CMServerManagerView::~CMServerManagerView()
 {
+	g_sToolMgr.ReleaseToolMgr();
 }
 
 void CMServerManagerView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_TAB1, m_stcTab);
 }
 
 BOOL CMServerManagerView::PreCreateWindow(CREATESTRUCT& cs)
@@ -60,6 +63,18 @@ void CMServerManagerView::OnInitialUpdate()
 	SetScaleToFitSize(rcClient.Size());
 
 	m_Brush.CreateSolidBrush(RGB(64, 64, 64)); 
+
+	CRect rtTab;
+
+	m_stcTab.GetWindowRect(&rtTab);
+	ScreenToClient(&rtTab);
+
+	m_mfcTab.Create(CMFCTabCtrl::STYLE_3D_VS2005, rtTab, this, 1, CMFCTabCtrl::LOCATION_BOTTOM);
+
+	m_mfcTab.AddTab(&m_LogDlg, "Logs", 0, FALSE);
+	m_mfcTab.AddTab(&m_UserDlg, "Users", 1, FALSE);
+
+	OnTabColor();
 
 	g_sToolMgr.InitToolMgr(m_hWnd);
 }
@@ -108,4 +123,42 @@ HBRUSH CMServerManagerView::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	// TODO:  기본값이 적당하지 않으면 다른 브러시를 반환합니다.
 	//return hbr;
 	return m_Brush;
+}
+
+void CMServerManagerView::OnSize(UINT nType, int cx, int cy)
+{
+	CFormView::OnSize(nType, cx, cy);
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.	
+
+	CMFCTabCtrl* pTab = (CMFCTabCtrl *) GetDlgItem(IDC_TAB1);
+
+	if(pTab->GetSafeHwnd())
+	{
+		CRect rcClient;
+		GetClientRect(&rcClient);
+
+		pTab->SetWindowPos(NULL, 0, 0, rcClient.Width(), rcClient.Height(), SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
+	}
+
+	if(!m_mfcTab.GetSafeHwnd()) return;
+
+	CRect rcClient;
+	GetClientRect(&rcClient);
+
+	m_mfcTab.SetWindowPos(NULL, 0, 0, rcClient.Width(), rcClient.Height(), SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
+}
+
+void CMServerManagerView::OnTabColor() 
+{
+	UpdateData();
+	
+	CArray<COLORREF, COLORREF> arColors;
+
+	arColors.Add(RGB (121, 210, 231));
+	arColors.Add(RGB (190, 218, 153));
+	arColors.Add(RGB (255, 170, 100));
+
+	m_mfcTab.EnableAutoColor(TRUE);
+	m_mfcTab.SetAutoColors(arColors);
 }

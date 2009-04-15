@@ -18,6 +18,8 @@
 #pragma once
 
 #include "Log.h"
+#include "WinSockMgr.h"
+#include "DialogMgr.h"
 
 /*
 	Class : Tool Manager Class
@@ -32,11 +34,18 @@ private:
 	HWND m_hWnd;
 
 	CLog m_Log;
+	CWinSockMgr m_WinSockMgr;
+	CDialogMgr m_DialogMgr;
 
 public:
 	inline HWND GethWnd() { return m_hWnd; }
 
 	inline CLog* GetLog() { return &m_Log; }
+	inline CWinSockMgr* GetWinSockMgr() { return &m_WinSockMgr; }
+	inline CDialogMgr* GetDialogMgr() { return &m_DialogMgr; }
+
+public:
+	void SetLogView(bool bLogView);
 
 public:
 	HRESULT	InitToolMgr(HWND hWnd);

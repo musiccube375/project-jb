@@ -5,6 +5,9 @@
 
 #pragma once
 
+#include "LogDlg.h"
+#include "UserDlg.h"
+#include "afxwin.h"
 
 class CMServerManagerView : public CFormView
 {
@@ -39,6 +42,9 @@ public:
 #endif
 
 protected:
+	CMFCTabCtrl	m_mfcTab;
+
+	void OnTabColor(); 
 
 // 생성된 메시지 맵 함수
 protected:
@@ -48,6 +54,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	CStatic m_stcTab;
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 };
 
 #ifndef _DEBUG  // M-Server ManagerView.cpp의 디버그 버전

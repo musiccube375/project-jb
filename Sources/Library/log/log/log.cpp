@@ -33,7 +33,7 @@ void CLogInfo::ClearLogInfo()
 
 CLog::CLog()
 {
-
+	EnableLog();
 }
 
 CLog::~CLog()
@@ -59,8 +59,20 @@ void CLog::GetLog(int nType, CLogInfo* pLogInfo)
 	}
 }
 
+void CLog::EnableLog()
+{
+	m_bEnable = true;
+}
+
+void CLog::DisableLog()
+{
+	m_bEnable = false;
+}
+
 void CLog::AddLog(const char* fmt, ...)
 {
+	if(!m_bEnable) return;
+
 	char buff[1024];
 	va_list ap;
 
@@ -76,6 +88,8 @@ void CLog::AddLog(const char* fmt, ...)
 
 void CLog::AddLog(int nType, const char* fmt, ...)
 {
+	if(!m_bEnable) return;
+
 	char buff[1024];
 	va_list ap;
 
