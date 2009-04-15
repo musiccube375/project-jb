@@ -30,7 +30,23 @@
 #endif 
 
 #include "T_Singleton.h"
-#include "ToolMgr.h"
+#include "ToolMgr.h"	
 
 CSingleton<CToolMgr>	sToolMgr;
 #define g_sToolMgr		sToolMgr.GetInstance()
+
+#define LOG_TYPE				0x004C4F47
+#define LOG_TYPE_TOOLWORK		LOG_TYPE + 1
+#define LOG_TYPE_CONFIG			LOG_TYPE + 2
+#define LOG_TYPE_CONN			LOG_TYPE + 3
+#define LOG_TYPE_ERROR			LOG_TYPE + 4
+#define LOG_TYPE_RECV			LOG_TYPE + 5
+#define LOG_TYPE_SEND			LOG_TYPE + 6
+
+#define WM_SERVER_ACCEPT		WM_USER + 1
+#define WM_CLIENT_RECEIVE		WM_USER + 2
+#define WM_CLIENT_CONNECT		WM_USER + 3
+#define WM_CLIENT_CLOSE			WM_USER + 4
+#define WM_CLIENT_NETDOWN		WM_USER + 5	
+#define WM_CLIENT_SEND			WM_USER + 6
+#define WM_CLIENT_SEND_ERROR	WM_USER + 7

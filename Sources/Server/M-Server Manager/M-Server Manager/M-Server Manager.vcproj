@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\Sources\Log;..\Sources\Util;..\Sources\Manager;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -130,7 +130,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\Sources\Log;..\Sources\Util;..\Sources\Manager;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
 				MinimalRebuild="false"
 				RuntimeLibrary="0"
@@ -195,7 +195,7 @@
 				Name="Log"
 				>
 				<File
-					RelativePath="..\Sources\Log\Log.h"
+					RelativePath="..\..\..\..\Library\Include\Log.h"
 					>
 				</File>
 			</Filter>
@@ -322,11 +322,95 @@
 			Name="Manager"
 			>
 			<File
+				RelativePath="..\Sources\Manager\DialogMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Manager\DialogMgr.h"
+				>
+			</File>
+			<File
 				RelativePath="..\Sources\Manager\ToolMgr.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\Sources\Manager\ToolMgr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Manager\WinSockMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Manager\WinSockMgr.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Dialog"
+			>
+			<File
+				RelativePath=".\LogDlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\LogDlg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UserDlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\UserDlg.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="WinSock"
+			>
+			<File
+				RelativePath="..\Sources\WinSock\ClientSock.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\WinSock\ClientSock.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\WinSock\ServerSock.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\WinSock\ServerSock.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Common"
+			>
+			<File
+				RelativePath="..\..\..\Common\Common_Define.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Common\Common_Util.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Common\Common_Util.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Util"
+			>
+			<File
+				RelativePath="..\Sources\Util\CustomControl.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Util\CustomControl.h"
 				>
 			</File>
 		</Filter>

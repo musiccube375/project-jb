@@ -16,3 +16,33 @@
 */
 
 #pragma once
+
+#include <map>
+
+using namespace std;
+
+#include "ServerSock.h"
+#include "ClientSock.h"
+
+#define MAIN_SERVER_PORT		9988
+#define MIDDLE_SERVER_PORT		9989
+
+typedef map<int, CClientSock*>					CLIENTSOCK_MAP;
+typedef map<int, CClientSock*>::iterator		CLIENTSOCK_MAP_IT;
+typedef map<int, CClientSock*>::value_type		CLIENTSOCK_MAP_VALUE;
+
+typedef struct _USERBASEINFO
+{
+	char	szID[32];
+	char	szNick[128];
+}USERBASEINFO, *PUSERBASEINFO;
+
+typedef struct _USERINFO
+{
+	CClientSock*	pSock;
+	USERBASEINFO	UserBase;
+}USERINFO, *PUSERINFO;
+
+typedef map<int, USERINFO>					USERINFO_MAP;
+typedef map<int, USERINFO>::iterator		USERINFO_MAP_IT;
+typedef map<int, USERINFO>::value_type		USERINFO_MAP_VALUE;
