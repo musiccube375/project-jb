@@ -106,14 +106,17 @@ int main(int argc, char **argv)
 	}*/
 
 	// Backup
-	sprintf(query, "/usr/local/bin/mysqldump userinfo > C:\Documents and Settings\Bill\¹ÙÅÁ È­¸é\backup.sql");
-	//sprintf(query, "C:\\Program Files\\MySQL\\MySQL Server 5.1\\bin\\mysqldump %s > backup.sql", "C:\\Documents and Settings\Bill\\¹ÙÅÁ È­¸é\\");
-	system(query); 
+	//sprintf(query, "mysqldump -uroot -p1124 mmuser > c:\\mmuser.sql");
+	//system(query); 
+
+	// Restore
+	//sprintf(query, "mysql -uroot -p1124 mmuser < c:\\mmuser.sql");
+	//system(query); 
 
 	//sprintf(query, "SELECT userinfo INTO OUTFILE 'C:\\Documents and Settings\\Bill\\¹ÙÅÁ È­¸é\\backup.sql'");
 	//mysql_query(conn, query);
 
 	mysql_close(conn);
 
-	getch();
+	//getch();
 }
