@@ -1,0 +1,31 @@
+작업 전 확인 사항
+
+- MySQL Server 5.1 설치 유무
+
+작업 순서
+1. 시작 -> 실행 -> cmd 입력 후 도스창 실행
+2. 백업과 복구를 위한 실행 파일이 있는 곳으로 폴더를 이동
+   예) cd c:\program files\mysql\mysql server 5.1\bin(기본적인 설치 경로일 경우)
+3. 다음의 명령어들을 입력 후 DB 비밀번호를 최종적으로 입력하면 실행 완료
+4. 직접 MY-SQL 를 통해 DB 백업 복구 여부를 확인해본다
+
+
+백업
+
+mysqldump -u [user_name] -p [db_name] > [db_name.sql]
+예) mysqldump -u root -p userdb > userdb.sql
+    -> cd c:\program files\mysql\mysql server 5.1\bin 폴더 안에 userdb.sql 파일이 생성된다
+
+복구
+
+mysql -u [user_name] -p [db_name] < [sql file]
+예) mysql -u root -p userdb < c:\userdb.sql(복구할 sql 파일이 c:\ 폴더 아래에 있을 경우)
+
+복구 확인
+
+MySQL Command Line Client 실행 -> 비밀번호 입력 후 서버 진입 -> show databases;, use [db_name];, show tables; 
+등으로 database, table 등을 확인해본다.
+
+
+
+
