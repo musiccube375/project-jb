@@ -11,7 +11,7 @@ CDialogMgr::~CDialogMgr()
 	
 }
 
-HRESULT InitDialogMgr()
+HRESULT CDialogMgr::InitDialogMgr()
 {
 	m_LogDlg.Create(CLogDlg::IDD, &m_mfcTab);
 	m_UserDlg.Create(CUserDlg::IDD, &m_mfcTab);
