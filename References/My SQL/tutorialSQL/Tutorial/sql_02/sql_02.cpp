@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include <conio.h>
 
 #include <mysql++.h>
 
@@ -14,12 +15,12 @@ using namespace mysqlpp;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	Connection con("gamedata","127.0.0.1","root","46EkdzhRl20");
+	Connection con("mmuser", "127.0.0.1", "root", "1124");
 
 	// -------------------------------------------------------
 
-	Query query = con.query();
-	query << "show databases";
+	//Query query = con.query();
+	/*query << "show databases";
 	cout << "Query: " << query.preview() << endl;
 
 	Result res = query.store();
@@ -69,9 +70,10 @@ int _tmain(int argc, _TCHAR* argv[])
 			cout << string( (*i).at(counter)) << "  ";
 		}
 		cout << endl;
-	}
+	}*/
 
 	// -------------------------------------------------------
 
+	getch();
 	return 0;
 }
