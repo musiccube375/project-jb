@@ -11,10 +11,10 @@ CDialogMgr::~CDialogMgr()
 	
 }
 
-HRESULT CDialogMgr::InitDialogMgr()
+HRESULT CDialogMgr::InitDialogMgr(CMFCTabCtrl* pTab)
 {
-	m_LogDlg.Create(CLogDlg::IDD, &m_mfcTab);
-	m_UserDlg.Create(CUserDlg::IDD, &m_mfcTab);
+	m_LogDlg.Create(CLogDlg::IDD, pTab);
+	m_UserDlg.Create(CUserDlg::IDD, pTab);
 
 	return S_OK;
 }
