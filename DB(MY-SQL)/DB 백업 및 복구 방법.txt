@@ -6,6 +6,8 @@
 1. 시작 -> 실행 -> cmd 입력 후 도스창 실행
 2. 백업과 복구를 위한 실행 파일이 있는 곳으로 폴더를 이동
    예) cd c:\program files\mysql\mysql server 5.1\bin(기본적인 설치 경로일 경우)
+3. 복구하려는 db_name이 없을 경우 MY-SQL Command Line Client 에서 DB 폴더를 만들어 준다
+   예) create database [db_name]
 3. 다음의 명령어들을 입력 후 DB 비밀번호를 최종적으로 입력하면 실행 완료
 4. 직접 MY-SQL 를 통해 DB 백업 복구 여부를 확인해본다
 

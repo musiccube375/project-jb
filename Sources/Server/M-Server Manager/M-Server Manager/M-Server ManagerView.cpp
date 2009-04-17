@@ -71,12 +71,13 @@ void CMServerManagerView::OnInitialUpdate()
 
 	m_mfcTab.Create(CMFCTabCtrl::STYLE_3D_VS2005, rtTab, this, 1, CMFCTabCtrl::LOCATION_BOTTOM);
 
-	m_mfcTab.AddTab(&m_LogDlg, "Logs", 0, FALSE);
-	m_mfcTab.AddTab(&m_UserDlg, "Users", 1, FALSE);
+	g_sToolMgr.InitToolMgr(m_hWnd);
+	g_sToolMgr.GetDialogMgr()->InitDialogMgr(&m_mfcTab);
+
+	m_mfcTab.AddTab(&g_sToolMgr.GetDialogMgr()->m_LogDlg, "Logs", 0, FALSE);
+	m_mfcTab.AddTab(&g_sToolMgr.GetDialogMgr()->m_UserDlg, "Users", 1, FALSE);
 
 	OnTabColor();
-
-	g_sToolMgr.InitToolMgr(m_hWnd);
 }
 
 void CMServerManagerView::OnRButtonUp(UINT nFlags, CPoint point)
