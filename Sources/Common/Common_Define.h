@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Common Define
-	Version				: 1.00.00
+	Version				: 1.00.01
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -31,6 +31,9 @@ using namespace std;
 
 #define MAIN_SERVER_PORT		9988
 #define MIDDLE_SERVER_PORT		9989
+#define CLIENT_USER_PORT		9990
+
+#define LOCAL_HOST				"127.0.0.1"
 
 typedef map<int, CClientSock*>					CLIENTSOCK_MAP;
 typedef map<int, CClientSock*>::iterator		CLIENTSOCK_MAP_IT;

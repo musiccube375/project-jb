@@ -390,7 +390,23 @@
 			Name="Common"
 			>
 			<File
+				RelativePath="..\..\..\Common\Common_Command.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Common\Common_Define.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Common\Common_MSG.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Common\Common_MSG.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Common\Common_MSG_Type.h"
 				>
 			</File>
 			<File
