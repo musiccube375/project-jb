@@ -17,6 +17,11 @@
 
 #pragma once
 
+#include "Common_Util.h"
+#include "Common_MSG.h"
+#include "Common_Command.h"
+#include "Common_MSG_Type.h"
+
 #include <map>
 
 using namespace std;
