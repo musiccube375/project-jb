@@ -1,7 +1,7 @@
 /* 
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
-	Release Date		: 2009. 04. 15.
-	Project	Name		: Common Util
+	Release Date		: 2009. 04. 22.
+	Project	Name		: Common Message Type
 	Version				: 1.00.00
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
@@ -10,11 +10,15 @@
 	
 	Contents
 
-	Common Util Header
+	Common Message Type Header
 
 	2009 ®œ Copyright MIS Corporation. All Rights Reserved.
 */
 
 #pragma once
 
-void GetMyIP(CString& strIP);
+#define MSG_MAIN_TO_MIDDLE		0xMD
+#define MSG_MIDDLE_TO_MAIN		0xDM
+#define MSG_MIDDLE_TO_MIDDLE	0xDD
+#define MSG_MIDDLE_TO_CLIENT	0xDC
+#define MSG_CLIENT_TO_MIDDLE	0xCD
