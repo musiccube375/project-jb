@@ -32,8 +32,13 @@ private:
 	bool m_bServerRun;
 	CServerSock m_ServerSock;			// Main Server Socket
 	
+	CClientSock m_ServerMgrSock;		// The socket for connecting to server manager
+
 	int	m_nClientSockCount;				// Client socket map counter
 	CLIENTSOCK_MAP m_mapClientSock;		// Client socket map for middle server
+
+	char m_szServerMgrIP[32];
+	bool m_bServerMgrConnect;
 
 public:
 	inline CServerSock* GetServerSock() { return &m_ServerSock; }
@@ -42,8 +47,11 @@ public:
 	void InitServerSock();
 	void CloseServerSock();
 
+	bool ConnectToServerMgr();
+	void CloseServerMgrSock();
+
 public:
-	HRESULT InitWinSockMgr();
+	HRESULT InitWinSockMgr(char* pszServerMgrIP = LOCAL_HOST);
 
 public:
 	// The basic constructor
