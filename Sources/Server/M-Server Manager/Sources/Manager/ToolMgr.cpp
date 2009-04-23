@@ -1,6 +1,12 @@
 #include "stdAfx.h"
 #include "ToolMgr.h"
 
+void CToolMgr::InitVariable()
+{
+	m_hWnd = NULL;
+	m_bRun = false;
+}
+
 HRESULT	CToolMgr::InitToolMgr(HWND hWnd)
 {
 	m_hWnd = hWnd;

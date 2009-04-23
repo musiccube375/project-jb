@@ -83,6 +83,10 @@ IDR_MServerManagerTYPE  ICON                    "res\\M-Server ManagerDoc.ico"
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar256.bmp"
+IDB_FRM_BTN_MAX1_OVER   BITMAP                  "res\\Frame Image\\close box_d_over.bmp"
+IDB_FRM_BTN_MAX_OVER    BITMAP                  "res\\Frame Image\\close box_b_over.bmp"
+IDB_FRM_BTN_MAX_ACTIVE  BITMAP                  "res\\Frame Image\\close box_b_select.bmp"
+IDB_FRM_BTN_MAX         BITMAP                  "res\\Frame Image\\close box_b.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -192,6 +196,32 @@ BEGIN
     CONTROL         "",IDC_LIST1,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,0,0,416,252
 END
 
+IDD_DIALOG_ACCOUNT DIALOGEX 0, 0, 236, 166
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Account Manager"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,76,17,90,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,76,33,90,14,ES_PASSWORD | ES_AUTOHSCROLL
+    PUSHBUTTON      "Login",IDC_BUTTON1,173,33,50,14
+    EDITTEXT        IDC_EDIT3,77,70,89,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,77,86,89,14,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,77,102,89,14,ES_PASSWORD | ES_AUTOHSCROLL
+    PUSHBUTTON      "Verify ID",IDC_BUTTON2,173,70,50,14
+    PUSHBUTTON      "Add Account",IDC_BUTTON3,174,120,50,14
+    DEFPUSHBUTTON   "OK",IDOK,127,145,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,179,145,50,14
+    LTEXT           "Account ID",IDC_STATIC,25,19,35,8,0,WS_EX_TRANSPARENT
+    LTEXT           "Passwords",IDC_STATIC,26,35,35,8,0,WS_EX_TRANSPARENT
+    GROUPBOX        "New Account",IDC_STATIC_NEW_ACCOUNT,7,56,221,84,0,WS_EX_TRANSPARENT
+    LTEXT           "Account ID",IDC_STATIC,25,72,36,8,0,WS_EX_TRANSPARENT
+    LTEXT           "Passwords",IDC_STATIC,26,88,35,8,0,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_EDIT5,15,120,151,14,ES_AUTOHSCROLL | ES_READONLY
+    GROUPBOX        "User Account",IDC_STATIC_ACCOUNT,7,6,220,47,0,WS_EX_TRANSPARENT
+    LTEXT           "Verify Passwords",IDC_STATIC,17,104,56,8,0,WS_EX_TRANSPARENT
+    LTEXT           "Min : 8, Max : 16",IDC_STATIC,171,89,54,8
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -273,6 +303,14 @@ BEGIN
         RIGHTMARGIN, 499
         TOPMARGIN, 7
         BOTTOMMARGIN, 317
+    END
+
+    IDD_DIALOG_ACCOUNT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 229
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 159
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -407,6 +445,57 @@ BEGIN
 END
 
 #endif    // 한국어 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 영어(미국) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_OLDFRM_RIGHT        BITMAP                  "res\\Frame Image\\frm_oldtop_right.bmp"
+IDB_OLDFRM_LEFT         BITMAP                  "res\\Frame Image\\frm_oldtop_left.bmp"
+IDB_OLDFRM_CEN          BITMAP                  "res\\Frame Image\\frm_oldtop_middle.bmp"
+IDB_FRM_TOP_RIGHT       BITMAP                  "res\\Frame Image\\frm_top_right.bmp"
+IDB_FRM_TOP_LEFT        BITMAP                  "res\\Frame Image\\frm_top_left.bmp"
+IDB_FRM_TOP_CEN         BITMAP                  "res\\Frame Image\\frm_top_middle.bmp"
+IDB_FRM_RIGHT_BORDER    BITMAP                  "res\\Frame Image\\frm_leftbar.bmp"
+IDB_FRM_GRAY_TOP_RIGHT  BITMAP                  "res\\Frame Image\\frm_gray_top_right.bmp"
+IDB_FRM_GRAY_TOP_LEFT   BITMAP                  "res\\Frame Image\\frm_gray_top_left.bmp"
+IDB_FRM_GRAY_TOP_CEN    BITMAP                  "res\\Frame Image\\frm_gray_top_middle.bmp"
+IDB_FRM_GRAY_RIGHT_BORDER BITMAP                  "res\\Frame Image\\frm_gray_rightbar.bmp"
+IDB_FRM_GRAY_OLDTOP_RIGHT BITMAP                  "res\\Frame Image\\frm_gray_oldtop_right.bmp"
+IDB_FRM_GRAY_OLDTOP_LEFT BITMAP                  "res\\Frame Image\\frm_gray_oldtop_left.bmp"
+IDB_FRM_GRAY_OLDTOP_CEN BITMAP                  "res\\Frame Image\\frm_gray_oldtop_middle.bmp"
+IDB_FRM_GRAY_LEFT_BORDER BITMAP                  "res\\Frame Image\\frm_gray_leftbar.bmp"
+IDB_FRM_GRAY_BOTTOM_RIGHT BITMAP                  "res\\Frame Image\\frm_gray_bottom_right.bmp"
+IDB_FRM_GRAY_BOTTOM_LEFT BITMAP                  "res\\Frame Image\\frm_gray_bottom_left.bmp"
+IDB_FRM_GRAY_BOTTOM_CEN BITMAP                  "res\\Frame Image\\frm_gray_bottom_cen.bmp"
+IDB_FRM_BTN_MIN_OVER    BITMAP                  "res\\Frame Image\\close box_a_over.bmp"
+IDB_FRM_BTN_MIN_DISABLE BITMAP                  "res\\Frame Image\\close box_a_disable.bmp"
+IDB_FRM_BTN_MIN_ACTIVE  BITMAP                  "res\\Frame Image\\close box_a_select.bmp"
+IDB_FRM_BTN_MIN         BITMAP                  "res\\Frame Image\\close box_a.bmp"
+IDB_FRM_BTN_MAX1_DISABLE BITMAP                  "res\\Frame Image\\close box_d_disable.bmp"
+IDB_FRM_BTN_MAX1_ACTIVE BITMAP                  "res\\Frame Image\\close box_d_select.bmp"
+IDB_FRM_BTN_MAX1        BITMAP                  "res\\Frame Image\\close box_d.bmp"
+IDB_FRM_BTN_MAX_DISABLE BITMAP                  "res\\Frame Image\\close box_b_disable.bmp"
+IDB_FRM_BTN_CLOSE_OVER  BITMAP                  "res\\Frame Image\\close box_c_over.bmp"
+IDB_FRM_BTN_CLOSE_DISABLE BITMAP                  "res\\Frame Image\\close box_c_disable.bmp"
+IDB_FRM_BTN_CLOSE_ACTIVE BITMAP                  "res\\Frame Image\\close box_c_select.bmp"
+IDB_FRM_BTN_CLOSE       BITMAP                  "res\\Frame Image\\close box_c.bmp"
+IDB_FRM_BOTTOM_RIGHT    BITMAP                  "res\\Frame Image\\frm_bottom_right.bmp"
+IDB_FRM_BOTTOM_LEFT     BITMAP                  "res\\Frame Image\\frm_bottom_left.bmp"
+IDB_FRM_BOTTOM_CEN      BITMAP                  "res\\Frame Image\\frm_bottom_cen.bmp"
+#endif    // 영어(미국) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

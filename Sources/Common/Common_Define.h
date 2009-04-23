@@ -22,6 +22,8 @@
 #include "Common_Command.h"
 #include "Common_MSG_Type.h"
 
+#include "DialogSkin.h"
+
 #include <map>
 
 using namespace std;
