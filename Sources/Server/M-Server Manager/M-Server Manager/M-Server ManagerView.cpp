@@ -78,6 +78,12 @@ void CMServerManagerView::OnInitialUpdate()
 	m_mfcTab.AddTab(&g_sToolMgr.GetDialogMgr()->m_UserDlg, "Users", 1, FALSE);
 
 	OnTabColor();
+
+	// 계정 관리 창을 최초의 띄워 접속 및 계정 추가를 할 수 있도록 한다
+	if(g_sToolMgr.GetDialogMgr()->m_AccountDlg.DoModal() != IDOK)
+	{
+		PostQuitMessage(0);
+	}
 }
 
 void CMServerManagerView::OnRButtonUp(UINT nFlags, CPoint point)

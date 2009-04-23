@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -130,7 +130,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
 				MinimalRebuild="false"
 				RuntimeLibrary="0"
@@ -254,6 +254,162 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
+				RelativePath=".\res\Frame Image\bitmap1.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\bitmap1.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_a.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_a_disable.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_a_over.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_a_select.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_b.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_b_disable.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_b_over.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_b_select.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_c.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_c_disable.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_c_over.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_c_select.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_d.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_d_disable.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_d_over.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\close box_d_select.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_bottom_cen.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_bottom_left.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_bottom_right.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_bottom_cen.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_bottom_left.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_bottom_right.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_leftbar.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_oldtop_left.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_oldtop_middle.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_oldtop_right.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_rightbar.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_top_left.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_top_middle.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_gray_top_right.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_leftbar.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_oldtop_left.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_oldtop_middle.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_oldtop_right.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_top_left.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_top_middle.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Frame Image\frm_top_right.bmp"
+				>
+			</File>
+			<File
 				RelativePath=".\res\M-Server Manager.ico"
 				>
 			</File>
@@ -350,6 +506,14 @@
 			Name="Dialog"
 			>
 			<File
+				RelativePath=".\AccountDlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\AccountDlg.h"
+				>
+			</File>
+			<File
 				RelativePath=".\LogDlg.cpp"
 				>
 			</File>
@@ -417,6 +581,26 @@
 				RelativePath="..\..\..\Common\Common_Util.h"
 				>
 			</File>
+			<Filter
+				Name="External"
+				>
+				<Filter
+					Name="SkinDialog"
+					>
+					<File
+						RelativePath="..\..\..\Common\External\SkinDialog\DialogSkin.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Common\External\SkinDialog\DialogSkin.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Common\External\SkinDialog\memdc.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Util"
