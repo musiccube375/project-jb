@@ -29,12 +29,41 @@ int main(int argc, char **argv)
 		return 0;
 	}
 
+	// Main Server Admin Info Tables
+	/*query_stat = mysql_query(conn, "CREATE TABLE mainsadmin( \
+					idx INT AUTO_INCREMENT PRIMARY KEY, \
+					id VARCHAR(32), \
+					passwords VARCHAR(16), \
+					level INT)");
+
+	sprintf(query, "INSERT INTO mainsadmin VALUES('%d', '%s', '%s', '%d')", 0, "Admin", "admin", 1);
+	query_stat = mysql_query(conn, query);
+
+	// Middle Server Admin Info Tables
+	query_stat = mysql_query(conn, "CREATE TABLE middlesadmin( \
+					idx INT AUTO_INCREMENT PRIMARY KEY, \
+					id VARCHAR(32), \
+					passwords VARCHAR(16), \
+					level INT)");
+
+	sprintf(query, "INSERT INTO middlesadmin VALUES('%d', '%s', '%s', '%d')", 0, "Admin", "admin", 1);
+	query_stat = mysql_query(conn, query);
+
+	sprintf(query, "INSERT INTO middlesadmin VALUES('%d', '%s', '%s', '%d')", 0, "guest", "guest", 3);
+	query_stat = mysql_query(conn, query);
+
+	sprintf(query, "INSERT INTO middlesadmin VALUES('%d', '%s', '%s', '%d')", 0, "Bill", "1111", 2);
+	query_stat = mysql_query(conn, query);
+
+	sprintf(query, "INSERT INTO middlesadmin VALUES('%d', '%s', '%s', '%d')", 0, "Jack", "1111", 2);
+	query_stat = mysql_query(conn, query);*/
+
 	// Create Table
-	query_stat = mysql_query(conn, "CREATE TABLE userinfo( \
+	/*query_stat = mysql_query(conn, "CREATE TABLE userinfo( \
 					idx INT AUTO_INCREMENT PRIMARY KEY, \
 					id VARCHAR(32), \
 					nickname VARCHAR(128), \
-					passwords VARCHAR(16))");
+					passwords VARCHAR(16))");*/
 
 	//sprintf(query, "CREATE TABLE userinfo(index INT)");
 	//query_stat = mysql_query(conn, query);
@@ -116,6 +145,8 @@ int main(int argc, char **argv)
 
 	// Backup
 	//sprintf(query, "mysqldump -uroot -p1124 mmuser > c:\\mmuser.sql");
+	//system(query); 
+	//sprintf(query, "mysqldump -uroot -p1124 mmuser > ..\\..\\..\\..\\DB(MY-SQL)\\mmuser.sql");
 	//system(query); 
 
 	// Restore

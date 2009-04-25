@@ -15,6 +15,7 @@ HRESULT CDialogMgr::InitDialogMgr(CMFCTabCtrl* pTab)
 {
 	m_LogDlg.Create(CLogDlg::IDD, pTab);
 	m_UserDlg.Create(CUserDlg::IDD, pTab);
+	m_StatusDlg.Create(CStatusDlg::IDD, pTab);
 
 	return S_OK;
 }

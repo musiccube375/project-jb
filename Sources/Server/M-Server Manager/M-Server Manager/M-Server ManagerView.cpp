@@ -20,6 +20,10 @@ IMPLEMENT_DYNCREATE(CMServerManagerView, CFormView)
 BEGIN_MESSAGE_MAP(CMServerManagerView, CFormView)
 	ON_WM_CTLCOLOR()
 	ON_WM_SIZE()
+	ON_COMMAND(ID_ACCOUNT_MANAGE, &CMServerManagerView::OnAccountManage)
+	ON_COMMAND(ID_BUTTON_ACCOUNT_MANAGE_256, &CMServerManagerView::OnButtonAccountManage256)
+	ON_COMMAND(ID_BUTTON_RUN, &CMServerManagerView::OnButtonRun)
+	ON_COMMAND(ID_BUTTON_STOP, &CMServerManagerView::OnButtonStop)
 END_MESSAGE_MAP()
 
 // CMServerManagerView 생성/소멸
@@ -74,16 +78,14 @@ void CMServerManagerView::OnInitialUpdate()
 	g_sToolMgr.InitToolMgr(m_hWnd);
 	g_sToolMgr.GetDialogMgr()->InitDialogMgr(&m_mfcTab);
 
-	m_mfcTab.AddTab(&g_sToolMgr.GetDialogMgr()->m_LogDlg, "Logs", 0, FALSE);
-	m_mfcTab.AddTab(&g_sToolMgr.GetDialogMgr()->m_UserDlg, "Users", 1, FALSE);
+	m_mfcTab.AddTab(&g_sToolMgr.GetDialogMgr()->m_StatusDlg, "Status", 0, FALSE);
+	m_mfcTab.AddTab(&g_sToolMgr.GetDialogMgr()->m_LogDlg, "Logs", 1, FALSE);
+	m_mfcTab.AddTab(&g_sToolMgr.GetDialogMgr()->m_UserDlg, "Users", 2, FALSE);
 
 	OnTabColor();
 
-	// 계정 관리 창을 최초의 띄워 접속 및 계정 추가를 할 수 있도록 한다
-	if(g_sToolMgr.GetDialogMgr()->m_AccountDlg.DoModal() != IDOK)
-	{
-		PostQuitMessage(0);
-	}
+	// 계정 관리 창을 최초로 띄워 접속 및 계정 추가를 할 수 있도록 한다
+	g_sToolMgr.GetDialogMgr()->m_AccountDlg.DoModal();
 }
 
 void CMServerManagerView::OnRButtonUp(UINT nFlags, CPoint point)
@@ -168,4 +170,38 @@ void CMServerManagerView::OnTabColor()
 
 	m_mfcTab.EnableAutoColor(TRUE);
 	m_mfcTab.SetAutoColors(arColors);
+}
+
+void CMServerManagerView::OnAccountManage()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+void CMServerManagerView::OnButtonAccountManage256()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+
+	g_sToolMgr.GetDialogMgr()->m_AccountDlg.DoModal();
+}
+
+void CMServerManagerView::OnButtonRun()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+
+	if(g_sToolMgr.IsAccountActived())
+	{
+		g_sToolMgr.SetRun(true);	
+
+		g_sToolMgr.GetDialogMgr()->m_StatusDlg.OnRun(g_sToolMgr.GetUserID());
+	}
+	else g_sToolMgr.GetDialogMgr()->m_AccountDlg.DoModal();
+}
+
+void CMServerManagerView::OnButtonStop()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+
+	g_sToolMgr.SetRun(false);
+
+	g_sToolMgr.GetDialogMgr()->m_StatusDlg.m_editStatus.SetWindowTextA("Server is not running...");
 }

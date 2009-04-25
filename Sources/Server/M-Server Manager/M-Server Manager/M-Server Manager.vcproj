@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -70,7 +70,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/FORCE:multiple  "
-				AdditionalDependencies="log.lib"
+				AdditionalDependencies="log.lib libmysql.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_D.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
@@ -130,7 +130,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
 				MinimalRebuild="false"
 				RuntimeLibrary="0"
@@ -154,7 +154,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/FORCE:multiple  "
-				AdditionalDependencies="log.lib"
+				AdditionalDependencies="log.lib libmysql.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -254,11 +254,11 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\res\Frame Image\bitmap1.bmp"
+				RelativePath=".\res\bitmap1.bmp"
 				>
 			</File>
 			<File
-				RelativePath=".\res\bitmap1.bmp"
+				RelativePath=".\res\Frame Image\bitmap1.bmp"
 				>
 			</File>
 			<File
@@ -426,6 +426,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ReadMe.txt"
+				>
+			</File>
+			<File
 				RelativePath=".\res\Toolbar.bmp"
 				>
 			</File>
@@ -486,6 +490,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Sources\Manager\SQLMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Manager\SQLMgr.h"
+				>
+			</File>
+			<File
 				RelativePath="..\Sources\Manager\ToolMgr.cpp"
 				>
 			</File>
@@ -519,6 +531,14 @@
 			</File>
 			<File
 				RelativePath=".\LogDlg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\StatusDlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\StatusDlg.h"
 				>
 			</File>
 			<File
@@ -613,11 +633,15 @@
 				RelativePath="..\Sources\Util\CustomControl.h"
 				>
 			</File>
+			<File
+				RelativePath="..\Sources\Util\SQL.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Util\SQL.h"
+				>
+			</File>
 		</Filter>
-		<File
-			RelativePath=".\ReadMe.txt"
-			>
-		</File>
 	</Files>
 	<Globals>
 		<Global

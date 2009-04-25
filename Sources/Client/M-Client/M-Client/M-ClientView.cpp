@@ -19,6 +19,12 @@ IMPLEMENT_DYNCREATE(CMClientView, CFormView)
 
 BEGIN_MESSAGE_MAP(CMClientView, CFormView)
 	ON_WM_CTLCOLOR()
+	ON_EN_CHANGE(IDC_EDIT1, &CMClientView::OnEnChangeEdit1)
+	ON_EN_CHANGE(IDC_EDIT2, &CMClientView::OnEnChangeEdit2)
+	ON_BN_CLICKED(IDC_BUTTON1, &CMClientView::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &CMClientView::OnBnClickedButton2)
+	ON_WM_ERASEBKGND()
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 // CMClientView 생성/소멸
@@ -37,6 +43,13 @@ CMClientView::~CMClientView()
 void CMClientView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_EDIT1, m_editID);
+	DDX_Control(pDX, IDC_EDIT2, m_editPW);
+	DDX_Control(pDX, IDC_BUTTON1, m_btnRegisterID);
+	DDX_Control(pDX, IDC_BUTTON2, m_CheckID);
+	DDX_Control(pDX, IDC_CHECK2, m_chkboxRememberID);
+	DDX_Control(pDX, IDC_CHECK1, m_chkboxOffline);
+	DDX_Control(pDX, IDC_BUTTON3, m_btnLogin);
 }
 
 BOOL CMClientView::PreCreateWindow(CREATESTRUCT& cs)
@@ -99,12 +112,108 @@ CMClientDoc* CMClientView::GetDocument() const // 디버그되지 않은 버전은 인라인�
 
 HBRUSH CMClientView::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
-	//HBRUSH hbr = CFormView::OnCtlColor(pDC, pWnd, nCtlColor);
+	HBRUSH hbr = CFormView::OnCtlColor(pDC, pWnd, nCtlColor);
 
 	// TODO:  여기서 DC의 특성을 변경합니다.
 
-	// TODO:  기본값이 적당하지 않으면 다른 브러시를 반환합니다.
-	//return hbr;
+	int nRet = pWnd->GetDlgCtrlID();
 
-	return m_Brush;
+	if(nRet == IDC_STATIC_ID ||
+	   nRet == IDC_STATIC_PASSWORDS)
+	{
+		pDC->SetTextColor(RGB(32, 32, 32));
+
+		hbr = (HBRUSH) GetStockObject(NULL_BRUSH);
+		SetBkMode(pDC->m_hDC, TRANSPARENT);
+	}
+
+	// TODO:  기본값이 적당하지 않으면 다른 브러시를 반환합니다.
+	return hbr;
+
+	//return m_Brush;
+}
+
+void CMClientView::OnEnChangeEdit1()
+{
+	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+	// CFormView::OnInitDialog() 함수를 재지정 
+	//하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
+	// 이 알림 메시지를 보내지 않습니다.
+
+	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+void CMClientView::OnEnChangeEdit2()
+{
+	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+	// CFormView::OnInitDialog() 함수를 재지정 
+	//하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
+	// 이 알림 메시지를 보내지 않습니다.
+
+	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+void CMClientView::SetLoginStatus(bool bLogin)
+{
+	if(!bLogin)
+	{
+		GetDlgItem(IDC_STATIC_ID)->ShowWindow(false);
+		GetDlgItem(IDC_STATIC_PASSWORDS)->ShowWindow(false);
+
+		m_editID.ShowWindow(false);
+		m_editPW.ShowWindow(false);
+		m_btnRegisterID.ShowWindow(false);
+		m_CheckID.ShowWindow(false);
+	}
+	else
+	{
+		GetDlgItem(IDC_STATIC_ID)->ShowWindow(true);
+		GetDlgItem(IDC_STATIC_PASSWORDS)->ShowWindow(true);
+
+		m_editID.ShowWindow(true);
+		m_editPW.ShowWindow(true);
+		m_btnRegisterID.ShowWindow(true);
+		m_CheckID.ShowWindow(true);
+	}
+}
+
+void CMClientView::OnBnClickedButton1()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+void CMClientView::OnBnClickedButton2()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+BOOL CMClientView::OnEraseBkgnd(CDC* pDC)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+
+	CRect rt;
+	GetClientRect(rt);
+
+	pDC->FillSolidRect(rt, RGB(192, 192, 192));
+
+	return true;
+
+	//return CFormView::OnEraseBkgnd(pDC);
+}
+
+void CMClientView::OnSize(UINT nType, int cx, int cy)
+{
+	CFormView::OnSize(nType, cx, cy);
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+
+	/*RECT rt;
+
+	GetClientRect(&rt);
+	//GetWindowRect(GetDesktopWindow(), &rt);
+
+	int nWidth = rt.right - rt.left;
+	int nHeight = rt.bottom - rt.top;
+
+	int nX = rt.left + nWidth / 2 - (CFG_DIALOG_WIDTH / 2)*/
 }

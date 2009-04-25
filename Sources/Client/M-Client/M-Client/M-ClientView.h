@@ -4,6 +4,7 @@
 
 
 #pragma once
+#include "afxwin.h"
 
 
 class CMClientView : public CFormView
@@ -40,6 +41,9 @@ public:
 
 protected:
 
+public:
+	void SetLoginStatus(bool bLogin);
+
 // 생성된 메시지 맵 함수
 protected:
 	afx_msg void OnFilePrintPreview();
@@ -48,6 +52,19 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	CEdit m_editID;
+	CEdit m_editPW;
+	CButton m_btnRegisterID;
+	CButton m_CheckID;
+	afx_msg void OnEnChangeEdit1();
+	afx_msg void OnEnChangeEdit2();
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton2();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	CButton m_chkboxRememberID;
+	CButton m_chkboxOffline;
+	CButton m_btnLogin;
 };
 
 #ifndef _DEBUG  // M-ClientView.cpp의 디버그 버전
