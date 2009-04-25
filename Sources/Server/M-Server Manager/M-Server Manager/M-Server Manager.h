@@ -34,6 +34,7 @@ public:
 
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
+	afx_msg void OnButtonAccountManage256();
 };
 
 extern CMServerManagerApp theApp;

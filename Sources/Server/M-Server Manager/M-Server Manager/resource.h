@@ -69,6 +69,7 @@
 #define IDD_DIALOG_USER                 311
 #define IDB_FRM_TOP_LEFT                311
 #define IDD_DIALOG_ACCOUNT              312
+#define IDD_DIALOG_STATUS               315
 #define IDC_BUTTON1                     1000
 #define IDC_LIST1                       1001
 #define IDC_TAB1                        1002
@@ -83,14 +84,24 @@
 #define IDC_STATIC_ACCOUNT              1010
 #define IDC_EDIT7                       1011
 #define IDC_STATIC_NEW_ACCOUNT          1012
+#define IDC_STATIC_SERVER_STATUS        1013
+#define ID_32771                        32771
+#define ID_ACCOUNT_MANAGER              32772
+#define ID_ACCOUNT_MANAGE               32773
+#define ID_BUTTON_ACCOUNT_MANAGE        32774
+#define ID_BUTTON_ACCOUNT_MANAGE_256    32776
+#define ID_BUTTON_RUN                   32779
+#define ID_BUTTON_STOP                  32781
+#define ID_32782                        32782
+#define ID_32783                        32783
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        315
-#define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1013
+#define _APS_NEXT_RESOURCE_VALUE        316
+#define _APS_NEXT_COMMAND_VALUE         32784
+#define _APS_NEXT_CONTROL_VALUE         1014
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

@@ -20,6 +20,7 @@
 #include "LogDlg.h"
 #include "UserDlg.h"
 #include "AccountDlg.h"
+#include "StatusDlg.h"
 
 /*
 	Class : Dialog Manager Class
@@ -33,6 +34,7 @@ class CDialogMgr
 public:
 	CLogDlg m_LogDlg;
 	CUserDlg m_UserDlg;
+	CStatusDlg m_StatusDlg;
 
 public:
 	CAccountDlg m_AccountDlg;

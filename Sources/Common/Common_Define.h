@@ -35,7 +35,7 @@ using namespace std;
 #define MIDDLE_SERVER_PORT		9989
 #define CLIENT_USER_PORT		9990
 
-#define LOCAL_HOST				"127.0.0.1"
+#define LOCAL_HOST_IP			"127.0.0.1"
 
 typedef map<int, CClientSock*>					CLIENTSOCK_MAP;
 typedef map<int, CClientSock*>::iterator		CLIENTSOCK_MAP_IT;

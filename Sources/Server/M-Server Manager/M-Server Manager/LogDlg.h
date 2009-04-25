@@ -32,4 +32,5 @@ protected:
 public:
 	CColorListCtrl m_listctrlLog;
 	virtual BOOL OnInitDialog();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };

@@ -22,6 +22,7 @@ BEGIN_MESSAGE_MAP(CMServerManagerApp, CWinAppEx)
 	// 표준 파일을 기초로 하는 문서 명령입니다.
 	ON_COMMAND(ID_FILE_NEW, &CWinAppEx::OnFileNew)
 	ON_COMMAND(ID_FILE_OPEN, &CWinAppEx::OnFileOpen)
+	ON_COMMAND(ID_BUTTON_ACCOUNT_MANAGE_256, &CMServerManagerApp::OnButtonAccountManage256)
 END_MESSAGE_MAP()
 
 
@@ -187,3 +188,10 @@ void CMServerManagerApp::SaveCustomState()
 
 
 
+
+void CMServerManagerApp::OnButtonAccountManage256()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+
+	//g_sToolMgr.GetDialogMgr()->m_AccountDlg.DoModal();
+}

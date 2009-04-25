@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// 한국어 resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -83,6 +83,10 @@ IDR_MServerTYPE         ICON                    "res\\M-ServerDoc.ico"
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 IDR_MAINFRAME_256       BITMAP                  "res\\Toolbar256.bmp"
+IDB_FRM_BTN_MAX1_OVER   BITMAP                  "res\\Frame Image\\close box_d_over.bmp"
+IDB_FRM_BTN_MAX_OVER    BITMAP                  "res\\Frame Image\\close box_b_over.bmp"
+IDB_FRM_BTN_MAX_ACTIVE  BITMAP                  "res\\Frame Image\\close box_b_select.bmp"
+IDB_FRM_BTN_MAX         BITMAP                  "res\\Frame Image\\close box_b.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -266,10 +270,10 @@ BEGIN
             VALUE "InternalName", "M-Server.exe"
             VALUE "LegalCopyright", "2009 (c) MIS.  All rights reserved."
             VALUE "OriginalFilename", "M-Server.exe"
-            VALUE "PrivateBuild", "Build 100090422001"
+            VALUE "PrivateBuild", "Build 100090425001"
             VALUE "ProductName", "M-Server"
             VALUE "ProductVersion", "1.0.0.0"
-            VALUE "SpecialBuild", "Build 100090422001"
+            VALUE "SpecialBuild", "Build 100090425001"
         END
     END
     BLOCK "VarFileInfo"
@@ -434,7 +438,58 @@ BEGIN
     IDS_EDIT_MENU           "편집"
 END
 
-#endif    // Korean resources
+#endif    // 한국어 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 영어(미국) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_OLDFRM_RIGHT        BITMAP                  "res\\Frame Image\\frm_oldtop_right.bmp"
+IDB_OLDFRM_LEFT         BITMAP                  "res\\Frame Image\\frm_oldtop_left.bmp"
+IDB_OLDFRM_CEN          BITMAP                  "res\\Frame Image\\frm_oldtop_middle.bmp"
+IDB_FRM_TOP_RIGHT       BITMAP                  "res\\Frame Image\\frm_top_right.bmp"
+IDB_FRM_TOP_LEFT        BITMAP                  "res\\Frame Image\\frm_top_left.bmp"
+IDB_FRM_TOP_CEN         BITMAP                  "res\\Frame Image\\frm_top_middle.bmp"
+IDB_FRM_RIGHT_BORDER    BITMAP                  "res\\Frame Image\\frm_leftbar.bmp"
+IDB_FRM_GRAY_TOP_RIGHT  BITMAP                  "res\\Frame Image\\frm_gray_top_right.bmp"
+IDB_FRM_GRAY_TOP_LEFT   BITMAP                  "res\\Frame Image\\frm_gray_top_left.bmp"
+IDB_FRM_GRAY_TOP_CEN    BITMAP                  "res\\Frame Image\\frm_gray_top_middle.bmp"
+IDB_FRM_GRAY_RIGHT_BORDER BITMAP                  "res\\Frame Image\\frm_gray_rightbar.bmp"
+IDB_FRM_GRAY_OLDTOP_RIGHT BITMAP                  "res\\Frame Image\\frm_gray_oldtop_right.bmp"
+IDB_FRM_GRAY_OLDTOP_LEFT BITMAP                  "res\\Frame Image\\frm_gray_oldtop_left.bmp"
+IDB_FRM_GRAY_OLDTOP_CEN BITMAP                  "res\\Frame Image\\frm_gray_oldtop_middle.bmp"
+IDB_FRM_GRAY_LEFT_BORDER BITMAP                  "res\\Frame Image\\frm_gray_leftbar.bmp"
+IDB_FRM_GRAY_BOTTOM_RIGHT BITMAP                  "res\\Frame Image\\frm_gray_bottom_right.bmp"
+IDB_FRM_GRAY_BOTTOM_LEFT BITMAP                  "res\\Frame Image\\frm_gray_bottom_left.bmp"
+IDB_FRM_GRAY_BOTTOM_CEN BITMAP                  "res\\Frame Image\\frm_gray_bottom_cen.bmp"
+IDB_FRM_BTN_MIN_OVER    BITMAP                  "res\\Frame Image\\close box_a_over.bmp"
+IDB_FRM_BTN_MIN_DISABLE BITMAP                  "res\\Frame Image\\close box_a_disable.bmp"
+IDB_FRM_BTN_MIN_ACTIVE  BITMAP                  "res\\Frame Image\\close box_a_select.bmp"
+IDB_FRM_BTN_MIN         BITMAP                  "res\\Frame Image\\close box_a.bmp"
+IDB_FRM_BTN_MAX1_DISABLE BITMAP                  "res\\Frame Image\\close box_d_disable.bmp"
+IDB_FRM_BTN_MAX1_ACTIVE BITMAP                  "res\\Frame Image\\close box_d_select.bmp"
+IDB_FRM_BTN_MAX1        BITMAP                  "res\\Frame Image\\close box_d.bmp"
+IDB_FRM_BTN_MAX_DISABLE BITMAP                  "res\\Frame Image\\close box_b_disable.bmp"
+IDB_FRM_BTN_CLOSE_OVER  BITMAP                  "res\\Frame Image\\close box_c_over.bmp"
+IDB_FRM_BTN_CLOSE_DISABLE BITMAP                  "res\\Frame Image\\close box_c_disable.bmp"
+IDB_FRM_BTN_CLOSE_ACTIVE BITMAP                  "res\\Frame Image\\close box_c_select.bmp"
+IDB_FRM_BTN_CLOSE       BITMAP                  "res\\Frame Image\\close box_c.bmp"
+IDB_FRM_BOTTOM_RIGHT    BITMAP                  "res\\Frame Image\\frm_bottom_right.bmp"
+IDB_FRM_BOTTOM_LEFT     BITMAP                  "res\\Frame Image\\frm_bottom_left.bmp"
+IDB_FRM_BOTTOM_CEN      BITMAP                  "res\\Frame Image\\frm_bottom_cen.bmp"
+#endif    // 영어(미국) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

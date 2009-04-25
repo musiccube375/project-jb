@@ -56,6 +56,10 @@ public:
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	CStatic m_stcTab;
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnAccountManage();
+	afx_msg void OnButtonAccountManage256();
+	afx_msg void OnButtonRun();
+	afx_msg void OnButtonStop();
 };
 
 #ifndef _DEBUG  // M-Server ManagerView.cpp의 디버그 버전
