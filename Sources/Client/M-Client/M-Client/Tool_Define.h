@@ -31,6 +31,7 @@
 
 #include "T_Singleton.h"
 #include "ToolMgr.h"	
+#include "Common_Define.h"
 
 CSingleton<CToolMgr>	sToolMgr;
 #define g_sToolMgr		sToolMgr.GetInstance()
@@ -50,3 +51,5 @@ CSingleton<CToolMgr>	sToolMgr;
 #define WM_CLIENT_NETDOWN		WM_USER + 5	
 #define WM_CLIENT_SEND			WM_USER + 6
 #define WM_CLIENT_SEND_ERROR	WM_USER + 7
+
+#define MAX_RE_CONNECTION		10

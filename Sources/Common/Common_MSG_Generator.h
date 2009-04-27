@@ -1,7 +1,7 @@
 /* 
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
-	Release Date		: 2009. 04. 22.
-	Project	Name		: Common Message
+	Release Date		: 2009. 04. 27.
+	Project	Name		: Common Message Generator
 	Version				: 1.00.00
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
@@ -10,9 +10,12 @@
 	
 	Contents
 
-	Common Message Header
+	Common Message Generator Header
 
 	2009 ®œ Copyright MIS Corporation. All Rights Reserved.
 */
 
 #pragma once
+
+HRESULT MSG_Generator(char* pszOutMessage, char* pszFrom, char* pszTo, 
+				      int nType, int nCmdType, int nCmdData, char* pszMessage = NULL);

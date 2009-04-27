@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Common Define
-	Version				: 1.00.01
+	Version				: 1.00.02
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -21,6 +21,7 @@
 #include "Common_MSG.h"
 #include "Common_Command.h"
 #include "Common_MSG_Type.h"
+#include "Common_MSG_Generator.h"
 
 #include "DialogSkin.h"
 
@@ -36,6 +37,8 @@ using namespace std;
 #define CLIENT_USER_PORT		9990
 
 #define LOCAL_HOST_IP			"127.0.0.1"
+
+#define MAX_CLIENT_COUNT		5000
 
 typedef map<int, CClientSock*>					CLIENTSOCK_MAP;
 typedef map<int, CClientSock*>::iterator		CLIENTSOCK_MAP_IT;

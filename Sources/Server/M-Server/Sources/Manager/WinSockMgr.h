@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 22.
 	Project	Name		: WinSock Manager
-	Version				: 1.00.01
+	Version				: 1.00.02
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -23,7 +23,7 @@
 	Class : WinSock Manager Class
 
 	Release Date		: 2009. 04. 22.
-	Version				: 1.00.01
+	Version				: 1.00.02
 */
 
 class CWinSockMgr
@@ -34,8 +34,8 @@ private:
 	
 	CClientSock m_ServerMgrSock;		// The socket for connecting to server manager
 
-	int	m_nClientSockCount;				// Client socket map counter
-	CLIENTSOCK_MAP m_mapClientSock;		// Client socket map for middle server
+	int	m_nUserCount;					// User map counter
+	USERINFO_MAP m_mapUserSock;			// User map for middle server
 
 	char m_szServerMgrIP[32];
 	bool m_bServerMgrConnect;
@@ -51,7 +51,16 @@ public:
 	void CloseServerMgrSock();
 
 public:
+	HRESULT AddUser(USERINFO UserInfo);
+	HRESULT DelUser(int nIndex);
+	void ClearUser();
+
+public:
+	void OnAccept();
+
+public:
 	HRESULT InitWinSockMgr(char* pszServerMgrIP = LOCAL_HOST_IP);
+	void ReleaseWinSockMgr();
 
 public:
 	// The basic constructor

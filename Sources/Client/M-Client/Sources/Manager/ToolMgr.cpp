@@ -12,6 +12,8 @@ HRESULT	CToolMgr::InitToolMgr(HWND hWnd)
 
 	m_Log.AddLog(LOG_TYPE_TOOLWORK, "서버 매니저 툴 초기화 작업 끝...");
 
+	m_bConnected = false;
+
 	return S_OK;
 }
 

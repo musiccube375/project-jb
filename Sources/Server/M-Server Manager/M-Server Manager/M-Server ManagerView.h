@@ -46,6 +46,12 @@ protected:
 
 	void OnTabColor(); 
 
+	LRESULT OnClientReceive(WPARAM wParam, LPARAM lParam);
+	LRESULT OnClientConnect(WPARAM wParam, LPARAM lParam);
+	LRESULT OnClientClose(WPARAM wParam, LPARAM lParam);
+	LRESULT OnClientAccept(WPARAM wParam, LPARAM lParam);
+	LRESULT OnClientNetDown(WPARAM wParam, LPARAM lParam);
+
 // 생성된 메시지 맵 함수
 protected:
 	afx_msg void OnFilePrintPreview();

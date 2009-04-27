@@ -18,6 +18,10 @@
 IMPLEMENT_DYNCREATE(CMServerView, CFormView)
 
 BEGIN_MESSAGE_MAP(CMServerView, CFormView)
+	ON_MESSAGE(WM_CLIENT_RECEIVE, OnClientReceive)
+	ON_MESSAGE(WM_CLIENT_CONNECT, OnClientConnect)
+	ON_MESSAGE(WM_CLIENT_CLOSE, OnClientClose)
+	ON_MESSAGE(WM_SERVER_ACCEPT, OnClientAccept)
 END_MESSAGE_MAP()
 
 // CMServerView 생성/소멸
@@ -52,6 +56,7 @@ void CMServerView::OnInitialUpdate()
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
 
+	Init();
 }
 
 void CMServerView::OnRButtonUp(UINT nFlags, CPoint point)
@@ -88,3 +93,38 @@ CMServerDoc* CMServerView::GetDocument() const // 디버그되지 않은 버전은 인라인�
 
 
 // CMServerView 메시지 처리기
+
+LRESULT CMServerView::OnClientReceive(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMServerView::OnClientConnect(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMServerView::OnClientClose(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMServerView::OnClientAccept(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMServerView::OnClientNetDown(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+void CMServerView::Init()
+{
+	g_sToolMgr.InitToolMgr(m_hWnd);
+}

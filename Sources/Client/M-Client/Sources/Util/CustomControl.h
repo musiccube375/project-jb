@@ -19,6 +19,13 @@
 
 #define globalData afxGlobalData
 
+/*
+	Class : ColorListCtrl Class
+
+	Release Date		: 2008. 04. 15.
+	Version				: 1.00.00
+*/
+
 class CColorListCtrl : public CMFCListCtrl
 {
 	virtual COLORREF OnGetCellTextColor(int nRow, int nColum);

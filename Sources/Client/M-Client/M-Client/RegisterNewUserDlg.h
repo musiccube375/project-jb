@@ -1,4 +1,5 @@
 #pragma once
+#include "afxwin.h"
 
 
 // CRegisterNewUserDlg 대화 상자입니다.
@@ -18,4 +19,17 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
 	DECLARE_MESSAGE_MAP()
+
+	bool m_bCheckID;
+
+public:
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedOk();
+	afx_msg void OnBnClickedCancel();
+	afx_msg void OnEnChangeEdit1();
+	afx_msg void OnEnChangeEdit2();
+	afx_msg void OnEnChangeEdit3();
+	CEdit m_editID;
+	CEdit m_editPasswords;
+	CEdit m_editPasswords2;
 };
