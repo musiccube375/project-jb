@@ -44,11 +44,25 @@ typedef map<int, CClientSock*>					CLIENTSOCK_MAP;
 typedef map<int, CClientSock*>::iterator		CLIENTSOCK_MAP_IT;
 typedef map<int, CClientSock*>::value_type		CLIENTSOCK_MAP_VALUE;
 
+/*
+	Structure : USER BASEINFO Structure
+
+	Release Date		: 2008. 04. 15.
+	Version				: 1.00.00
+*/
+
 typedef struct _USERBASEINFO
 {
 	char	szID[32];
 	char	szNick[128];
 }USERBASEINFO, *PUSERBASEINFO;
+
+/*
+	Structure : USER INFO Structure
+
+	Release Date		: 2008. 04. 15.
+	Version				: 1.00.00
+*/
 
 typedef struct _USERINFO
 {
@@ -59,3 +73,35 @@ typedef struct _USERINFO
 typedef map<int, USERINFO>					USERINFO_MAP;
 typedef map<int, USERINFO>::iterator		USERINFO_MAP_IT;
 typedef map<int, USERINFO>::value_type		USERINFO_MAP_VALUE;
+
+/*
+	Structure : MSG HEADER Structure
+
+	Release Date		: 2008. 04. 27.
+	Version				: 1.00.00
+*/
+
+typedef struct _MSG_HEADER
+{
+	char szHead[3];
+	char szFromID[MAX_ID_SIZE];
+	char szToID[MAX_ID_SIZE];
+	int nType;
+	int nCommandType;
+	int nCommandData;
+	int nMsgLen;
+}MSG_HEADER, *PMSG_HEADER;
+
+/*
+	Structure : MSG DATA Structure
+
+	Release Date		: 2008. 04. 27.
+	Version				: 1.00.00
+*/
+
+typedef struct _MSG_DATA
+{
+	MSG_HEADER msgHeader;
+	char msgMessage[256];
+	char msgTail[3];
+}MSG_DATA, *PMSG_DATA;
