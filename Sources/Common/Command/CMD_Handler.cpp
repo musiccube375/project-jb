@@ -11,23 +11,23 @@ CCMDHandlerMgr::~CCMDHandlerMgr()
 
 }
 
-void CCMDHandlerMgr::CMD_Main_Handle(MSG_DATA msgData)
+PMSG_DATA CCMDHandlerMgr::CMD_Main_Handle(MSG_DATA msgData)
 {
 	switch(msgData.msgHeader.nCommandType)
 	{
 	case MAIN_CMD:
 		{
-			CMD_MS_Handle(msgData.msgHeader.nCommandData);
+			return CMD_MS_Handle(msgData.msgHeader.nCommandData);
 		}
 		break;
 	case MIDDLE_CMD:
 		{
-			CMD_MDS_Handle(msgData.msgHeader.nCommandData);
+			return CMD_MDS_Handle(msgData.msgHeader.nCommandData);
 		}
 		break;
 	case CLIENT_CMD:
 		{
-			CMD_CLT_Handle(msgData.msgHeader.nCommandData);
+			return CMD_CLT_Handle(msgData.msgHeader.nCommandData);
 		}
 		break;
 	}

@@ -11,7 +11,7 @@ CCMDHandlerCLT::~CCMDHandlerCLT()
 
 }
 
-void CCMDHandlerCLT::CMD_CLT_Handle(int nCommandData)
+PMSG_DATA CCMDHandlerCLT::CMD_CLT_Handle(int nCommandData)
 {
 	switch(nCommandData)
 	{

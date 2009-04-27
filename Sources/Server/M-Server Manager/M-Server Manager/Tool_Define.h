@@ -50,3 +50,13 @@ CSingleton<CToolMgr>	sToolMgr;
 #define WM_CLIENT_NETDOWN		WM_USER + 5	
 #define WM_CLIENT_SEND			WM_USER + 6
 #define WM_CLIENT_SEND_ERROR	WM_USER + 7
+
+#define INDEX_SYNTAX		0
+#define INDEX_FROMID		3
+#define INDEX_TOID			19
+#define INDEX_TYPE			35
+#define INDEX_CMDTYPE		36
+#define INDEX_CMDDATA		37
+#define INDEX_MSGLEN		38
+#define INDEX_MSG			39
+

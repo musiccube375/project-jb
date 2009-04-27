@@ -31,10 +31,7 @@
 class CCMDHandlerMgr : public CCMDHandlerCLT, public CCMDHandlerMDS, public CCMDHandlerMS
 {
 protected:
-	void CMD_Main_Handle(MSG_DATA msgData);
-
-protected:
-	
+	PMSG_DATA CMD_Main_Handle(MSG_DATA msgData);
 
 public:
 	CCMDHandlerMgr();
