@@ -25,6 +25,10 @@ BEGIN_MESSAGE_MAP(CMClientView, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON2, &CMClientView::OnBnClickedButton2)
 	ON_WM_ERASEBKGND()
 	ON_WM_SIZE()
+	ON_MESSAGE(WM_CLIENT_RECEIVE, OnClientReceive)
+	ON_MESSAGE(WM_CLIENT_CONNECT, OnClientConnect)
+	ON_MESSAGE(WM_CLIENT_CLOSE, OnClientClose)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 // CMClientView 생성/소멸
@@ -73,6 +77,8 @@ void CMClientView::OnInitialUpdate()
 	SetScaleToFitSize(rcClient.Size());
 
 	m_Brush.CreateSolidBrush(RGB(192, 192, 192)); 
+
+	Init();
 }
 
 void CMClientView::OnRButtonUp(UINT nFlags, CPoint point)
@@ -180,6 +186,8 @@ void CMClientView::SetLoginStatus(bool bLogin)
 void CMClientView::OnBnClickedButton1()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	// Register ID
 }
 
 void CMClientView::OnBnClickedButton2()
@@ -216,4 +224,86 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 	int nHeight = rt.bottom - rt.top;
 
 	int nX = rt.left + nWidth / 2 - (CFG_DIALOG_WIDTH / 2)*/
+}
+
+LRESULT CMClientView::OnClientReceive(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMClientView::OnClientConnect(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMClientView::OnClientClose(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+void CMClientView::Init()
+{
+	g_sToolMgr.InitToolMgr(m_hWnd);
+
+	LoadServerConfig();
+
+	SetTimer(1, 1000, NULL);
+}
+
+HRESULT CMClientView::LoadServerConfig()
+{
+	char buff[256];
+	char temp[256];
+
+	GetStringFromConfig("Server_Config", "INFO", "COUNT", buff);
+
+	for(int i = 0; i < atoi(buff); i++)
+	{
+		sprintf(temp, "SERVER#%d", i + 1);
+
+		GetStringFromConfig("Server_Config", "LISTS", temp, buff);
+
+		strcpy(g_sToolMgr.m_ServerList[i].szServerIP, buff);
+	}
+
+	return S_OK;
+}
+
+void CMClientView::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: Add your message handler code here and/or call default
+
+	if(!g_sToolMgr.m_bConnected)
+	{
+		int i = 0;
+		int nCnt = 0;
+
+		while(1)
+		{
+			if(g_sToolMgr.GetWinSockMgr()->GetServerSock()->Connect(g_sToolMgr.m_ServerList[i].szServerIP, 
+				                                                    MIDDLE_SERVER_PORT))
+			{
+				strcpy(g_sToolMgr.m_ServerIP, g_sToolMgr.m_ServerList[i].szServerIP);
+				g_sToolMgr.m_bConnected = true;
+				return;
+			}
+
+			if(++i > MAX_SERVER_LIST) 
+			{
+				nCnt++;
+				i = 0;
+			}
+
+			if(nCnt > MAX_RE_CONNECTION)
+			{
+				AfxMessageBox("No server to connect now...");
+				return;
+			}
+		}
+	}
+
+	CFormView::OnTimer(nIDEvent);
 }

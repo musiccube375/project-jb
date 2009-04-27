@@ -11,7 +11,19 @@
 
 int main(int argc, char **argv)
 {
-	MYSQL *conn = NULL;
+	char query[256];
+
+	// Backup
+	sprintf(query, "mysqldump -uroot -p1124 mmuser > mmuser.sql");
+	system(query); 
+	//sprintf(query, "mysqldump -uroot -p1124 mmuser > ..\\..\\..\\..\\DB(MY-SQL)\\mmuser.sql");
+	//system(query); 
+
+	// Restore
+	//sprintf(query, "mysql -uroot -p1124 mmuser < mmuser.sql");
+	//system(query); 
+
+	/*MYSQL *conn = NULL;
 	int query_stat;
 	char query[256];
 	MYSQL_RES *result;
@@ -27,7 +39,7 @@ int main(int argc, char **argv)
 	{
 		printf("Failed to access DB");
 		return 0;
-	}
+	}*/
 
 	// Main Server Admin Info Tables
 	/*query_stat = mysql_query(conn, "CREATE TABLE mainsadmin( \
@@ -172,7 +184,7 @@ int main(int argc, char **argv)
 	//sprintf(query, "INSERT INTO userinfo VALUES('Joyce')");
 	//query_stat = mysql_query(conn, query);
 
-	mysql_close(conn);
+	//mysql_close(conn);
 
 	getch();
 }

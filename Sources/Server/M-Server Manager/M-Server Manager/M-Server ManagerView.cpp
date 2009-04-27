@@ -24,6 +24,10 @@ BEGIN_MESSAGE_MAP(CMServerManagerView, CFormView)
 	ON_COMMAND(ID_BUTTON_ACCOUNT_MANAGE_256, &CMServerManagerView::OnButtonAccountManage256)
 	ON_COMMAND(ID_BUTTON_RUN, &CMServerManagerView::OnButtonRun)
 	ON_COMMAND(ID_BUTTON_STOP, &CMServerManagerView::OnButtonStop)
+	ON_MESSAGE(WM_CLIENT_RECEIVE, OnClientReceive)
+	ON_MESSAGE(WM_CLIENT_CONNECT, OnClientConnect)
+	ON_MESSAGE(WM_CLIENT_CLOSE, OnClientClose)
+	ON_MESSAGE(WM_SERVER_ACCEPT, OnClientAccept)
 END_MESSAGE_MAP()
 
 // CMServerManagerView »ý¼º/¼Ò¸ê
@@ -204,4 +208,34 @@ void CMServerManagerView::OnButtonStop()
 	g_sToolMgr.SetRun(false);
 
 	g_sToolMgr.GetDialogMgr()->m_StatusDlg.m_editStatus.SetWindowTextA("Server is not running...");
+}
+
+LRESULT CMServerManagerView::OnClientReceive(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMServerManagerView::OnClientConnect(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMServerManagerView::OnClientClose(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMServerManagerView::OnClientAccept(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
+}
+
+LRESULT CMServerManagerView::OnClientNetDown(WPARAM wParam, LPARAM lParam)
+{
+
+	return S_OK;
 }

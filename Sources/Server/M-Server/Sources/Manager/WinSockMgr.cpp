@@ -8,7 +8,7 @@ CWinSockMgr::CWinSockMgr()
 
 CWinSockMgr::~CWinSockMgr()
 {
-
+	ReleaseWinSockMgr();
 }
 
 void CWinSockMgr::InitServerSock()
@@ -77,4 +77,86 @@ HRESULT CWinSockMgr::InitWinSockMgr(char* pszServerMgrIP)
 	m_bServerMgrConnect = false;
 
 	return S_OK;
+}
+
+void CWinSockMgr::ReleaseWinSockMgr()
+{
+	ClearUser();
+	CloseServerMgrSock();
+	CloseServerSock();
+}
+
+HRESULT CWinSockMgr::AddUser(USERINFO UserInfo)
+{
+	m_mapUserSock.insert(USERINFO_MAP_VALUE(m_nUserCount++, UserInfo));
+
+	return S_OK;
+}
+
+HRESULT CWinSockMgr::DelUser(int nIndex)
+{
+	USERINFO_MAP_IT it = m_mapUserSock.begin();
+
+	for( ; it != m_mapUserSock.end(); it++)
+	{
+		/*if(it->second._ID == ID)
+		{
+			it->second._pSock->Close();
+			SAFE_DELETE(it->second._pSock);
+			m_mapWPInfo.erase(it);
+
+			return;
+		}*/
+	}
+
+	return S_OK;
+}
+
+void CWinSockMgr::ClearUser()
+{
+	USERINFO_MAP_IT it = m_mapUserSock.begin();
+
+	for( ; it != m_mapUserSock.end(); it++)
+	{
+		SAFE_DELETE(it->second.pSock);
+		/*if(it->second._ID == ID)
+		{
+			it->second._pSock->Close();
+			SAFE_DELETE(it->second._pSock);
+			m_mapWPInfo.erase(it);
+
+			return;
+		}*/
+	}
+
+	m_mapUserSock.clear();
+}
+
+void CWinSockMgr::OnAccept()
+{
+	if(m_mapUserSock.size() >= MAX_CLIENT_COUNT) return;
+
+	CClientSock* pClientSock = new CClientSock;
+
+	// 유저 클라이언트 접속 받음
+	m_ServerSock.Accept(*pClientSock);
+
+	CString strIP;	
+	int nPort;
+
+	pClientSock->GetPeerName(strIP, (UINT &) nPort);
+
+	CString str;
+
+	str.Format("SOCKET : [%d] - (%s : %d) 유저 접속됨", pClientSock->m_hSocket, strIP, nPort);
+	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, str.GetBuffer(0));
+
+	USERINFO UserInfo;
+
+	UserInfo.pSock = pClientSock;
+
+	AddUser(UserInfo);
+
+	str.Format("SOCKET : [%d] - (%s : %d) 유저 정보 생성 완료", pClientSock->m_hSocket, strIP, nPort);
+	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, str.GetBuffer(0));
 }

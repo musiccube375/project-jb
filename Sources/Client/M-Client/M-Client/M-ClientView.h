@@ -40,6 +40,13 @@ public:
 #endif
 
 protected:
+	LRESULT OnClientReceive(WPARAM wParam, LPARAM lParam);
+	LRESULT OnClientConnect(WPARAM wParam, LPARAM lParam);
+	LRESULT OnClientClose(WPARAM wParam, LPARAM lParam);
+
+public:
+	void Init();
+	HRESULT LoadServerConfig();
 
 public:
 	void SetLoginStatus(bool bLogin);
@@ -65,6 +72,7 @@ public:
 	CButton m_chkboxRememberID;
 	CButton m_chkboxOffline;
 	CButton m_btnLogin;
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
 
 #ifndef _DEBUG  // M-ClientView.cpp의 디버그 버전

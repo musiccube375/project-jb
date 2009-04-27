@@ -299,6 +299,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Common\Common_MSG_Generator.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Common\Common_MSG_Generator.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Common\Common_MSG_Type.h"
 				>
 			</File>

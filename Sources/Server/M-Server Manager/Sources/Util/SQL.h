@@ -22,6 +22,13 @@
 typedef MYSQL_RES RES;
 typedef MYSQL_ROW ROW;
 
+/*
+	Class : SQL Class
+
+	Release Date		: 2008. 04. 25.
+	Version				: 1.00.00
+*/
+
 class CSQL 
 {
 private:

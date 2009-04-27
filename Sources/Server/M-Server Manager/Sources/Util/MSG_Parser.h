@@ -1,7 +1,7 @@
 /* 
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
-	Release Date		: 2009. 04. 25.
-	Project	Name		: SQL 
+	Release Date		: 2009. 04. 27.
+	Project	Name		: MSG Parser
 	Version				: 1.00.00
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
@@ -10,41 +10,73 @@
 	
 	Contents
 
-	SQL Header
+	MSG Parser Header
 
 	2009 ®œ Copyright MIS Corporation. All Rights Reserved.
 */
 
 #pragma once
 
-#include "mysql.h"
+#include <queue>
 
-typedef MYSQL_RES RES;
-typedef MYSQL_ROW ROW;
+using namespace std;
 
-class CSQL 
+/*
+	Structure : MSGInfo Structure
+
+	Release Date		: 2008. 04. 27.
+	Version				: 1.00.00
+*/
+
+typedef struct _MSGINFO
+{
+	char szMsg[256];
+
+	_MSGINFO(const char* pszMsg)
+	{
+		strcpy(szMsg, pszMsg);
+	}
+
+	_MSGINFO() { }
+}MSGINFO, *PMSGINFO;
+
+/*
+	Class : MSG Queue Class
+
+	Release Date		: 2008. 04. 27.
+	Version				: 1.00.00
+*/
+
+class CMSGQueue
 {
 private:
-	MYSQL *m_pConn;
-
-	char m_szUser[256];
-	char m_szPasswords[64];
-	char m_szDB[256];
+	queue<MSGINFO> m_queueMSG;
 
 public:
-	char* GetUser() { return m_szUser; }
+	void PushMSG(const char* pszMsg);
+	PMSGINFO PopMSG();
+	void ClearMSG();
+
+	void ProcessMSG();
 
 public:
-	HRESULT InitSQL(const char* pszUser, const char* pszPasswords, const char* pszDB, const char* pszHost = "localhost");
-	HRESULT ReleaseSQL();
+	CMSGQueue();
+	~CMSGQueue();
+};
 
-	HRESULT Query(const char* pszQuery);
-	char* GetRow(const char* pszQuery); // Use Select Query
+/*
+	Class : MSG Parser Class
 
-	void Backup(const char* pszPath = "c:\\");
-	void Restore(const char* pszPath = "c:\\");
+	Release Date		: 2008. 04. 27.
+	Version				: 1.00.00
+*/
+
+class CMSGParser 
+{
+public:
+	char* ParseMSG(const char* pszMsg);
 
 public:
-	CSQL();
-	~CSQL();
+	CMSGParser();
+	~CMSGParser();
 };
