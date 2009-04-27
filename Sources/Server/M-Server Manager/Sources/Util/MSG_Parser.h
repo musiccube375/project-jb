@@ -17,52 +17,7 @@
 
 #pragma once
 
-#include <queue>
-
-using namespace std;
-
-/*
-	Structure : MSGInfo Structure
-
-	Release Date		: 2008. 04. 27.
-	Version				: 1.00.00
-*/
-
-typedef struct _MSGINFO
-{
-	char szMsg[256];
-
-	_MSGINFO(const char* pszMsg)
-	{
-		strcpy(szMsg, pszMsg);
-	}
-
-	_MSGINFO() { }
-}MSGINFO, *PMSGINFO;
-
-/*
-	Class : MSG Queue Class
-
-	Release Date		: 2008. 04. 27.
-	Version				: 1.00.00
-*/
-
-class CMSGQueue
-{
-private:
-	queue<MSGINFO> m_queueMSG;
-
-public:
-	void PushMSG(const char* pszMsg);
-	PMSGINFO PopMSG();
-	void ClearMSG();
-
-	void ProcessMSG();
-
-public:
-	CMSGQueue();
-	~CMSGQueue();
-};
+#include "CMD_Handler.h"
 
 /*
 	Class : MSG Parser Class
@@ -71,10 +26,18 @@ public:
 	Version				: 1.00.00
 */
 
-class CMSGParser 
+class CMSGParser : public CCMDHandlerMgr
 {
+private:
+	MSG_DATA m_msgData;
+
 public:
-	char* ParseMSG(const char* pszMsg);
+	PMSG_DATA ParseMSG(const char* pszMsg);
+
+protected:
+	HRESULT ParseMSGHeader(const char* pszMsg);
+	HRESULT ParseMSGMessage(const char* pszMsg);
+	HRESULT ParseMSGTail(const char* pszMsg);
 
 public:
 	CMSGParser();
