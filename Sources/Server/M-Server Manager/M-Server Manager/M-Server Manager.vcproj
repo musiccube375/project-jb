@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;..\..\..\Common\Command;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -130,7 +130,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;..\..\..\Common\Command;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
 				MinimalRebuild="false"
 				RuntimeLibrary="0"
@@ -609,6 +609,14 @@
 				RelativePath="..\..\..\Common\Common_Util.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\Common\MSG_Parser.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Common\MSG_Parser.h"
+				>
+			</File>
 			<Filter
 				Name="External"
 				>
@@ -629,6 +637,42 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="Command"
+				>
+				<File
+					RelativePath="..\..\..\Common\Command\CMD_Handler.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Common\Command\CMD_Handler.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Common\Command\CMD_Handler_CLT.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Common\Command\CMD_Handler_CLT.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Common\Command\CMD_Handler_MDS.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Common\Command\CMD_Handler_MDS.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Common\Command\CMD_Handler_MS.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Common\Command\CMD_Handler_MS.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Util"
@@ -639,14 +683,6 @@
 			</File>
 			<File
 				RelativePath="..\Sources\Util\CustomControl.h"
-				>
-			</File>
-			<File
-				RelativePath="..\Sources\Util\MSG_Parser.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Sources\Util\MSG_Parser.h"
 				>
 			</File>
 			<File

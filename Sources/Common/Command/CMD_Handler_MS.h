@@ -27,7 +27,7 @@
 class CCMDHandlerMS
 {
 protected:
-	void CMD_MS_Handle(int nCommandData);
+	PMSG_DATA CMD_MS_Handle(int nCommandData);
 
 public:
 	CCMDHandlerMS();

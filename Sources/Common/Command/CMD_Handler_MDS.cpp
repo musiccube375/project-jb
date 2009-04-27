@@ -11,7 +11,7 @@ CCMDHandlerMDS::~CCMDHandlerMDS()
 
 }
 
-void CCMDHandlerMDS::CMD_MDS_Handle(int nCommandData)
+PMSG_DATA CCMDHandlerMDS::CMD_MDS_Handle(int nCommandData)
 {
 	switch(nCommandData)
 	{
