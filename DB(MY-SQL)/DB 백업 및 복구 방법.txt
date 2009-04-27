@@ -28,6 +28,12 @@ mysql -u [user_name] -p [db_name] < [sql file]
 MySQL Command Line Client 실행 -> 비밀번호 입력 후 서버 진입 -> show databases;, use [db_name];, show tables; 
 등으로 database, table 등을 확인해본다.
 
+ps. 백업, 복구의 편의를 위해서 도스용 실행파일을 만들었음.
+    Backup.exe, Restore.exe 파일 등을 실행시키면 된다.
+    단 mmuser 데이터베이스가 기본적으로 생성되어야하며, 계정은 root, 비번은 1124로 맞추면 된다.
+
+
+
 
 
 
