@@ -24,8 +24,6 @@ PMSG_DATA CMSGParser::ParseMSG(const char* pszMsg)
 		return NULL;
 
 	m_bParseOK = true;
-
-	return CMD_Main_Handle(m_msgData);
 }
 
 HRESULT CMSGParser::ParseMSGHeader(const char* pszMsg)

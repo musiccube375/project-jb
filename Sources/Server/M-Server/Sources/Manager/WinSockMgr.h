@@ -19,6 +19,7 @@
 
 #include "Common_Define.h"
 #include "MSG_Parser.h"
+#include "CMD_Handler.h"
 
 /*
 	Structure : USER QUERY INFO Structure
@@ -59,12 +60,14 @@ private:
 	bool m_bServerMgrConnect;
 
 	CMSGParser m_MSGParser;
+	CCMDHandlerMgr m_CMDHandlerMgr;
 
 	int m_nUserQueryCount;
 	USERQUERYINFO_MAP m_mapUserQuery;
 
 public:
 	inline CServerSock* GetServerSock() { return &m_ServerSock; }
+	inline CClientSock* GetServerMgrSock() { return &m_ServerMgrSock; }
 	inline bool IsServerRun() { return m_bServerRun; }
 
 	void SetServerRun(bool bServerRun);
@@ -80,10 +83,15 @@ public:
 	HRESULT AddUser(USERINFO UserInfo);
 	HRESULT DelUser(int nIndex);
 	void ClearUser();
+	PUSERINFO GetUser(char* pszID);
 
-	HRESULT AddUserQuery(USERQUERYINFO UserQuery);
+	int AddUserQuery(USERQUERYINFO UserQuery);
 	HRESULT DelUserQuery();
 	void ClearUserQuery();
+	PUSERQUERYINFO GetUserQuery(int nIndex);
+
+	int UnknownedQuery(MSG_DATA msgData, CClientSock* pSock);
+	void KnownedQuery(MSG_DATA msgData);
 
 	void ProcessQuery();
 

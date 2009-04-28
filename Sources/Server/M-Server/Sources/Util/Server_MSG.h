@@ -17,8 +17,11 @@
 
 #pragma once
 
+#include "Common_Define.h"
+
 // 서버 매니저로 메시지 전송
 void MSG_SendToServerMgr(const char* pszSend);
 
 // 아이디 체크(가입시에)
-void MSG_ID_Check_Req();
+void MSG_ID_Check_Req(MSG_DATA msgData);
+void MSG_ID_Check_Ack(MSG_DATA msgData);

@@ -1,20 +1,17 @@
 #include "stdAfx.h"
 #include "ServerMgr_MSG.h"
-#include "Common_MSG_Generator.h"
 
 void MSG_SendToServer(const char* pszSend)
 {
-	//g_sToolMgr.GetWinSockMgr()->GetServerSock()->Send(pszSend, 512);
+	g_sToolMgr.GetWinSockMgr()->GetServerSock()->Send(pszSend, 512);
 }
 
-void MSG_ID_Check_Req()
+void MSG_ID_Check_Ack(MSG_DATA msgData)
 {
 	char send[512];
-	char szIP[32];
 
-	/*strcpy(szIP, g_sToolMgr.m_ServerList[g_sToolMgr.GetWinSockMgr()->GetServerCount()].szServerIP);
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ID_CHECK_REQ_TO_MIDDLE, msgData.msgMessage);
 
-	MSG_Generator(send, UNKNOWNED_USER, szIP, MSG_CLIENT_TO_MIDDLE, CLIENT_CMD, CC_ID_CHECK_REQ_TO_MIDDLE);
-
-	MSG_SendToServer(send);	*/
+	MSG_SendToServer(send); 
 }

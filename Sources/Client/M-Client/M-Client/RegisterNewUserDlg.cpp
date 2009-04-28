@@ -46,7 +46,6 @@ void CRegisterNewUserDlg::OnBnClickedButton1()
 	// TODO: Add your control notification handler code here
 
 	// Check ID
-
 	MSG_ID_Check_Req();
 }
 
@@ -56,12 +55,12 @@ void CRegisterNewUserDlg::OnBnClickedOk()
 
 	if(!g_sToolMgr.m_bConnected) return;
 
-	char msg[256];
+	/*char msg[256];
 
-	MSG_Generator(msg, UNKNOWNED_USER, g_sToolMgr.GetServerIP(), MSG_CLIENT_TO_MIDDLE, 
+	MSG_Generator(msg, UNKNOWNED_USER, UNKNOWNED_USER, MSG_CLIENT_TO_MIDDLE, 
 		          CLIENT_CMD, CC_ADD_ID_REQ_TO_MIDDLE);
 
-	g_sToolMgr.GetWinSockMgr()->GetServerSock()->Send(msg, strlen(msg));
+	g_sToolMgr.GetWinSockMgr()->GetServerSock()->Send(msg, strlen(msg));*/
 
 	OnOK();
 }

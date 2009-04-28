@@ -21,4 +21,4 @@
 void MSG_SendToServer(const char* pszSend);
 
 // 아이디 체크(가입시에)
-void MSG_ID_Check_Req();
+void MSG_ID_Check_Ack(MSG_DATA msgData);

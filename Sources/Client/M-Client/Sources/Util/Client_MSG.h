@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "Common_Define.h"
+
 // 서버로 메시지 전송
 void MSG_SendToServer(const char* pszSend);
 
