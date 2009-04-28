@@ -40,9 +40,9 @@ public:
 #endif
 
 protected:
-	LRESULT OnClientReceive(WPARAM wParam, LPARAM lParam);
-	LRESULT OnClientConnect(WPARAM wParam, LPARAM lParam);
-	LRESULT OnClientClose(WPARAM wParam, LPARAM lParam);
+	afx_msg LONG OnClientReceive(WPARAM wParam, LPARAM lParam);
+	afx_msg LONG OnClientConnect(WPARAM wParam, LPARAM lParam);
+	afx_msg LONG OnClientClose(WPARAM wParam, LPARAM lParam);
 
 public:
 	void Init();

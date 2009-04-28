@@ -202,6 +202,14 @@
 				RelativePath="..\Sources\Util\CustomControl.h"
 				>
 			</File>
+			<File
+				RelativePath="..\Sources\Util\Server_MSG.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Util\Server_MSG.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Main"

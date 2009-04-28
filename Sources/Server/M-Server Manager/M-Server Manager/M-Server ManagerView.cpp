@@ -210,34 +210,37 @@ void CMServerManagerView::OnButtonStop()
 	g_sToolMgr.GetDialogMgr()->m_StatusDlg.m_editStatus.SetWindowTextA("Server is not running...");
 }
 
-LRESULT CMServerManagerView::OnClientReceive(WPARAM wParam, LPARAM lParam)
-{
-
-	return S_OK;
-}
-
-LRESULT CMServerManagerView::OnClientConnect(WPARAM wParam, LPARAM lParam)
-{
-
-	return S_OK;
-}
-
-LRESULT CMServerManagerView::OnClientClose(WPARAM wParam, LPARAM lParam)
-{
-
-	return S_OK;
-}
-
-LRESULT CMServerManagerView::OnClientAccept(WPARAM wParam, LPARAM lParam)
+LONG CMServerManagerView::OnClientReceive(UINT wParam, LONG lParam)
 {
 	if(!g_sToolMgr.GetRun()) return E_FAIL;
+
+	g_sToolMgr.GetWinSockMgr()->OnReceive((SOCKET) wParam, (int) lParam);
+
+	return S_OK;
+}
+
+LONG CMServerManagerView::OnClientConnect(UINT wParam, LONG lParam)
+{
+
+	return S_OK;
+}
+
+LONG CMServerManagerView::OnClientClose(UINT wParam, LONG lParam)
+{
+
+	return S_OK;
+}
+
+LONG CMServerManagerView::OnClientAccept(UINT wParam, LONG lParam)
+{
+	//if(!g_sToolMgr.GetRun()) return E_FAIL;
 
 	g_sToolMgr.GetWinSockMgr()->OnAccept();
 
 	return S_OK;
 }
 
-LRESULT CMServerManagerView::OnClientNetDown(WPARAM wParam, LPARAM lParam)
+LONG CMServerManagerView::OnClientNetDown(UINT wParam, LONG lParam)
 {
 
 	return S_OK;

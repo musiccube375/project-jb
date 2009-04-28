@@ -35,6 +35,8 @@ void CWinSockMgr::CloseServerSock()
 
 HRESULT CWinSockMgr::AddMServer(MSERVERINFO MServerInfo)
 {
+	if(m_nMServerCount > MAX_INT_SIZE) m_nMServerCount = 0;
+
 	m_mapMServer.insert(MSERVERINFO_MAP_VALUE(m_nMServerCount++, MServerInfo));
 
 	return S_OK;
@@ -100,7 +102,16 @@ void CWinSockMgr::OnAccept()
 	// M-Server 접속 받음
 	m_ServerSock.Accept(*pClientSock);
 
-	CString strIP;	
+	// 서버 가동 상태가 아니면 소켓 받은 후 바로 삭제(접속할 수 없는 상태)
+	if(!g_sToolMgr.GetRun())
+	{
+		pClientSock->Close();
+		SAFE_DELETE(pClientSock);
+
+		return;
+	}
+
+ 	CString strIP;	
 	int nPort;
 
 	pClientSock->GetPeerName(strIP, (UINT &) nPort);
@@ -119,4 +130,51 @@ void CWinSockMgr::OnAccept()
 
 	str.Format("SOCKET : [%d] - (%s : %d) M-Server 정보 생성 완료", pClientSock->m_hSocket, strIP, nPort);
 	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, str.GetBuffer(0));
+}
+
+void CWinSockMgr::OnReceive(SOCKET Socket, int nTag)
+{
+	MSERVERINFO_MAP_IT it = m_mapMServer.begin();
+  
+	for(int i = 0; it != m_mapMServer.end(); i++, it++)
+	{
+		if(it->second.pSock->m_hSocket != Socket) continue;
+		
+		char recv[512];
+
+		int nRet = it->second.pSock->Receive(recv, 512);
+
+		if(nRet <= SOCKET_ERROR) 
+		{	
+			return;
+		}
+
+		if(strlen(recv) <= 32)
+		{
+			if(strcmp(recv, "CONNECT_REQ") == 0)
+			{
+				it->second.pSock->Send("CONNECT_ACK", 16);	
+			}
+			//else it->second.pSock->Send("CONNECT_NAK", 16);	
+		}
+		else 
+		{
+			m_MSGParser.ParseMSG(recv);
+		}
+	}
+}
+
+void CWinSockMgr::OnClose(SOCKET Socket, int nTag)
+{
+	/*MSERVERINFO_MAP_IT it = m_mapMServer.begin();
+  
+	for(int i = 0; it != m_mapMServer.end(); i++, it++)
+	{
+		if(it->second.pSock->m_hSocket != Socket) continue;
+
+		it->second.pSock->Close();
+		DelMServer(it->second.szIP);
+
+		return;
+	}*/
 }

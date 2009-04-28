@@ -38,7 +38,7 @@ void CWinSockMgr::CloseServerSock()
 	m_bServerRun = false;
 }
 
-bool CWinSockMgr::ConnectToServerMgr()
+bool CWinSockMgr::ConnectToServerMgr(const char* pszIP)
 {
 	if(m_bServerRun) 
 	{
@@ -47,17 +47,14 @@ bool CWinSockMgr::ConnectToServerMgr()
 		return false;
 	}
 
-	CloseServerMgrSock();
+	strcpy(m_szServerMgrIP, pszIP);
 
+	CloseServerMgrSock();
+	m_ServerMgrSock.m_Tag = TAG_MAIN_SERVER;
+	m_ServerMgrSock.Create();
 	m_ServerMgrSock.Connect(m_szServerMgrIP, MAIN_SERVER_PORT);
 
-	/*if(m_ServerMgrSock.Connect(m_szServerMgrIP, MAIN_SERVER_PORT) != SOCKET_ERROR)
-	{
-		g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 매니저에 접속 성공...");
-		m_bServerMgrConnect = true;
-		m_bServerRun = true;
-	}
-	else g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 매니저에 접속 실패...");*/
+	m_ServerMgrSock.Send("CONNECT_REQ", 16);
 
 	return true;
 }
@@ -85,6 +82,7 @@ HRESULT CWinSockMgr::InitWinSockMgr(const char* pszServerMgrIP)
 
 	m_bServerMgrConnect = false;
 	m_nUserCount = 0;
+	m_nUserQueryCount = 0;
 
 	return S_OK;
 }
@@ -92,22 +90,25 @@ HRESULT CWinSockMgr::InitWinSockMgr(const char* pszServerMgrIP)
 void CWinSockMgr::ReleaseWinSockMgr()
 {
 	ClearUser();
+	ClearUserQuery();
 	CloseServerMgrSock();
 	CloseServerSock();
 }
 
 HRESULT CWinSockMgr::AddUser(USERINFO UserInfo)
 {
-	m_mapUserSock.insert(USERINFO_MAP_VALUE(m_nUserCount++, UserInfo));
+	if(m_nUserCount > MAX_INT_SIZE) m_nUserCount = 0;
+
+	m_mapUserInfo.insert(USERINFO_MAP_VALUE(m_nUserCount++, UserInfo));
 
 	return S_OK;
 }
 
 HRESULT CWinSockMgr::DelUser(int nIndex)
 {
-	USERINFO_MAP_IT it = m_mapUserSock.begin();
+	USERINFO_MAP_IT it = m_mapUserInfo.begin();
 
-	for( ; it != m_mapUserSock.end(); it++)
+	for( ; it != m_mapUserInfo.end(); it++)
 	{
 		/*if(it->second._ID == ID)
 		{
@@ -124,9 +125,9 @@ HRESULT CWinSockMgr::DelUser(int nIndex)
 
 void CWinSockMgr::ClearUser()
 {
-	USERINFO_MAP_IT it = m_mapUserSock.begin();
+	USERINFO_MAP_IT it = m_mapUserInfo.begin();
 
-	for( ; it != m_mapUserSock.end(); it++)
+	for( ; it != m_mapUserInfo.end(); it++)
 	{
 		SAFE_DELETE(it->second.pSock);
 		/*if(it->second._ID == ID)
@@ -139,14 +140,57 @@ void CWinSockMgr::ClearUser()
 		}*/
 	}
 
-	m_mapUserSock.clear();
+	m_mapUserInfo.clear();
+}
+
+HRESULT CWinSockMgr::AddUserQuery(USERQUERYINFO UserQuery)
+{
+	if(m_nUserQueryCount > MAX_INT_SIZE) m_nUserQueryCount = 0;
+
+	m_mapUserQuery.insert(USERQUERYINFO_MAP_VALUE(m_nUserQueryCount++, UserQuery));
+
+	return S_OK;
+}
+
+HRESULT CWinSockMgr::DelUserQuery()
+{
+	USERQUERYINFO_MAP_IT it = m_mapUserQuery.begin();
+
+	for( ; it != m_mapUserQuery.end(); it++)
+	{
+		/*if(it->second._ID == ID)
+		{
+			it->second._pSock->Close();
+			SAFE_DELETE(it->second._pSock);
+			m_mapWPInfo.erase(it);
+
+			return S_OK;
+		}*/
+	}
+
+	return E_FAIL;
+}
+
+void CWinSockMgr::ClearUserQuery()
+{
+	m_mapUserQuery.clear();
+}
+
+void CWinSockMgr::ProcessQuery()
+{
+	USERQUERYINFO_MAP_IT it = m_mapUserQuery.begin();
+
+	for( ; it != m_mapUserQuery.end(); it++)
+	{
+		//if(it->second.pSock == 
+	}
 }
 
 void CWinSockMgr::OnAccept()
 {
-	if(m_mapUserSock.size() >= MAX_CLIENT_COUNT) return;
-
 	CClientSock* pClientSock = new CClientSock;
+
+	pClientSock->m_Tag = TAG_CLIENT;
 
 	// 유저 클라이언트 접속 받음
 	m_ServerSock.Accept(*pClientSock);
@@ -169,4 +213,110 @@ void CWinSockMgr::OnAccept()
 
 	str.Format("SOCKET : [%d] - (%s : %d) 유저 정보 생성 완료", pClientSock->m_hSocket, strIP, nPort);
 	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, str.GetBuffer(0));
+
+	// 정해진 유저 수가 넘으면 접속을 취소한다
+	if(m_mapUserInfo.size() >= MAX_CLIENT_COUNT) 
+	{
+		pClientSock->Send("ACCEPT_DENY", 16);
+
+		pClientSock->Close();
+		SAFE_DELETE(pClientSock);
+
+		return;
+	}
+	else
+	{
+		pClientSock->Send("ACCEPT_OK", 16);
+	}
+}
+
+MSG_RET CWinSockMgr::OnReceive(SOCKET Socket, int nTag)
+{
+	if(nTag == TAG_MAIN_SERVER)
+	{
+		return OnReceiveFromServerMgr(Socket);
+	}
+	else if(nTag == TAG_CLIENT)
+	{
+		return OnReceiveFromClient(Socket);
+	}
+}
+
+MSG_RET CWinSockMgr::OnReceiveFromServerMgr(SOCKET Socket)
+{
+	char recv[512];
+
+	int nRet = m_ServerMgrSock.Receive(recv, 512);
+
+	if(nRet <= SOCKET_ERROR)
+	{
+		return MSG_RET_ERROR;
+	}
+
+	if(strlen(recv) <= 32)
+	{
+		if(strcmp(recv, "CONNECT_ACK") == 0)
+		{
+			g_sToolMgr.SetConnected(true);
+			SetServerRun(true);
+
+			g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 매니저에 접속 성공...");
+
+			return MSG_CONNECT_SUCCESS;	
+		}
+		else
+		{
+			return MSG_CONNECT_FAIL;
+		}
+	}
+	else 
+	{
+		m_MSGParser.ParseMSG(recv);
+
+		return MSG_PARSING_DATA;
+	}
+
+	return MSG_RET_NONE;
+}
+
+MSG_RET CWinSockMgr::OnReceiveFromClient(SOCKET Socket)
+{
+	char recv[512];
+
+	USERINFO_MAP_IT it = m_mapUserInfo.begin();
+  
+	for(int i = 0; it != m_mapUserInfo.end(); i++, it++)
+	{
+		if(it->second.pSock->m_hSocket != Socket) continue;
+
+		int nRet = it->second.pSock->Receive(recv, 512);
+
+		if(nRet <= SOCKET_ERROR)
+		{
+			return MSG_RET_ERROR;
+		}
+
+		if(strlen(recv) <= 32)
+		{
+
+		}
+		else 
+		{
+			m_MSGParser.ParseMSG(recv);
+
+			USERQUERYINFO Query;
+
+			Query.pSock = it->second.pSock;
+			Query.nCommandData = m_MSGParser.m_msgData.msgHeader.nCommandData;
+
+			AddUserQuery(Query);
+
+			// 서버 매니저로 쿼리 전송
+			// 쿼리를 전송할 때 메시지 부분에 쿼리 맵 인덱스를 넣어서 보냄
+
+			return MSG_PARSING_DATA;
+		}
+	}
+
+	return MSG_RET_NONE;
 }

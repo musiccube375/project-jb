@@ -593,6 +593,14 @@
 			Name="Util"
 			>
 			<File
+				RelativePath="..\Sources\Util\Client_MSG.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Util\Client_MSG.h"
+				>
+			</File>
+			<File
 				RelativePath="..\Sources\Util\CustomControl.cpp"
 				>
 			</File>

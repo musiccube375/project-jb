@@ -1,6 +1,6 @@
 #pragma once
 #include "afxwin.h"
-
+#include "resource.h"
 
 // CRegisterNewUserDlg 대화 상자입니다.
 
