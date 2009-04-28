@@ -17,4 +17,6 @@ PMSG_DATA CCMDHandlerMDS::CMD_MDS_Handle(int nCommandData)
 	{
 
 	}
+
+	return 0;
 }

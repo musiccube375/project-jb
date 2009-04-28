@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 한국어 resources
+// Korean resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -239,6 +239,10 @@ IDD_MSERVER_FORM DIALOGEX 0, 0, 1293, 903
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
+    EDITTEXT        IDC_EDIT1,81,9,65,14,ES_CENTER | ES_AUTOHSCROLL
+    LTEXT           "M-Server Manager IP",IDC_STATIC,11,11,66,8
+    PUSHBUTTON      "Connect",IDC_BUTTON1,148,9,34,14
+    PUSHBUTTON      "Disconnect",IDC_BUTTON2,183,9,43,14
 END
 
 
@@ -438,12 +442,12 @@ BEGIN
     IDS_EDIT_MENU           "편집"
 END
 
-#endif    // 한국어 resources
+#endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// 영어(미국) resources
+// English (U.S.) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -489,7 +493,7 @@ IDB_FRM_BTN_CLOSE       BITMAP                  "res\\Frame Image\\close box_c.b
 IDB_FRM_BOTTOM_RIGHT    BITMAP                  "res\\Frame Image\\frm_bottom_right.bmp"
 IDB_FRM_BOTTOM_LEFT     BITMAP                  "res\\Frame Image\\frm_bottom_left.bmp"
 IDB_FRM_BOTTOM_CEN      BITMAP                  "res\\Frame Image\\frm_bottom_cen.bmp"
-#endif    // 영어(미국) resources
+#endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

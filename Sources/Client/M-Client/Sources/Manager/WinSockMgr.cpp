@@ -45,3 +45,8 @@ HRESULT CWinSockMgr::InitWinSockMgr()
 
 	return S_OK;
 }
+
+void CWinSockMgr::ReleaseWinSockMgr()
+{
+	
+}

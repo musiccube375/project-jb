@@ -22,6 +22,8 @@ BEGIN_MESSAGE_MAP(CMServerView, CFormView)
 	ON_MESSAGE(WM_CLIENT_CONNECT, OnClientConnect)
 	ON_MESSAGE(WM_CLIENT_CLOSE, OnClientClose)
 	ON_MESSAGE(WM_SERVER_ACCEPT, OnClientAccept)
+	ON_BN_CLICKED(IDC_BUTTON1, &CMServerView::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &CMServerView::OnBnClickedButton2)
 END_MESSAGE_MAP()
 
 // CMServerView 생성/소멸
@@ -35,11 +37,15 @@ CMServerView::CMServerView()
 
 CMServerView::~CMServerView()
 {
+	g_sToolMgr.ReleaseToolMgr();
 }
 
 void CMServerView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_EDIT1, m_editIP);
+	DDX_Control(pDX, IDC_BUTTON1, m_btnConnect);
+	DDX_Control(pDX, IDC_BUTTON2, m_btnDisconnect);
 }
 
 BOOL CMServerView::PreCreateWindow(CREATESTRUCT& cs)
@@ -56,7 +62,14 @@ void CMServerView::OnInitialUpdate()
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
 
+	CRect rcClient;
+	GetClientRect(&rcClient);
+	GetParentFrame()->RecalcLayout();
+	// 스크롤 크기를 뷰의 크기로 맞추어 줌.
+	SetScaleToFitSize(rcClient.Size());
+
 	Init();
+	InitControls();
 }
 
 void CMServerView::OnRButtonUp(UINT nFlags, CPoint point)
@@ -102,18 +115,33 @@ LRESULT CMServerView::OnClientReceive(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMServerView::OnClientConnect(WPARAM wParam, LPARAM lParam)
 {
+	g_sToolMgr.SetConnected(true);
+	g_sToolMgr.GetWinSockMgr()->SetServerRun(true);
+
+	m_btnConnect.EnableWindow(false);
+	m_btnDisconnect.EnableWindow(true);
+
+	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 매니저에 접속 성공...");
 
 	return S_OK;
 }
 
 LRESULT CMServerView::OnClientClose(WPARAM wParam, LPARAM lParam)
 {
+	g_sToolMgr.SetConnected(false);
+	g_sToolMgr.GetWinSockMgr()->SetServerRun(false);
+
+	m_btnConnect.EnableWindow(true);
+	m_btnDisconnect.EnableWindow(false);
+
+	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 매니저에 접속 실패...");
 
 	return S_OK;
 }
 
 LRESULT CMServerView::OnClientAccept(WPARAM wParam, LPARAM lParam)
 {
+	if(!g_sToolMgr.IsConnected()) return E_FAIL;
 
 	return S_OK;
 }
@@ -126,5 +154,38 @@ LRESULT CMServerView::OnClientNetDown(WPARAM wParam, LPARAM lParam)
 
 void CMServerView::Init()
 {
-	g_sToolMgr.InitToolMgr(m_hWnd);
+	CString strIP;
+	m_editIP.GetWindowTextA(strIP);
+
+	g_sToolMgr.InitToolMgr(m_hWnd, strIP);
+}
+
+void CMServerView::InitControls()
+{
+	m_editIP.SetWindowTextA("127.0.0.1");
+	m_btnConnect.EnableWindow(true);
+	m_btnDisconnect.EnableWindow(false);
+}
+
+void CMServerView::OnBnClickedButton1()
+{
+	// TODO: Add your control notification handler code here
+
+	// Connect to the M-Server Manager
+
+	CString strIP;
+	m_editIP.GetWindowTextA(strIP);
+
+	g_sToolMgr.GetWinSockMgr()->ConnectToServerMgr();
+
+	//g_sToolMgr.GetWinSockMgr()->GetServerSock()->Connect(strIP, MAIN_SERVER_PORT);
+}
+
+void CMServerView::OnBnClickedButton2()
+{
+	// TODO: Add your control notification handler code here
+
+	// Disconnect to the M-Server Manager
+
+	g_sToolMgr.GetWinSockMgr()->GetServerSock()->Close();
 }

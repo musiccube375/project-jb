@@ -230,6 +230,9 @@ LRESULT CMServerManagerView::OnClientClose(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMServerManagerView::OnClientAccept(WPARAM wParam, LPARAM lParam)
 {
+	if(!g_sToolMgr.GetRun()) return E_FAIL;
+
+	g_sToolMgr.GetWinSockMgr()->OnAccept();
 
 	return S_OK;
 }

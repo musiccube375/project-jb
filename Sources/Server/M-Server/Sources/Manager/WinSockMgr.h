@@ -42,6 +42,9 @@ private:
 
 public:
 	inline CServerSock* GetServerSock() { return &m_ServerSock; }
+	inline bool IsServerRun() { return m_bServerRun; }
+
+	void SetServerRun(bool bServerRun);
 
 public:
 	void InitServerSock();
@@ -59,7 +62,7 @@ public:
 	void OnAccept();
 
 public:
-	HRESULT InitWinSockMgr(char* pszServerMgrIP = LOCAL_HOST_IP);
+	HRESULT InitWinSockMgr(const char* pszServerMgrIP = LOCAL_HOST_IP);
 	void ReleaseWinSockMgr();
 
 public:

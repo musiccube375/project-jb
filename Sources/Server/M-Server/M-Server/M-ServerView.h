@@ -4,6 +4,7 @@
 
 
 #pragma once
+#include "afxwin.h"
 
 
 class CMServerView : public CFormView
@@ -46,6 +47,7 @@ protected:
 
 public:
 	void Init();
+	void InitControls();
 
 // 생성된 메시지 맵 함수
 protected:
@@ -53,6 +55,12 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
+public:
+	CEdit m_editIP;
+	CButton m_btnConnect;
+	CButton m_btnDisconnect;
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton2();
 };
 
 #ifndef _DEBUG  // M-ServerView.cpp의 디버그 버전

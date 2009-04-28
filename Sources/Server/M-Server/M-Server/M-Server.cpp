@@ -119,6 +119,9 @@ BOOL CMServerApp::InitInstance()
 	m_pMainWnd->UpdateWindow();
 	// 접미사가 있을 경우에만 DragAcceptFiles를 호출합니다.
 	//  SDI 응용 프로그램에서는 ProcessShellCommand 후에 이러한 호출이 발생해야 합니다.
+
+	m_pMainWnd->SetWindowText("M-Server");
+
 	return TRUE;
 }
 
