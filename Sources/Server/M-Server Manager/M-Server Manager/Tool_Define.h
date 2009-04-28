@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Tool Define 
-	Version				: 1.00.00
+	Version				: 1.00.01
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -51,12 +51,4 @@ CSingleton<CToolMgr>	sToolMgr;
 #define WM_CLIENT_SEND			WM_USER + 6
 #define WM_CLIENT_SEND_ERROR	WM_USER + 7
 
-#define INDEX_SYNTAX		0
-#define INDEX_FROMID		3
-#define INDEX_TOID			19
-#define INDEX_TYPE			35
-#define INDEX_CMDTYPE		36
-#define INDEX_CMDDATA		37
-#define INDEX_MSGLEN		38
-#define INDEX_MSG			39
 

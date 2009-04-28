@@ -17,4 +17,6 @@ PMSG_DATA CCMDHandlerCLT::CMD_CLT_Handle(int nCommandData)
 	{
 
 	}
+
+	return 0;
 }

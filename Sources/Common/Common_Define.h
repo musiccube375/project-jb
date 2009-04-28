@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Common Define
-	Version				: 1.00.02
+	Version				: 1.00.04
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -39,6 +39,15 @@ using namespace std;
 #define LOCAL_HOST_IP			"127.0.0.1"
 
 #define MAX_CLIENT_COUNT		5000
+
+#define INDEX_SYNTAX			0
+#define INDEX_FROMID			3
+#define INDEX_TOID				19
+#define INDEX_TYPE				35
+#define INDEX_CMDTYPE			36
+#define INDEX_CMDDATA			37
+#define INDEX_MSGLEN			38
+#define INDEX_MSG				39
 
 typedef map<int, CClientSock*>					CLIENTSOCK_MAP;
 typedef map<int, CClientSock*>::iterator		CLIENTSOCK_MAP_IT;
@@ -105,3 +114,20 @@ typedef struct _MSG_DATA
 	char msgMessage[256];
 	char msgTail[3];
 }MSG_DATA, *PMSG_DATA;
+
+/*
+	Structure : MSERVER Structure
+
+	Release Date		: 2008. 04. 28.
+	Version				: 1.00.00
+*/
+
+typedef struct _MSERVERINFO
+{
+	char szIP[32];
+	CClientSock*	pSock;
+}MSERVERINFO, *PMSERVERINFO;
+
+typedef map<int, MSERVERINFO>				MSERVERINFO_MAP;
+typedef map<int, MSERVERINFO>::iterator		MSERVERINFO_MAP_IT;
+typedef map<int, MSERVERINFO>::value_type	MSERVERINFO_MAP_VALUE;

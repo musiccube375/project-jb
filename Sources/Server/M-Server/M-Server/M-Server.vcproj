@@ -637,5 +637,9 @@
 		</Filter>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="M-Server.rc"
+		/>
 	</Globals>
 </VisualStudioProject>

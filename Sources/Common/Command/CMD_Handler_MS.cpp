@@ -33,4 +33,6 @@ PMSG_DATA CCMDHandlerMS::CMD_MS_Handle(int nCommandData)
 		}
 		break;
 	}
+
+	return 0;
 }
