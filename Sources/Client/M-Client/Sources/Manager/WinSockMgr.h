@@ -23,31 +23,32 @@
 	Class : WinSock Manager Class
 
 	Release Date		: 2009. 04. 15.
-	Version				: 1.00.01
+	Version				: 1.00.02
 */
 
 class CWinSockMgr
 {
 private:
-	/*bool m_bServerRun;
-	CServerSock m_ServerSock;			// Main Server Socket
-	
-	int	m_nClientSockCount;				// Client socket map counter
-	CLIENTSOCK_MAP m_mapClientSock;		// Client socket map for middle server*/
+	int m_nServerCount;					// 서버의 인덱스
+	bool m_bConnectTry;					// 접속 시도 여부	
 
+	bool m_bConnected;
 	CClientSock	m_ServerSock;			// The server socket to connect
 
 public:
 	inline CClientSock* GetServerSock() { return &m_ServerSock; }
-	//inline CServerSock* GetServerSock() { return &m_ServerSock; }
+	inline int GetServerCount() { return m_nServerCount; }
 
 public:
-	//void InitServerSock();
-	//void CloseServerSock();
+	bool ConnectToServer();
+	void CloseServerSock();
 
 public:
 	HRESULT InitWinSockMgr();
 	void ReleaseWinSockMgr();
+
+public:
+	MSG_RET OnReceive(SOCKET Socket, int nTag);
 
 public:
 	// The basic constructor

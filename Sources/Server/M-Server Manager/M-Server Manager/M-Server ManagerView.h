@@ -46,11 +46,11 @@ protected:
 
 	void OnTabColor(); 
 
-	LRESULT OnClientReceive(WPARAM wParam, LPARAM lParam);
-	LRESULT OnClientConnect(WPARAM wParam, LPARAM lParam);
-	LRESULT OnClientClose(WPARAM wParam, LPARAM lParam);
-	LRESULT OnClientAccept(WPARAM wParam, LPARAM lParam);
-	LRESULT OnClientNetDown(WPARAM wParam, LPARAM lParam);
+	afx_msg LONG OnClientReceive(UINT wParam, LONG lParam);
+	afx_msg LONG OnClientConnect(UINT wParam, LONG lParam);
+	afx_msg LONG OnClientClose(UINT wParam, LONG lParam);
+	afx_msg LONG OnClientAccept(UINT wParam, LONG lParam);
+	afx_msg LONG OnClientNetDown(UINT wParam, LONG lParam);
 
 // 생성된 메시지 맵 함수
 protected:

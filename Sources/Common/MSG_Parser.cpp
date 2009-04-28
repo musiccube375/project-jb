@@ -3,7 +3,7 @@
 
 CMSGParser::CMSGParser()
 {
-	
+	m_bParseOK = false;	
 }
 
 CMSGParser::~CMSGParser()
@@ -13,6 +13,8 @@ CMSGParser::~CMSGParser()
 
 PMSG_DATA CMSGParser::ParseMSG(const char* pszMsg)
 {
+	m_bParseOK = false;
+
 	if(ParseMSGHeader(pszMsg) != S_OK)
 		return NULL;
 
@@ -20,6 +22,8 @@ PMSG_DATA CMSGParser::ParseMSG(const char* pszMsg)
 	
 	if(ParseMSGTail(pszMsg) != S_OK)
 		return NULL;
+
+	m_bParseOK = true;
 
 	return CMD_Main_Handle(m_msgData);
 }

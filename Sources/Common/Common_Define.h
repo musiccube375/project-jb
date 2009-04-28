@@ -26,6 +26,7 @@
 #include "DialogSkin.h"
 
 #include <map>
+#include <queue>
 
 using namespace std;
 
@@ -38,6 +39,7 @@ using namespace std;
 
 #define LOCAL_HOST_IP			"127.0.0.1"
 
+#define MAX_SERVER_COUNT		16
 #define MAX_CLIENT_COUNT		5000
 
 #define INDEX_SYNTAX			0
@@ -48,6 +50,12 @@ using namespace std;
 #define INDEX_CMDDATA			37
 #define INDEX_MSGLEN			38
 #define INDEX_MSG				39
+
+#define TAG_MAIN_SERVER			0x01
+#define TAG_MIDDLE_SERVER		0x02
+#define TAG_CLIENT				0x03
+
+#define MAX_INT_SIZE			214783600
 
 typedef map<int, CClientSock*>					CLIENTSOCK_MAP;
 typedef map<int, CClientSock*>::iterator		CLIENTSOCK_MAP_IT;
@@ -131,3 +139,12 @@ typedef struct _MSERVERINFO
 typedef map<int, MSERVERINFO>				MSERVERINFO_MAP;
 typedef map<int, MSERVERINFO>::iterator		MSERVERINFO_MAP_IT;
 typedef map<int, MSERVERINFO>::value_type	MSERVERINFO_MAP_VALUE;
+
+enum MSG_RET
+{
+	MSG_RET_ERROR = 0,
+	MSG_RET_NONE,
+	MSG_CONNECT_SUCCESS,
+	MSG_CONNECT_FAIL,
+	MSG_PARSING_DATA,
+};

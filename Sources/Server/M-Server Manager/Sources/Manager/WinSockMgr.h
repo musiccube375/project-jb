@@ -18,6 +18,7 @@
 #pragma once
 
 #include "Common_Define.h"
+#include "MSG_Parser.h"
 
 /*
 	Class : WinSock Manager Class
@@ -34,6 +35,8 @@ private:
 	
 	int	m_nMServerCount;				// M-Server socket map counter
 	MSERVERINFO_MAP m_mapMServer;		// M-Server socket map for middle server
+
+	CMSGParser m_MSGParser;
 
 public:
 	inline CServerSock* GetServerSock() { return &m_ServerSock; }
@@ -52,6 +55,8 @@ public:
 	void ReleaseWinSockMgr();
 
 	void OnAccept();
+	void OnReceive(SOCKET Socket, int nTag);
+	void OnClose(SOCKET Socket, int nTag);
 
 public:
 	// The basic constructor

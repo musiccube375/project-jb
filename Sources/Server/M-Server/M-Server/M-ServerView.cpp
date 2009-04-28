@@ -107,46 +107,56 @@ CMServerDoc* CMServerView::GetDocument() const // 디버그되지 않은 버전은 인라인�
 
 // CMServerView 메시지 처리기
 
-LRESULT CMServerView::OnClientReceive(WPARAM wParam, LPARAM lParam)
+LONG CMServerView::OnClientReceive(UINT wParam, LONG lParam)
 {
+	MSG_RET ret = g_sToolMgr.GetWinSockMgr()->OnReceive((SOCKET) wParam, (int) lParam);
+
+	if(ret == MSG_CONNECT_SUCCESS)
+	{
+		m_editIP.EnableWindow(false);
+		m_btnConnect.EnableWindow(false);
+		m_btnDisconnect.EnableWindow(true);
+	}
 
 	return S_OK;
 }
 
-LRESULT CMServerView::OnClientConnect(WPARAM wParam, LPARAM lParam)
+LONG CMServerView::OnClientConnect(UINT wParam, LONG lParam)
 {
-	g_sToolMgr.SetConnected(true);
+	/*g_sToolMgr.SetConnected(true);
 	g_sToolMgr.GetWinSockMgr()->SetServerRun(true);
 
 	m_btnConnect.EnableWindow(false);
 	m_btnDisconnect.EnableWindow(true);
 
-	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 매니저에 접속 성공...");
+	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 매니저에 접속 성공...");*/
 
 	return S_OK;
 }
 
-LRESULT CMServerView::OnClientClose(WPARAM wParam, LPARAM lParam)
+LONG CMServerView::OnClientClose(UINT wParam, LONG lParam)
 {
-	g_sToolMgr.SetConnected(false);
+	/*g_sToolMgr.SetConnected(false);
 	g_sToolMgr.GetWinSockMgr()->SetServerRun(false);
 
 	m_btnConnect.EnableWindow(true);
 	m_btnDisconnect.EnableWindow(false);
 
-	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 매니저에 접속 실패...");
+	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 매니저에 접속 실패...");*/
 
 	return S_OK;
 }
 
-LRESULT CMServerView::OnClientAccept(WPARAM wParam, LPARAM lParam)
+LONG CMServerView::OnClientAccept(UINT wParam, LONG lParam)
 {
-	if(!g_sToolMgr.IsConnected()) return E_FAIL;
+	//if(!g_sToolMgr.IsConnected()) return E_FAIL;
+
+	g_sToolMgr.GetWinSockMgr()->OnAccept();
 
 	return S_OK;
 }
 
-LRESULT CMServerView::OnClientNetDown(WPARAM wParam, LPARAM lParam)
+LONG CMServerView::OnClientNetDown(UINT wParam, LONG lParam)
 {
 
 	return S_OK;
@@ -154,10 +164,7 @@ LRESULT CMServerView::OnClientNetDown(WPARAM wParam, LPARAM lParam)
 
 void CMServerView::Init()
 {
-	CString strIP;
-	m_editIP.GetWindowTextA(strIP);
-
-	g_sToolMgr.InitToolMgr(m_hWnd, strIP);
+	g_sToolMgr.InitToolMgr(m_hWnd, LOCAL_HOST_IP);
 }
 
 void CMServerView::InitControls()
@@ -176,7 +183,7 @@ void CMServerView::OnBnClickedButton1()
 	CString strIP;
 	m_editIP.GetWindowTextA(strIP);
 
-	g_sToolMgr.GetWinSockMgr()->ConnectToServerMgr();
+	g_sToolMgr.GetWinSockMgr()->ConnectToServerMgr(strIP);
 
 	//g_sToolMgr.GetWinSockMgr()->GetServerSock()->Connect(strIP, MAIN_SERVER_PORT);
 }
@@ -187,5 +194,9 @@ void CMServerView::OnBnClickedButton2()
 
 	// Disconnect to the M-Server Manager
 
-	g_sToolMgr.GetWinSockMgr()->GetServerSock()->Close();
+	g_sToolMgr.GetWinSockMgr()->CloseServerMgrSock();
+
+	m_editIP.EnableWindow(true);
+	m_btnConnect.EnableWindow(true);
+	m_btnDisconnect.EnableWindow(false);
 }

@@ -46,6 +46,8 @@ void CRegisterNewUserDlg::OnBnClickedButton1()
 	// TODO: Add your control notification handler code here
 
 	// Check ID
+
+	MSG_ID_Check_Req();
 }
 
 void CRegisterNewUserDlg::OnBnClickedOk()

@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include "Server_MSG.h"
+
 #ifndef SAFE_DELETE
 #define SAFE_DELETE(p)          if(p) { delete (p); (p) = NULL; }
 #endif 
@@ -50,3 +52,4 @@ CSingleton<CToolMgr>	sToolMgr;
 #define WM_CLIENT_NETDOWN		WM_USER + 5	
 #define WM_CLIENT_SEND			WM_USER + 6
 #define WM_CLIENT_SEND_ERROR	WM_USER + 7
+

@@ -28,8 +28,11 @@
 
 class CMSGParser : public CCMDHandlerMgr
 {
+	friend class CWinSockMgr;
+
 private:
 	MSG_DATA m_msgData;
+	bool m_bParseOK;
 
 public:
 	PMSG_DATA ParseMSG(const char* pszMsg);

@@ -19,7 +19,7 @@ CClientSock::CClientSock()
 
 CClientSock::~CClientSock()
 {
-	
+
 }
 
 

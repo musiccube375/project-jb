@@ -18,6 +18,24 @@
 #pragma once
 
 #include "Common_Define.h"
+#include "MSG_Parser.h"
+
+/*
+	Structure : USER QUERY INFO Structure
+
+	Release Date		: 2008. 04. 28.
+	Version				: 1.00.00
+*/
+
+typedef struct _USERQUERYINFO
+{
+	CClientSock*	pSock;
+	int nCommandData;
+}USERQUERYINFO, *PUSERQUERYINFO;
+
+typedef map<int, USERQUERYINFO>					USERQUERYINFO_MAP;
+typedef map<int, USERQUERYINFO>::iterator		USERQUERYINFO_MAP_IT;
+typedef map<int, USERQUERYINFO>::value_type		USERQUERYINFO_MAP_VALUE;
 
 /*
 	Class : WinSock Manager Class
@@ -35,10 +53,15 @@ private:
 	CClientSock m_ServerMgrSock;		// The socket for connecting to server manager
 
 	int	m_nUserCount;					// User map counter
-	USERINFO_MAP m_mapUserSock;			// User map for middle server
+	USERINFO_MAP m_mapUserInfo;			// User map for middle server
 
 	char m_szServerMgrIP[32];
 	bool m_bServerMgrConnect;
+
+	CMSGParser m_MSGParser;
+
+	int m_nUserQueryCount;
+	USERQUERYINFO_MAP m_mapUserQuery;
 
 public:
 	inline CServerSock* GetServerSock() { return &m_ServerSock; }
@@ -50,7 +73,7 @@ public:
 	void InitServerSock();
 	void CloseServerSock();
 
-	bool ConnectToServerMgr();
+	bool ConnectToServerMgr(const char* pszIP);
 	void CloseServerMgrSock();
 
 public:
@@ -58,8 +81,19 @@ public:
 	HRESULT DelUser(int nIndex);
 	void ClearUser();
 
+	HRESULT AddUserQuery(USERQUERYINFO UserQuery);
+	HRESULT DelUserQuery();
+	void ClearUserQuery();
+
+	void ProcessQuery();
+
 public:
 	void OnAccept();
+	MSG_RET OnReceive(SOCKET Socket, int nTag);
+
+protected:
+	MSG_RET OnReceiveFromServerMgr(SOCKET Socket);
+	MSG_RET OnReceiveFromClient(SOCKET Socket);
 
 public:
 	HRESULT InitWinSockMgr(const char* pszServerMgrIP = LOCAL_HOST_IP);
