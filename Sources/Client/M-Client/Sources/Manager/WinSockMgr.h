@@ -18,6 +18,7 @@
 #pragma once
 
 #include "Common_Define.h"
+#include "MSG_Parser.h"
 
 /*
 	Class : WinSock Manager Class
@@ -35,9 +36,12 @@ private:
 	bool m_bConnected;
 	CClientSock	m_ServerSock;			// The server socket to connect
 
+	CMSGParser m_MSGParser;
+
 public:
 	inline CClientSock* GetServerSock() { return &m_ServerSock; }
 	inline int GetServerCount() { return m_nServerCount; }
+	inline CMSGParser* GetMSGParser() { return &m_MSGParser; }
 
 public:
 	bool ConnectToServer();

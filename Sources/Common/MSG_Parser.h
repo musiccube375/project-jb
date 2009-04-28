@@ -17,8 +17,6 @@
 
 #pragma once
 
-#include "CMD_Handler.h"
-
 /*
 	Class : MSG Parser Class
 
@@ -26,7 +24,7 @@
 	Version				: 1.00.00
 */
 
-class CMSGParser : public CCMDHandlerMgr
+class CMSGParser 
 {
 	friend class CWinSockMgr;
 

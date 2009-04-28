@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;..\..\..\Common\Command;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;..\Sources\Command;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -130,7 +130,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;..\..\..\Common\Command;"
+				AdditionalIncludeDirectories="..\M-Server Manager;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\SQL;..\Sources\Command;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
 				MinimalRebuild="false"
 				RuntimeLibrary="0"
@@ -254,11 +254,11 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\res\bitmap1.bmp"
+				RelativePath=".\res\Frame Image\bitmap1.bmp"
 				>
 			</File>
 			<File
-				RelativePath=".\res\Frame Image\bitmap1.bmp"
+				RelativePath=".\res\bitmap1.bmp"
 				>
 			</File>
 			<File
@@ -637,42 +637,6 @@
 					</File>
 				</Filter>
 			</Filter>
-			<Filter
-				Name="Command"
-				>
-				<File
-					RelativePath="..\..\..\Common\Command\CMD_Handler.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Common\Command\CMD_Handler.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Common\Command\CMD_Handler_CLT.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Common\Command\CMD_Handler_CLT.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Common\Command\CMD_Handler_MDS.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Common\Command\CMD_Handler_MDS.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Common\Command\CMD_Handler_MS.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Common\Command\CMD_Handler_MS.h"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<Filter
 			Name="Util"
@@ -699,6 +663,26 @@
 			</File>
 			<File
 				RelativePath="..\Sources\Util\SQL.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Command"
+			>
+			<File
+				RelativePath="..\Sources\Command\CMD_Handler.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Command\CMD_Handler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Command\CMD_Handler_MS.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Command\CMD_Handler_MS.h"
 				>
 			</File>
 		</Filter>

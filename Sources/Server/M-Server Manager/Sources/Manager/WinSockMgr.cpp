@@ -160,6 +160,7 @@ void CWinSockMgr::OnReceive(SOCKET Socket, int nTag)
 		else 
 		{
 			m_MSGParser.ParseMSG(recv);
+			m_CMDHandlerMgr.CMD_Main_Handle(m_MSGParser.m_msgData);
 		}
 	}
 }

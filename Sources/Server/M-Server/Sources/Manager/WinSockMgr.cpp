@@ -143,13 +143,26 @@ void CWinSockMgr::ClearUser()
 	m_mapUserInfo.clear();
 }
 
-HRESULT CWinSockMgr::AddUserQuery(USERQUERYINFO UserQuery)
+PUSERINFO CWinSockMgr::GetUser(char* pszID)
+{
+	USERINFO_MAP_IT it = m_mapUserInfo.begin();
+
+	for( ; it != m_mapUserInfo.end(); it++)
+	{
+		if(strcmp(it->second.UserBase.szID, pszID) == 0)
+			return &it->second;
+	}
+
+	return 0;
+}
+
+int CWinSockMgr::AddUserQuery(USERQUERYINFO UserQuery)
 {
 	if(m_nUserQueryCount > MAX_INT_SIZE) m_nUserQueryCount = 0;
 
-	m_mapUserQuery.insert(USERQUERYINFO_MAP_VALUE(m_nUserQueryCount++, UserQuery));
+	m_mapUserQuery.insert(USERQUERYINFO_MAP_VALUE(m_nUserQueryCount, UserQuery));
 
-	return S_OK;
+	return m_nUserQueryCount++;
 }
 
 HRESULT CWinSockMgr::DelUserQuery()
@@ -174,6 +187,39 @@ HRESULT CWinSockMgr::DelUserQuery()
 void CWinSockMgr::ClearUserQuery()
 {
 	m_mapUserQuery.clear();
+}
+
+PUSERQUERYINFO CWinSockMgr::GetUserQuery(int nIndex)
+{
+	USERQUERYINFO_MAP_IT it = m_mapUserQuery.begin();
+
+	for(int i = 0; it != m_mapUserQuery.end(); it++, i++)
+	{
+		if(i == nIndex)
+			return &it->second;
+	}	
+
+	return 0;
+}
+
+int CWinSockMgr::UnknownedQuery(MSG_DATA msgData, CClientSock* pSock)
+{
+	USERQUERYINFO Query;
+
+	Query.pSock = pSock;
+	Query.nCommandData = m_MSGParser.m_msgData.msgHeader.nCommandData;
+
+	return AddUserQuery(Query);
+
+	// 서버 매니저로 쿼리 전송
+	// 쿼리를 전송할 때 메시지 부분에 쿼리 맵 인덱스를 넣어서 보냄
+
+	//MSG_ID_Check_Req(nIndex);   
+}
+
+void CWinSockMgr::KnownedQuery(MSG_DATA msgData)
+{
+
 }
 
 void CWinSockMgr::ProcessQuery()
@@ -304,15 +350,16 @@ MSG_RET CWinSockMgr::OnReceiveFromClient(SOCKET Socket)
 		{
 			m_MSGParser.ParseMSG(recv);
 
-			USERQUERYINFO Query;
+			if(strcmp(m_MSGParser.m_msgData.msgHeader.szFromID, UNKNOWNED_USER) == 0)
+			{
+				sprintf(m_MSGParser.m_msgData.msgMessage, "%d", UnknownedQuery(m_MSGParser.m_msgData, it->second.pSock));
+			}
+			/*else
+			{
+				KnownedQuery(m_MSGParser.m_msgData);
+			}*/
 
-			Query.pSock = it->second.pSock;
-			Query.nCommandData = m_MSGParser.m_msgData.msgHeader.nCommandData;
-
-			AddUserQuery(Query);
-
-			// 서버 매니저로 쿼리 전송
-			// 쿼리를 전송할 때 메시지 부분에 쿼리 맵 인덱스를 넣어서 보냄
+			m_CMDHandlerMgr.CMD_Main_Handle(m_MSGParser.m_msgData);
 
 			return MSG_PARSING_DATA;
 		}

@@ -19,6 +19,7 @@
 
 #include "Common_Define.h"
 #include "MSG_Parser.h"
+#include "CMD_Handler.h"
 
 /*
 	Class : WinSock Manager Class
@@ -37,6 +38,7 @@ private:
 	MSERVERINFO_MAP m_mapMServer;		// M-Server socket map for middle server
 
 	CMSGParser m_MSGParser;
+	CCMDHandlerMgr m_CMDHandlerMgr;
 
 public:
 	inline CServerSock* GetServerSock() { return &m_ServerSock; }

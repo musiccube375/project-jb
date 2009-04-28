@@ -30,7 +30,8 @@
 #define CD_ADD_FRIEND_REQ_TO_MAIN			0x03
 #define CD_ADD_ID_RET_TO_CLIENT				0x04
 #define CD_ADD_FRIEND_RET_TO_CLIENT			0x05
-#define CD_ID_CHECK_RET_TO_CLIENT			0x06
+#define CD_ID_CHECK_REQ_TO_CLIENT			0x06
+#define CD_ID_CHECK_RET_TO_CLIENT			0x07
 
 // Client Command
 #define CLIENT_CMD							0x0003		// 0xCC
