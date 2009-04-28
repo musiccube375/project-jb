@@ -278,7 +278,7 @@ void CMClientView::OnTimer(UINT_PTR nIDEvent)
 
 	if(!g_sToolMgr.m_bConnected)
 	{
-		int i = 0;
+		/*int i = 0;
 		int nCnt = 0;
 
 		while(1)
@@ -302,7 +302,7 @@ void CMClientView::OnTimer(UINT_PTR nIDEvent)
 				AfxMessageBox("No server to connect now...");
 				return;
 			}
-		}
+		}*/
 	}
 
 	CFormView::OnTimer(nIDEvent);
