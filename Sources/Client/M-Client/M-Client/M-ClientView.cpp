@@ -215,7 +215,7 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
-	/*RECT rt;
+	RECT rt;
 
 	GetClientRect(&rt);
 	//GetWindowRect(GetDesktopWindow(), &rt);
@@ -223,7 +223,7 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 	int nWidth = rt.right - rt.left;
 	int nHeight = rt.bottom - rt.top;
 
-	int nX = rt.left + nWidth / 2 - (CFG_DIALOG_WIDTH / 2)*/
+	int nX = rt.left + nWidth / 2 - (CFG_DIALOG_WIDTH / 2);
 }
 
 LRESULT CMClientView::OnClientReceive(WPARAM wParam, LPARAM lParam)
@@ -246,11 +246,11 @@ LRESULT CMClientView::OnClientClose(WPARAM wParam, LPARAM lParam)
 
 void CMClientView::Init()
 {
-	g_sToolMgr.InitToolMgr(m_hWnd);
+	g_sToolMgr.InitToolMgr(m_hWnd);//Log 기록
 
 	LoadServerConfig();
 
-	SetTimer(1, 1000, NULL);
+	SetTimer(1, 1000, NULL);//서버 접속
 }
 
 HRESULT CMClientView::LoadServerConfig()
