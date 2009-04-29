@@ -34,6 +34,7 @@ void MSG_SendToQueryClient(const char* pszSend, int nIndex)
 	if(nIndex < 0 || nIndex >= g_sToolMgr.GetWinSockMgr()->GetUserQuerySize()) return;
 
 	g_sToolMgr.GetWinSockMgr()->GetUserQuery(nIndex)->pSock->Send(pszSend, 512);
+	g_sToolMgr.GetWinSockMgr()->DelUserQuery(nIndex);
 }
 
 void MSG_ID_Check_Req(MSG_DATA msgData)

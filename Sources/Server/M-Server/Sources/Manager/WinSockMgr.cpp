@@ -165,20 +165,20 @@ int CWinSockMgr::AddUserQuery(USERQUERYINFO UserQuery)
 	return m_nUserQueryCount++;
 }
 
-HRESULT CWinSockMgr::DelUserQuery()
+HRESULT CWinSockMgr::DelUserQuery(int nIndex)
 {
 	USERQUERYINFO_MAP_IT it = m_mapUserQuery.begin();
 
-	for( ; it != m_mapUserQuery.end(); it++)
+	for(int i = 0; it != m_mapUserQuery.end(); i++, it++)
 	{
-		/*if(it->second._ID == ID)
+		if(i == nIndex)
 		{
-			it->second._pSock->Close();
-			SAFE_DELETE(it->second._pSock);
-			m_mapWPInfo.erase(it);
+			//it->second.pSock->Close();
+			//SAFE_DELETE(it->second.pSock);
+			m_mapUserQuery.erase(it);
 
 			return S_OK;
-		}*/
+		}
 	}
 
 	return E_FAIL;

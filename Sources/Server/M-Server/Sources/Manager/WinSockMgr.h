@@ -88,7 +88,7 @@ public:
 	PUSERINFO GetUser(char* pszID);
 
 	int AddUserQuery(USERQUERYINFO UserQuery);
-	HRESULT DelUserQuery();
+	HRESULT DelUserQuery(int nIndex);
 	void ClearUserQuery();
 	PUSERQUERYINFO GetUserQuery(int nIndex);
 

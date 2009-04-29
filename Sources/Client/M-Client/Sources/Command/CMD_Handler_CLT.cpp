@@ -12,7 +12,7 @@ CCMDHandlerCLT::~CCMDHandlerCLT()
 
 }
 
-MSG_RET CCMDHandlerCLT::CMD_CLT_Handle(MSG_DATA msgData)
+MSG_RET CCMDHandlerCLT::CMD_MDS_Handle(MSG_DATA msgData)
 {
 	MSG_RET ret;
 
