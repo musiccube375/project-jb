@@ -262,11 +262,7 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 	//int nHeight = rt.bottom - rt.top;
 
 	//int nX = rt.left + nWidth / 2 - (CFG_DIALOG_WIDTH / 2);
-<<<<<<< .mine
 
-=======
-
->>>>>>> .theirs
 	RePositionControl(cx, cy);
 }
 
