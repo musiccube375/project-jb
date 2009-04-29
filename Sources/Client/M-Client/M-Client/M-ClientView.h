@@ -6,6 +6,9 @@
 #pragma once
 #include "afxwin.h"
 
+#define IDC_ID_AXIS_X 0.258883248730
+#define IDC_ID_AXIS_Y 0.051912568306
+
 
 class CMClientView : public CFormView
 {
@@ -75,6 +78,8 @@ public:
 	CButton m_chkboxOffline;
 	CButton m_btnLogin;
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+public:
+	void RePositionControl(int x, int y);
 };
 
 #ifndef _DEBUG  // M-ClientView.cpp의 디버그 버전
