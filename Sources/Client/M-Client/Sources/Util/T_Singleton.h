@@ -24,7 +24,7 @@ private:
 	static T* m_Instance; 
 
 public:
-	T* operator->() { return m_Instance; } 
+	T* operator->() { return m_Instance; }
 
 	static T* GetpInstance()
 	{
