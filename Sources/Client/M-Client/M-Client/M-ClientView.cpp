@@ -253,15 +253,37 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
-	/*RECT rt;
+	//RECT rt;
 
-	GetClientRect(&rt);
-	//GetWindowRect(GetDesktopWindow(), &rt);
+	//GetClientRect(&rt);
+	////GetWindowRect(GetDesktopWindow(), &rt);
 
-	int nWidth = rt.right - rt.left;
-	int nHeight = rt.bottom - rt.top;
+	//int nWidth = rt.right - rt.left;
+	//int nHeight = rt.bottom - rt.top;
 
-	int nX = rt.left + nWidth / 2 - (CFG_DIALOG_WIDTH / 2);*/
+	//int nX = rt.left + nWidth / 2 - (CFG_DIALOG_WIDTH / 2);
+<<<<<<< .mine
+
+=======
+
+>>>>>>> .theirs
+	RePositionControl(cx, cy);
+}
+
+void CMClientView::RePositionControl(int x, int y)
+{
+	if(GetDlgItem(IDC_STATIC_ID) != NULL)
+	GetDlgItem(IDC_STATIC_ID)->SetWindowPos(NULL, IDC_ID_AXIS_X*x, 
+		IDC_ID_AXIS_Y*y, 0, 0, SWP_NOSIZE);
+	/*GetDlgItem(IDC_STATIC_PASSWORDS	)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);*/
+	//GetDlgItem(IDC_EDIT1				)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
+	//GetDlgItem(IDC_EDIT2				)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
+	//GetDlgItem(IDC_CHECK2				)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
+	//GetDlgItem(IDC_CHECK1				)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
+	//GetDlgItem(IDC_BUTTON3			)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
+	//GetDlgItem(IDC_BUTTON1			)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
+	//GetDlgItem(IDC_BUTTON2			)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
+
 }
 
 LRESULT CMClientView::OnClientReceive(WPARAM wParam, LPARAM lParam)
