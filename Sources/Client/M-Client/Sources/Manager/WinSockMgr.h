@@ -19,6 +19,7 @@
 
 #include "Common_Define.h"
 #include "MSG_Parser.h"
+#include "CMD_Handler.h"
 
 /*
 	Class : WinSock Manager Class
@@ -37,6 +38,7 @@ private:
 	CClientSock	m_ServerSock;			// The server socket to connect
 
 	CMSGParser m_MSGParser;
+	CCMDHandlerMgr m_CMDHandlerMgr;
 
 public:
 	inline CClientSock* GetServerSock() { return &m_ServerSock; }

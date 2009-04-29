@@ -14,6 +14,8 @@ HRESULT	CToolMgr::InitToolMgr(HWND hWnd)
 
 	m_bConnected = false;
 
+	SetLoginID(UNKNOWNED_USER);
+
 	return S_OK;
 }
 
@@ -28,4 +30,11 @@ void CToolMgr::SetLogView(bool bLogView)
 {
 	if(bLogView) m_Log.EnableLog();
 	else m_Log.DisableLog();
+}
+
+void CToolMgr::SetLoginID(const char* pszID)
+{
+	if(pszID == NULL) return;
+
+	strcpy(m_szLoginID, pszID);
 }

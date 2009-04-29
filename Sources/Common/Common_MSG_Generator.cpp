@@ -5,7 +5,7 @@ HRESULT MSG_Generator(char* pszOutMessage, char* pszFrom, char* pszTo,
 				      int nType, int nCmdType, int nCmdData, char* pszMessage)
 {
 	int nCount = 0;
-	BYTE nMsgLenght = 0;
+	int nMsgLenght = 0;//MSG_MAX_SIZE;
 	
 	if(pszMessage != NULL)
 		nMsgLenght = strlen(pszMessage);
@@ -28,11 +28,13 @@ HRESULT MSG_Generator(char* pszOutMessage, char* pszFrom, char* pszTo,
 	pszOutMessage[nCount++] = nCmdType;
 	pszOutMessage[nCount++] = nCmdData;
 
-	pszOutMessage[nCount++] = nMsgLenght ? nMsgLenght : 0x30;
+	sprintf(&pszOutMessage[nCount++], "%d", nMsgLenght ? nMsgLenght : 0x30);
+
+	//sprintf(&pszOutMessage[nCount++] = nMsgLenght ? nMsgLenght : 0x30;
 
 	for(int i = 0; i < nMsgLenght; i++)
 	{
-		pszOutMessage[nCount++] = pszMessage[i];
+		pszOutMessage[nCount++] = pszMessage[i] ? pszMessage[i] : 0x30;
 	}
 
 	pszOutMessage[nCount++] = 'E';

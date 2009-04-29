@@ -11,7 +11,7 @@ CCMDHandlerMgr::~CCMDHandlerMgr()
 
 }
 
-PMSG_DATA CCMDHandlerMgr::CMD_Main_Handle(MSG_DATA msgData)
+MSG_RET CCMDHandlerMgr::CMD_Main_Handle(MSG_DATA msgData)
 {
 	switch(msgData.msgHeader.nCommandType)
 	{

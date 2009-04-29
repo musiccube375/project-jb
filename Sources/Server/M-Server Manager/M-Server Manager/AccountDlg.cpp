@@ -168,13 +168,13 @@ void CAccountDlg::OnBnClickedButton1()
 		return;
 	}
 
-	if(!g_sToolMgr.GetSQLMgr()->IsValidIDFromDB(strID))
+	if(!g_sToolMgr.GetSQLMgr()->IsValidAdminIDFromDB(strID))
 	{
 		AfxMessageBox("Cannot find ID");
 	}
 	else
 	{
-		if(!g_sToolMgr.GetSQLMgr()->IsValidPWFromDB(strID, strPW))
+		if(!g_sToolMgr.GetSQLMgr()->IsValidAdminPWFromDB(strID, strPW))
 			AfxMessageBox("Incorrect passwords");
 		else
 		{

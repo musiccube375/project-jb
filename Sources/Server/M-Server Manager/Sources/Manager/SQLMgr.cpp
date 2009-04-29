@@ -23,15 +23,13 @@ void CSQLMgr::ReleaseSQLMgr()
 	m_SQLDB.ReleaseSQL();	
 }
 
-bool CSQLMgr::IsValidIDFromDB(const char* pszID)
+bool CSQLMgr::IsValidAdminIDFromDB(const char* pszID)
 {
 	char query[256];
-	char* res;
-	char buff[256];
 
 	sprintf(query, "SELECT id FROM mainsadmin WHERE id = '%s'", pszID);
 
-	res = m_SQLDB.GetRow(query);
+	char * res = m_SQLDB.GetRow(query);
 
 	if(res == NULL)
 	{
@@ -41,7 +39,7 @@ bool CSQLMgr::IsValidIDFromDB(const char* pszID)
 	return true;
 }
 
-bool CSQLMgr::IsValidPWFromDB(const char* pszID, const char* passwords)
+bool CSQLMgr::IsValidAdminPWFromDB(const char* pszID, const char* passwords)
 {
 	char query[256];
 
@@ -57,4 +55,38 @@ bool CSQLMgr::IsValidPWFromDB(const char* pszID, const char* passwords)
 	}
 
 	return false;
+}
+
+bool CSQLMgr::IsValidUserIDFromDB(char* pszID)
+{
+	char query[256];
+
+	for(int i = 0; i < MAX_ID_SIZE; i++)
+	{
+		if(pszID[i] == '0')
+			pszID[i] = NULL;
+	}
+
+	sprintf(query, "SELECT id FROM userinfo WHERE id = '%s'", pszID);
+
+	char* res = m_SQLDB.GetRow(query);
+
+	if(res == NULL)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CSQLMgr::AddClientUser(const char* pszID, const char* passwords)
+{
+	char query[256];
+
+	sprintf(query, "INSERT INTO userinfo VALUES('%d', '%s', '%s', '%d')", 0, pszID, "NONE", atoi(passwords));
+	int query_stat = m_SQLDB.Query(query);
+
+	if(query_stat != 0) return false;
+
+	return true;
 }

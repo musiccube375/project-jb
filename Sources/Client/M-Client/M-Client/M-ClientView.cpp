@@ -12,6 +12,41 @@
 #define new DEBUG_NEW
 #endif
 
+void CMClientView::CheckMSG(MSG_RET ret)
+{
+	if(ret == MSG_CONNECT_FAIL)
+	{
+		AfxMessageBox("서버 접속에 실패하였습니다.");
+		g_sToolMgr.m_bConnected = false;
+	}
+	else if(ret == MSG_CONNECT_SUCCESS)
+	{
+		AfxMessageBox("서버 접속에 성공하였습니다.");
+		g_sToolMgr.m_bConnected = true;
+	}
+	else if(ret == MSG_RET_ERROR)
+	{
+		AfxMessageBox("받은 메시지 형식이 이상합니다.");
+	}
+	else if(ret == MSG_PARSING_ID_CHECK_OK)
+	{
+		AfxMessageBox("사용 가능합니다.");
+		g_sToolMgr.GetDialogMgr()->m_RegisterNewUserDlg.m_bCheckID = true;
+	}
+	else if(ret == MSG_PARSING_ID_CHECK_FAIL)
+	{
+		AfxMessageBox("이미 같은 ID가 존재합니다.");
+		g_sToolMgr.GetDialogMgr()->m_RegisterNewUserDlg.m_bCheckID = false;
+	}
+	else if(ret == MSG_PARSING_ADD_ID_OK)
+	{
+		AfxMessageBox("새로운 계정 생성을 성공하였습니다.");
+	}
+	else if(ret == MSG_PARSING_ADD_ID_FAIL)
+	{
+		AfxMessageBox("새로운 계정 생성에 실패하였습니다..");
+	}
+}
 
 // CMClientView
 
@@ -42,6 +77,8 @@ CMClientView::CMClientView()
 
 CMClientView::~CMClientView()
 {
+	MSG_Exit_Server_Req(g_sToolMgr.GetLoginID());
+	g_sToolMgr.ReleaseToolMgr();
 }
 
 void CMClientView::DoDataExchange(CDataExchange* pDX)
@@ -188,6 +225,7 @@ void CMClientView::OnBnClickedButton1()
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 
 	// Register ID
+	g_sToolMgr.GetDialogMgr()->m_RegisterNewUserDlg.DoModal();
 }
 
 void CMClientView::OnBnClickedButton2()
@@ -228,6 +266,9 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 
 LRESULT CMClientView::OnClientReceive(WPARAM wParam, LPARAM lParam)
 {
+	MSG_RET ret = g_sToolMgr.GetWinSockMgr()->OnReceive((SOCKET) wParam, (int) lParam);
+
+	CheckMSG(ret);
 
 	return S_OK;
 }
@@ -255,7 +296,7 @@ void CMClientView::Init()
 
 HRESULT CMClientView::LoadServerConfig()
 {
-	char buff[256];
+	/*char buff[256];
 	char temp[256];
 
 	GetStringFromConfig("Server_Config", "INFO", "COUNT", buff);
@@ -267,7 +308,9 @@ HRESULT CMClientView::LoadServerConfig()
 		GetStringFromConfig("Server_Config", "LISTS", temp, buff);
 
 		strcpy(g_sToolMgr.m_ServerList[i].szServerIP, buff);
-	}
+	}*/
+
+	strcpy(g_sToolMgr.m_ServerList[0].szServerIP, "127.0.0.1");
 
 	return S_OK;
 }
@@ -278,31 +321,7 @@ void CMClientView::OnTimer(UINT_PTR nIDEvent)
 
 	if(!g_sToolMgr.m_bConnected)
 	{
-		/*int i = 0;
-		int nCnt = 0;
-
-		while(1)
-		{
-			if(g_sToolMgr.GetWinSockMgr()->GetServerSock()->Connect(g_sToolMgr.m_ServerList[i].szServerIP, 
-				                                                    MIDDLE_SERVER_PORT))
-			{
-				strcpy(g_sToolMgr.m_ServerIP, g_sToolMgr.m_ServerList[i].szServerIP);
-				g_sToolMgr.m_bConnected = true;
-				return;
-			}
-
-			if(++i > MAX_SERVER_LIST) 
-			{
-				nCnt++;
-				i = 0;
-			}
-
-			if(nCnt > MAX_RE_CONNECTION)
-			{
-				AfxMessageBox("No server to connect now...");
-				return;
-			}
-		}*/
+		g_sToolMgr.GetWinSockMgr()->ConnectToServer();
 	}
 
 	CFormView::OnTimer(nIDEvent);

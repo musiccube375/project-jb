@@ -44,6 +44,8 @@ protected:
 	afx_msg LONG OnClientConnect(WPARAM wParam, LPARAM lParam);
 	afx_msg LONG OnClientClose(WPARAM wParam, LPARAM lParam);
 
+	void CheckMSG(MSG_RET ret);
+
 public:
 	void Init();
 	HRESULT LoadServerConfig();

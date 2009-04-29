@@ -13,7 +13,7 @@ IMPLEMENT_DYNAMIC(CRegisterNewUserDlg, CDialog)
 CRegisterNewUserDlg::CRegisterNewUserDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CRegisterNewUserDlg::IDD, pParent)
 {
-	m_bCheckID = false;
+
 }
 
 CRegisterNewUserDlg::~CRegisterNewUserDlg()
@@ -46,21 +46,55 @@ void CRegisterNewUserDlg::OnBnClickedButton1()
 	// TODO: Add your control notification handler code here
 
 	// Check ID
-	MSG_ID_Check_Req();
+
+	CString strID;
+	m_editID.GetWindowTextA(strID);
+
+	if(strID == "") 
+	{
+		AfxMessageBox("ID 를 입력하십시요.");
+		return;
+	}
+
+	MSG_ID_Check_Req(strID.GetBuffer(0));
+
+	//m_bCheckID = true;
 }
 
 void CRegisterNewUserDlg::OnBnClickedOk()
 {
 	// TODO: Add your control notification handler code here
 
+	// 계정 추가
+
 	if(!g_sToolMgr.m_bConnected) return;
+	
+	if(!m_bCheckID)
+	{
+		AfxMessageBox("ID 체크를 하십시요.");
+		return;
+	}
 
-	/*char msg[256];
+	CString strID;
+	CString strPW1, strPW2;
 
-	MSG_Generator(msg, UNKNOWNED_USER, UNKNOWNED_USER, MSG_CLIENT_TO_MIDDLE, 
-		          CLIENT_CMD, CC_ADD_ID_REQ_TO_MIDDLE);
+	m_editID.GetWindowTextA(strID);
+	m_editPasswords.GetWindowTextA(strPW1);
+	m_editPasswords2.GetWindowTextA(strPW2);
 
-	g_sToolMgr.GetWinSockMgr()->GetServerSock()->Send(msg, strlen(msg));*/
+	if(strPW1 == "")
+	{
+		AfxMessageBox("비밀번호를 입력하세요.");
+		return;
+	}
+
+	if(strPW1 != strPW2)
+	{
+		AfxMessageBox("비밀번호가 맞지 않습니다.");
+		return;
+	}
+
+	MSG_Add_ID_Req(strID.GetBuffer(0), strPW1.GetBuffer(0));
 
 	OnOK();
 }
@@ -106,4 +140,18 @@ void CRegisterNewUserDlg::OnEnChangeEdit3()
 	// TODO:  Add your control notification handler code here
 
 	m_editPasswords2.Invalidate();
+}
+
+BOOL CRegisterNewUserDlg::OnInitDialog()
+{
+	CDialog::OnInitDialog();
+
+	// TODO:  Add extra initialization here
+
+	m_bCheckID = false;
+	m_editPasswords.SetLimitText(MAX_PASSWORD_SIZE);
+	m_editPasswords2.SetLimitText(MAX_PASSWORD_SIZE);
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// EXCEPTION: OCX Property Pages should return FALSE
 }
