@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 22.
 	Project	Name		: Common Message
-	Version				: 1.00.01
+	Version				: 1.00.02
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -19,8 +19,9 @@
 
 #define MAX_MSG_SIZE		298
 #define MAX_ID_SIZE			16
+#define MAX_PASSWORD_SIZE	16
 
-#define UNKNOWNED_USER		"Unknowned User"
+#define UNKNOWNED_USER		"Unknowned User\0"
 
 #define MIDDLE_SERVER1      "Middle Server1"
 #define MIDDLE_SERVER2      "Middle Server2"

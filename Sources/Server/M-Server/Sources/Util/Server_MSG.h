@@ -22,6 +22,17 @@
 // 서버 매니저로 메시지 전송
 void MSG_SendToServerMgr(const char* pszSend);
 
+// 클라이언트 유저로 메시지 전송
+void MSG_SendToClient(const char* pszSend, char* pszID);
+
+// 클라이언트 유저 서버 나가기
+void MSG_Exit_Server_Req(MSG_DATA msgData);
+
 // 아이디 체크(가입시에)
 void MSG_ID_Check_Req(MSG_DATA msgData);
 void MSG_ID_Check_Ack(MSG_DATA msgData);
+
+// 계정 추가
+void MSG_Add_ID_Req(MSG_DATA msgData);
+void MSG_Add_ID_Ack(MSG_DATA msgData);
+

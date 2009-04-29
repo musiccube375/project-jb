@@ -19,9 +19,9 @@
  
 // Main Server Command
 #define MAIN_CMD							0x00001		// 0xCM
-#define CM_ADD_ID_REQ_TO_MIDDLE				0x01
-#define CM_ADD_FRIEND_REQ_TO_MIDDLE			0x02
-#define CM_ID_CHECK_REQ_TO_MIDDLE			0x03
+#define CM_ADD_ID_RET_TO_MIDDLE				0x01
+#define CM_ADD_FRIEND_RET_TO_MIDDLE			0x02
+#define CM_ID_CHECK_RET_TO_MIDDLE			0x03
 
 // Middle Server Command
 #define MIDDLE_CMD							0x0002		// 0xCD
@@ -32,6 +32,7 @@
 #define CD_ADD_FRIEND_RET_TO_CLIENT			0x05
 #define CD_ID_CHECK_REQ_TO_CLIENT			0x06
 #define CD_ID_CHECK_RET_TO_CLIENT			0x07
+#define CD_EXIT_SERVER_REQ_TO_CLIENT		0x08
 
 // Client Command
 #define CLIENT_CMD							0x0003		// 0xCC
@@ -39,3 +40,4 @@
 #define CC_ADD_ID_REQ_TO_MIDDLE				0x02
 #define CC_ADD_FRIENT_REQ_TO_MIDDLE			0x03
 #define CC_ID_CHECK_REQ_TO_MIDDLE			0x04
+#define CC_EXIT_SERVER_REQ_TO_MIDDLE		0x05

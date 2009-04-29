@@ -27,8 +27,8 @@
 class CCMDHandlerMDS
 {
 protected:
-	PMSG_DATA CMD_MS_Handle(MSG_DATA msgData);
-	PMSG_DATA CMD_MDS_Handle(MSG_DATA msgData);
+	MSG_RET CMD_MS_Handle(MSG_DATA msgData);
+	MSG_RET CMD_MDS_Handle(MSG_DATA msgData);
 
 public:
 	CCMDHandlerMDS();

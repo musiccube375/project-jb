@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\M-Client;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;"
+				AdditionalIncludeDirectories="..\M-Client;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\Command;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -129,7 +129,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\M-Client;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;"
+				AdditionalIncludeDirectories="..\M-Client;..\Sources\Util;..\Sources\Manager;..\Sources\WinSock;..\..\..\Common;..\..\..\..\Library\Include;..\..\..\Common\External\SkinDialog;..\Sources\Command;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
 				MinimalRebuild="false"
 				RuntimeLibrary="0"
@@ -622,6 +622,26 @@
 			</File>
 			<File
 				RelativePath="..\Sources\Manager\WinSockMgr.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Command"
+			>
+			<File
+				RelativePath="..\Sources\Command\CMD_Handler.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Command\CMD_Handler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Command\CMD_Handler_CLT.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Sources\Command\CMD_Handler_CLT.h"
 				>
 			</File>
 		</Filter>

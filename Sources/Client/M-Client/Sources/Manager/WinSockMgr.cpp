@@ -8,7 +8,7 @@ CWinSockMgr::CWinSockMgr()
 
 CWinSockMgr::~CWinSockMgr()
 {
-
+	ReleaseWinSockMgr();
 }
 
 void CWinSockMgr::CloseServerSock()
@@ -35,7 +35,7 @@ HRESULT CWinSockMgr::InitWinSockMgr()
 
 void CWinSockMgr::ReleaseWinSockMgr()
 {
-	
+	CloseServerSock();
 }
 
 bool CWinSockMgr::ConnectToServer()
@@ -107,7 +107,9 @@ MSG_RET CWinSockMgr::OnReceive(SOCKET Socket, int nTag)
 	}
 	else
 	{
-		return MSG_PARSING_DATA;
+		m_MSGParser.ParseMSG(recv);
+
+		return m_CMDHandlerMgr.CMD_Main_Handle(m_MSGParser.m_msgData);
 	}
 
 	return MSG_RET_NONE;

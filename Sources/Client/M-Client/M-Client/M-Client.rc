@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 한국어 resources
+// Korean resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -218,8 +218,8 @@ BEGIN
     LTEXT           "User ID",IDC_STATIC,30,9,25,8
     LTEXT           "Passwords",IDC_STATIC,24,26,35,8
     EDITTEXT        IDC_EDIT1,73,6,77,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT2,73,23,77,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT3,73,40,77,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,73,23,77,14,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,73,40,77,14,ES_PASSWORD | ES_AUTOHSCROLL
     LTEXT           "Verify Passwords",IDC_STATIC,13,42,56,8
     PUSHBUTTON      "Check ID",IDC_BUTTON1,156,6,50,14
 END
@@ -430,12 +430,12 @@ BEGIN
     IDS_EDIT_MENU           "편집"
 END
 
-#endif    // 한국어 resources
+#endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// 영어(미국) resources
+// English (U.S.) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -481,7 +481,7 @@ IDB_FRM_BTN_CLOSE       BITMAP                  "res\\Frame Image\\close box_c.b
 IDB_FRM_BOTTOM_RIGHT    BITMAP                  "res\\Frame Image\\frm_bottom_right.bmp"
 IDB_FRM_BOTTOM_LEFT     BITMAP                  "res\\Frame Image\\frm_bottom_left.bmp"
 IDB_FRM_BOTTOM_CEN      BITMAP                  "res\\Frame Image\\frm_bottom_cen.bmp"
-#endif    // 영어(미국) resources
+#endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

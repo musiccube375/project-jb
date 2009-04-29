@@ -29,7 +29,7 @@
 class CCMDHandlerMgr : public CCMDHandlerMDS
 {
 public:
-	PMSG_DATA CMD_Main_Handle(MSG_DATA msgData);
+	MSG_RET CMD_Main_Handle(MSG_DATA msgData);
 
 public:
 	CCMDHandlerMgr();

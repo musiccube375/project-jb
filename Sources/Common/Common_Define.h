@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Common Define
-	Version				: 1.00.04
+	Version				: 1.00.05
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -50,6 +50,8 @@ using namespace std;
 #define INDEX_CMDDATA			37
 #define INDEX_MSGLEN			38
 #define INDEX_MSG				39
+
+#define MSG_MAX_SIZE			256
 
 #define TAG_MAIN_SERVER			0x01
 #define TAG_MIDDLE_SERVER		0x02
@@ -113,14 +115,24 @@ typedef struct _MSG_HEADER
 	Structure : MSG DATA Structure
 
 	Release Date		: 2008. 04. 27.
-	Version				: 1.00.00
+	Version				: 1.00.01
 */
 
 typedef struct _MSG_DATA
 {
 	MSG_HEADER msgHeader;
-	char msgMessage[256];
+	char msgMessage[MSG_MAX_SIZE];
 	char msgTail[3];
+
+	bool IsValidHeader()
+	{
+		if(msgHeader.szHead[0] == 'S' &&
+		   msgHeader.szHead[1] == 'O' &&
+		   msgHeader.szHead[2] == 'M')
+			return true;
+
+		return false;
+	}
 }MSG_DATA, *PMSG_DATA;
 
 /*
@@ -146,5 +158,10 @@ enum MSG_RET
 	MSG_RET_NONE,
 	MSG_CONNECT_SUCCESS,
 	MSG_CONNECT_FAIL,
-	MSG_PARSING_DATA,
+
+	MSG_PARSING_ID_CHECK_OK,
+	MSG_PARSING_ID_CHECK_FAIL,
+
+	MSG_PARSING_ADD_ID_OK,
+	MSG_PARSING_ADD_ID_FAIL,
 };

@@ -11,13 +11,13 @@ CCMDHandlerMgr::~CCMDHandlerMgr()
 
 }
 
-PMSG_DATA CCMDHandlerMgr::CMD_Main_Handle(MSG_DATA msgData)
+PMSG_DATA CCMDHandlerMgr::CMD_Main_Handle(MSG_DATA msgData, CClientSock* pSock)
 {
 	switch(msgData.msgHeader.nCommandType)
 	{
 	case MIDDLE_CMD:
 		{
-			return CMD_MS_Handle(msgData);
+			return CMD_MS_Handle(msgData, pSock);
 		}
 		break;
 	}

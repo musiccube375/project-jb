@@ -319,7 +319,7 @@ MSG_RET CWinSockMgr::OnReceiveFromServerMgr(SOCKET Socket)
 	{
 		m_MSGParser.ParseMSG(recv);
 
-		return MSG_PARSING_DATA;
+		return m_CMDHandlerMgr.CMD_Main_Handle(m_MSGParser.m_msgData);
 	}
 
 	return MSG_RET_NONE;
@@ -350,18 +350,24 @@ MSG_RET CWinSockMgr::OnReceiveFromClient(SOCKET Socket)
 		{
 			m_MSGParser.ParseMSG(recv);
 
-			if(strcmp(m_MSGParser.m_msgData.msgHeader.szFromID, UNKNOWNED_USER) == 0)
+			char szID[512];
+
+			strcpy(szID, m_MSGParser.m_msgData.msgHeader.szFromID);
+			szID[MAX_ID_SIZE-2] = NULL;
+
+			if(strcmp(szID, "Unknowned User") == 0)
 			{
-				sprintf(m_MSGParser.m_msgData.msgMessage, "%d", UnknownedQuery(m_MSGParser.m_msgData, it->second.pSock));
+				// 메시지 제일 마지막 부분에 인덱스를 저장
+				m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1] = UnknownedQuery(m_MSGParser.m_msgData, it->second.pSock);
 			}
 			/*else
 			{
 				KnownedQuery(m_MSGParser.m_msgData);
 			}*/
 
-			m_CMDHandlerMgr.CMD_Main_Handle(m_MSGParser.m_msgData);
+			szID[0] = NULL;
 
-			return MSG_PARSING_DATA;
+			return m_CMDHandlerMgr.CMD_Main_Handle(m_MSGParser.m_msgData);
 		}
 	}
 

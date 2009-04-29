@@ -15,12 +15,12 @@ public:
 // 대화 상자 데이터입니다.
 	enum { IDD = IDD_DIALOG_REGISTER_NEW_USER };
 
+	bool m_bCheckID;
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
 	DECLARE_MESSAGE_MAP()
-
-	bool m_bCheckID;
 
 public:
 	afx_msg void OnBnClickedButton1();
@@ -32,4 +32,5 @@ public:
 	CEdit m_editID;
 	CEdit m_editPasswords;
 	CEdit m_editPasswords2;
+	virtual BOOL OnInitDialog();
 };
