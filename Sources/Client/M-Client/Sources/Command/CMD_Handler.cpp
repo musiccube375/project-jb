@@ -17,7 +17,7 @@ MSG_RET CCMDHandlerMgr::CMD_Main_Handle(MSG_DATA msgData)
 	{
 	case MIDDLE_CMD:
 		{
-			return CMD_CLT_Handle(msgData);
+			return CMD_MDS_Handle(msgData);
 		}
 		break;
 	}

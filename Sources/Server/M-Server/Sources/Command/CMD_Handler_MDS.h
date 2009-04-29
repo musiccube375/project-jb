@@ -28,7 +28,7 @@ class CCMDHandlerMDS
 {
 protected:
 	MSG_RET CMD_MS_Handle(MSG_DATA msgData);
-	MSG_RET CMD_MDS_Handle(MSG_DATA msgData);
+	MSG_RET CMD_CLT_Handle(MSG_DATA msgData);
 
 public:
 	CCMDHandlerMDS();

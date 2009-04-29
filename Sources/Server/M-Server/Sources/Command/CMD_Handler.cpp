@@ -23,7 +23,7 @@ MSG_RET CCMDHandlerMgr::CMD_Main_Handle(MSG_DATA msgData)
 
 	case CLIENT_CMD:
 		{
-			return CMD_MDS_Handle(msgData);
+			return CMD_CLT_Handle(msgData);
 		}
 		break;
 	}

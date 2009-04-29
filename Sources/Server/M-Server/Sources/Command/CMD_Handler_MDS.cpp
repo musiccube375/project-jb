@@ -37,7 +37,7 @@ MSG_RET CCMDHandlerMDS::CMD_MS_Handle(MSG_DATA msgData)
 	return MSG_RET_ERROR;
 }
 
-MSG_RET CCMDHandlerMDS::CMD_MDS_Handle(MSG_DATA msgData)
+MSG_RET CCMDHandlerMDS::CMD_CLT_Handle(MSG_DATA msgData)
 {
 	switch(msgData.msgHeader.nCommandData)
 	{
@@ -64,6 +64,13 @@ MSG_RET CCMDHandlerMDS::CMD_MDS_Handle(MSG_DATA msgData)
 			MSG_ID_Check_Req(msgData);
 		}
 		break;
+
+	case CC_EXIT_SERVER_REQ_TO_MIDDLE:
+		{	
+			MSG_Exit_Server_Req(msgData);	
+		}
+		break;
+
 	}
 
 	return MSG_RET_ERROR;
