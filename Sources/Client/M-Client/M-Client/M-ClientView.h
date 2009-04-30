@@ -6,16 +6,6 @@
 #pragma once
 #include "afxwin.h"
 
-#define IDC_ID_AXIS_Y		0.06970509
-#define IDC_PASS_AXIS_Y		0.11260053
-#define IDC_EDIT1_AXIS_Y	0.06166219
-#define IDC_EDIT2_AXIS_Y	0.10455764
-#define IDC_CHECK2_AXIS_Y	0.16353887
-#define IDC_CHECK1_AXIS_Y	0.19839142
-#define IDC_BUTTON3_AXIS_Y	0.23860589
-#define IDC_BUTTON2_AXIS_Y	0.49061662
-#define IDC_BUTTON1_AXIS_Y	0.49061662
-
 class CMClientView : public CFormView
 {
 protected: // serialization에서만 만들어집니다.

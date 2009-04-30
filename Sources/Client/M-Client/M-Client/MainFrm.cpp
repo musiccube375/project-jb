@@ -25,6 +25,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
 	ON_COMMAND_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_OFF_2007_AQUA, &CMainFrame::OnApplicationLook)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_OFF_2007_AQUA, &CMainFrame::OnUpdateApplicationLook)
+	ON_WM_GETMINMAXINFO()
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -300,3 +301,12 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 	return TRUE;
 }
 
+
+void CMainFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	lpMMI->ptMinTrackSize.x = 300;
+	lpMMI->ptMinTrackSize.y = 450;
+
+	CFrameWndEx::OnGetMinMaxInfo(lpMMI);
+}
