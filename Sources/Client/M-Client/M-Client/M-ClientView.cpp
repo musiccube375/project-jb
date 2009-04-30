@@ -44,7 +44,22 @@ void CMClientView::CheckMSG(MSG_RET ret)
 	}
 	else if(ret == MSG_PARSING_ADD_ID_FAIL)
 	{
-		AfxMessageBox("새로운 계정 생성에 실패하였습니다..");
+		AfxMessageBox("새로운 계정 생성에 실패하였습니다.");
+	}
+	else if(ret == MSG_PARSING_LOGIN_OK)
+	{
+		AfxMessageBox("로그인에 성공하였습니다.");
+
+		CString strID;
+
+		m_editID.GetWindowTextA(strID);
+		g_sToolMgr.SetLoginID(strID.GetBuffer(0));
+
+		SetLoginStatus(false);
+	}
+	else if(ret == MSG_PARSING_LOGIN_FAIL)
+	{
+		AfxMessageBox("아이디 또는 비밀번호가 틀렸습니다.");
 	}
 }
 
@@ -64,6 +79,8 @@ BEGIN_MESSAGE_MAP(CMClientView, CFormView)
 	ON_MESSAGE(WM_CLIENT_CONNECT, OnClientConnect)
 	ON_MESSAGE(WM_CLIENT_CLOSE, OnClientClose)
 	ON_WM_TIMER()
+	ON_BN_CLICKED(IDC_BUTTON3, &CMClientView::OnBnClickedButton3)
+	ON_COMMAND(ID_32771, &CMClientView::OnLogOut)
 END_MESSAGE_MAP()
 
 // CMClientView 생성/소멸
@@ -116,6 +133,7 @@ void CMClientView::OnInitialUpdate()
 	m_Brush.CreateSolidBrush(RGB(192, 192, 192)); 
 
 	Init();
+	SetLoginStatus(true);
 }
 
 void CMClientView::OnRButtonUp(UINT nFlags, CPoint point)
@@ -205,8 +223,16 @@ void CMClientView::SetLoginStatus(bool bLogin)
 
 		m_editID.ShowWindow(false);
 		m_editPW.ShowWindow(false);
+
 		m_btnRegisterID.ShowWindow(false);
 		m_CheckID.ShowWindow(false);
+		m_btnLogin.ShowWindow(false);
+
+		m_chkboxOffline.ShowWindow(false);
+		m_chkboxRememberID.ShowWindow(false);
+
+		GetDlgItem(IDC_STATIC_LOGIN_ID)->ShowWindow(true);
+		GetDlgItem(IDC_STATIC_LOGIN_ID)->SetWindowTextA(g_sToolMgr.GetLoginID());
 	}
 	else
 	{
@@ -215,8 +241,17 @@ void CMClientView::SetLoginStatus(bool bLogin)
 
 		m_editID.ShowWindow(true);
 		m_editPW.ShowWindow(true);
+
+		m_editPW.SetWindowTextA("");
+
 		m_btnRegisterID.ShowWindow(true);
 		m_CheckID.ShowWindow(true);
+		m_btnLogin.ShowWindow(true);
+
+		m_chkboxOffline.ShowWindow(true);
+		m_chkboxRememberID.ShowWindow(true);
+
+		GetDlgItem(IDC_STATIC_LOGIN_ID)->ShowWindow(false);
 	}
 }
 
@@ -343,4 +378,38 @@ void CMClientView::OnTimer(UINT_PTR nIDEvent)
 	}
 
 	CFormView::OnTimer(nIDEvent);
+}
+
+void CMClientView::OnBnClickedButton3()
+{
+	// TODO: Add your control notification handler code here
+
+	// Login
+
+	CString strID, strPW;
+
+	m_editID.GetWindowTextA(strID);
+	m_editPW.GetWindowTextA(strPW);
+
+	if(strID == "")
+	{
+		AfxMessageBox("아이디를 입력하십시요.");
+		return;
+	}
+	else if(strPW == "")
+	{
+		AfxMessageBox("비밀번호를 입력하십시요.");
+		return;
+	}
+
+	MSG_Login_Req(strID.GetBuffer(0), strPW.GetBuffer(0));
+}
+
+void CMClientView::OnLogOut()
+{
+	// TODO: Add your command handler code here
+
+	MSG_Exit_Server_Req(g_sToolMgr.GetLoginID());
+	// 로그아웃시의 적절한 요청 메시지 작성 필요
+	SetLoginStatus(true);
 }

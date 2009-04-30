@@ -80,6 +80,8 @@ public:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 public:
 	void RePositionControl(int x, int y);
+	afx_msg void OnBnClickedButton3();
+	afx_msg void OnLogOut();
 };
 
 #ifndef _DEBUG  // M-ClientView.cpp의 디버그 버전

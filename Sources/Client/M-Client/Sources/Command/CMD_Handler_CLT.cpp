@@ -14,7 +14,7 @@ CCMDHandlerCLT::~CCMDHandlerCLT()
 
 MSG_RET CCMDHandlerCLT::CMD_MDS_Handle(MSG_DATA msgData)
 {
-	MSG_RET ret;
+	MSG_RET ret = MSG_RET_NONE;
 
 	switch(msgData.msgHeader.nCommandData)
 	{
@@ -51,6 +51,12 @@ MSG_RET CCMDHandlerCLT::CMD_MDS_Handle(MSG_DATA msgData)
 	case CD_ID_CHECK_RET_TO_CLIENT:
 		{
 			ret = MSG_ID_Check_Ack(msgData);
+		}
+		break;
+
+	case CD_LOGIN_RET_TO_CLIENT:
+		{
+			ret = MSG_Login_Ack(msgData);
 		}
 		break;
 	}

@@ -8,51 +8,48 @@ void MSG_SendToServer(CClientSock* pSock, const char* pszSend)
 	pSock->Send(pszSend, 512);
 }
 
-void MSG_ParseFromIndex(int nIndex, char* pszOutMsg, const char* pszMsg)
+void MSG_Seperator(int nIndex, const char* msg, char* pOut)
 {
-	int nMsgStartIndex = -1, nMsgEndIndex = -1;
-	int nMsgIndexCount = 0;
+	int nMsgCount = -1;
+	int nMsgIndex = 0;
+	int nMsgSize = strlen(msg);
 
-	memset(pszOutMsg, 0, MSG_MAX_SIZE);
-
-	if(nIndex == 0)
+	while(nMsgCount < nMsgSize)
 	{
-		nMsgStartIndex = nIndex;
+		char buff[512];
+		char szNum[2];
 
-		for(int i = 0; i < MSG_MAX_SIZE; i++)
+		szNum[0] = msg[nMsgIndex++];
+		szNum[1] = NULL;
+
+		int nSize = atoi(szNum);
+
+		memset(buff, 0, 512);
+
+		int i;
+
+		for(i = 0; i < nSize; i++)
 		{
-			if(pszMsg[i] == 95) // '_'
-			{
-				nMsgEndIndex = i;
-				break;
-			}
+			buff[i] = msg[nMsgIndex++];
 		}
-	}
-	else
-	{
-		for(int i = 0; i < MSG_MAX_SIZE; i++)
-		{
-			if(pszMsg[i] == 95) // '_'
-			{
-				if(nMsgStartIndex == -1)
-				{
-					if(nIndex == nMsgIndexCount++)
-					{
-						nMsgStartIndex = i+1;
-					}
-				}
-				else
-				{
-					nMsgEndIndex = i;
-					break;
-				}
-			}
-		}
-	}
 
-	for(int i = nMsgStartIndex; i < nMsgEndIndex; i++)
-	{
-		pszOutMsg[i] = pszMsg[i];
+		buff[i] = NULL;
+
+		nMsgCount++;
+
+		if(nIndex <= nMsgCount)
+		{
+			int nBuffSize = strlen(buff);
+
+			for(i = 0; i < nBuffSize; i++)
+			{
+				pOut[i] = buff[i];
+			}
+
+			pOut[i] = NULL;
+
+			return;
+		}
 	}
 }
 
@@ -81,30 +78,8 @@ void MSG_Add_ID_Ack(MSG_DATA msgData, CClientSock* pSock)
 	char id[MAX_ID_SIZE];
 	char pw[MAX_PASSWORD_SIZE];
 
-	int i;
-	char szSize[1];
-
-	szSize[0] = msg[0];
-
-	int nIDSize = atoi(szSize);
-
-	for(i = 0; i < nIDSize; i++)
-	{
-		id[i] = msg[i+1];
-	}
-
-	id[i] = NULL;
-
-	szSize[0] = msg[i+1];
-
-	int nPWSize = atoi(szSize);
-
-	for(i = 0; i < nPWSize; i++)
-	{
-		pw[i] = msg[i+nIDSize+2];
-	}
-
-	pw[i] = NULL;
+	MSG_Seperator(0, msg, id);
+	MSG_Seperator(1, msg, pw);
 
 	// DB 에 유저 추가
 	bool bSuccess = g_sToolMgr.GetSQLMgr()->AddClientUser(id, pw);
@@ -115,6 +90,32 @@ void MSG_Add_ID_Ack(MSG_DATA msgData, CClientSock* pSock)
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
 		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ADD_ID_RET_TO_MIDDLE, msg);
+
+	MSG_SendToServer(pSock, send); 
+}
+
+void MSG_Login_Ack(MSG_DATA msgData, CClientSock* pSock)
+{
+	char send[512];
+	char msg[512];
+
+	strcpy(msg, msgData.msgMessage);
+
+	char id[MAX_ID_SIZE];
+	char pw[MAX_PASSWORD_SIZE];
+
+	MSG_Seperator(0, msg, id);
+	MSG_Seperator(1, msg, pw);
+
+	// DB 에서 유저 체크
+	bool bSuccess = g_sToolMgr.GetSQLMgr()->CheckUser(id, pw);
+
+	if(bSuccess)
+		msg[0] = MSG_PARSING_LOGIN_OK;
+	else msg[0] = MSG_PARSING_LOGIN_FAIL;
+
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_LOGIN_RET_TO_MIDDLE, msg);
 
 	MSG_SendToServer(pSock, send); 
 }

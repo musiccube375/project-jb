@@ -21,10 +21,13 @@
 void MSG_SendToServer(CClientSock* pSock, const char* pszSend);
 
 // 메시지를 인덱스에 맞춰 파싱한다
-void MSG_ParseFromIndex(int nIndex, char* pszOutMsg, const char* pszMsg);
+void MSG_Seperator(int nIndex, const char* msg, char* pOut);
 
 // 아이디 체크(가입시에)
 void MSG_ID_Check_Ack(MSG_DATA msgData, CClientSock* pSock);
 
 // 계정 추가
 void MSG_Add_ID_Ack(MSG_DATA msgData, CClientSock* pSock);
+
+// 로그인
+void MSG_Login_Ack(MSG_DATA msgData, CClientSock* pSock);

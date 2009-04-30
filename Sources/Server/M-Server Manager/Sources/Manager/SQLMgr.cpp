@@ -90,3 +90,21 @@ bool CSQLMgr::AddClientUser(const char* pszID, const char* passwords)
 
 	return true;
 }
+
+bool CSQLMgr::CheckUser(const char* pszID, const char* passwords)
+{
+	char query[256];
+
+	sprintf(query, "SELECT passwords FROM userinfo WHERE id = '%s'", pszID);
+
+	char* res = m_SQLDB.GetRow(query);
+
+	if(res == NULL) return false;
+
+	res[strlen(res)-1] = NULL;
+
+	if(strcmp(passwords, res) == 0)
+		return true;
+
+	return false;
+}

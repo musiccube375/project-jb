@@ -32,9 +32,15 @@ MSG_RET CCMDHandlerMDS::CMD_MS_Handle(MSG_DATA msgData)
 			MSG_ID_Check_Ack(msgData);
 		}
 		break;
+
+	case CM_LOGIN_RET_TO_MIDDLE:
+		{
+			MSG_Login_Ack(msgData);
+		}
+		break;	
 	}
 
-	return MSG_RET_ERROR;
+	return MSG_RET_NONE;
 }
 
 MSG_RET CCMDHandlerMDS::CMD_CLT_Handle(MSG_DATA msgData)
@@ -71,7 +77,12 @@ MSG_RET CCMDHandlerMDS::CMD_CLT_Handle(MSG_DATA msgData)
 		}
 		break;
 
+	case CC_LOGIN_REQ_TO_MIDDLE:
+		{
+			MSG_Login_Req(msgData);
+		}
+		break;
 	}
 
-	return MSG_RET_ERROR;
+	return MSG_RET_NONE;
 }

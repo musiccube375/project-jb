@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 한국어 resources
+// Korean resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -278,10 +278,10 @@ BEGIN
             VALUE "InternalName", "M-Server Manager.exe"
             VALUE "LegalCopyright", "2009 (c) MIS.  All rights reserved."
             VALUE "OriginalFilename", "M-Server Manager.exe"
-            VALUE "PrivateBuild", "Build 100090425002"
+            VALUE "PrivateBuild", "Build 100090430003"
             VALUE "ProductName", "M-Server Manager"
             VALUE "ProductVersion", "1.0.0.0"
-            VALUE "SpecialBuild", "Build 100090425002"
+            VALUE "SpecialBuild", "Build 100090430003"
         END
     END
     BLOCK "VarFileInfo"
@@ -486,12 +486,12 @@ BEGIN
     ID_BUTTON_STOP          "서버 관리자를 중지합니다.\n서버 관리자 중지"
 END
 
-#endif    // 한국어 resources
+#endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// 영어(미국) resources
+// English (U.S.) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -537,7 +537,7 @@ IDB_FRM_BTN_CLOSE       BITMAP                  "res\\Frame Image\\close box_c.b
 IDB_FRM_BOTTOM_RIGHT    BITMAP                  "res\\Frame Image\\frm_bottom_right.bmp"
 IDB_FRM_BOTTOM_LEFT     BITMAP                  "res\\Frame Image\\frm_bottom_left.bmp"
 IDB_FRM_BOTTOM_CEN      BITMAP                  "res\\Frame Image\\frm_bottom_cen.bmp"
-#endif    // 영어(미국) resources
+#endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

@@ -62,9 +62,6 @@ private:
 	CMSGParser m_MSGParser;
 	CCMDHandlerMgr m_CMDHandlerMgr;
 
-	int m_nUserQueryCount;
-	USERQUERYINFO_MAP m_mapUserQuery;
-
 public:
 	inline CServerSock* GetServerSock() { return &m_ServerSock; }
 	inline CClientSock* GetServerMgrSock() { return &m_ServerMgrSock; }
@@ -72,7 +69,7 @@ public:
 
 	void SetServerRun(bool bServerRun);
 
-	inline int GetUserQuerySize() { return m_mapUserQuery.size(); }
+	inline int GetUserSize() { return m_mapUserInfo.size(); }
 
 public:
 	void InitServerSock();
@@ -85,17 +82,8 @@ public:
 	HRESULT AddUser(USERINFO UserInfo);
 	HRESULT DelUser(int nIndex);
 	void ClearUser();
+	PUSERINFO GetUser(int nIndex);
 	PUSERINFO GetUser(char* pszID);
-
-	int AddUserQuery(USERQUERYINFO UserQuery);
-	HRESULT DelUserQuery(int nIndex);
-	void ClearUserQuery();
-	PUSERQUERYINFO GetUserQuery(int nIndex);
-
-	int UnknownedQuery(MSG_DATA msgData, CClientSock* pSock);
-	void KnownedQuery(MSG_DATA msgData);
-
-	void ProcessQuery();
 
 public:
 	void OnAccept();

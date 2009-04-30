@@ -82,7 +82,6 @@ HRESULT CWinSockMgr::InitWinSockMgr(const char* pszServerMgrIP)
 
 	m_bServerMgrConnect = false;
 	m_nUserCount = 0;
-	m_nUserQueryCount = 0;
 
 	return S_OK;
 }
@@ -90,7 +89,6 @@ HRESULT CWinSockMgr::InitWinSockMgr(const char* pszServerMgrIP)
 void CWinSockMgr::ReleaseWinSockMgr()
 {
 	ClearUser();
-	ClearUserQuery();
 	CloseServerMgrSock();
 	CloseServerSock();
 }
@@ -143,6 +141,19 @@ void CWinSockMgr::ClearUser()
 	m_mapUserInfo.clear();
 }
 
+PUSERINFO CWinSockMgr::GetUser(int nIndex)
+{
+	USERINFO_MAP_IT it = m_mapUserInfo.begin();
+
+	for(int i = 0; it != m_mapUserInfo.end(); i++, it++)
+	{
+		if(i == nIndex)
+			return &it->second;
+	}
+
+	return 0;
+}
+
 PUSERINFO CWinSockMgr::GetUser(char* pszID)
 {
 	USERINFO_MAP_IT it = m_mapUserInfo.begin();
@@ -154,82 +165,6 @@ PUSERINFO CWinSockMgr::GetUser(char* pszID)
 	}
 
 	return 0;
-}
-
-int CWinSockMgr::AddUserQuery(USERQUERYINFO UserQuery)
-{
-	if(m_nUserQueryCount > MAX_INT_SIZE) m_nUserQueryCount = 0;
-
-	m_mapUserQuery.insert(USERQUERYINFO_MAP_VALUE(m_nUserQueryCount, UserQuery));
-
-	return m_nUserQueryCount++;
-}
-
-HRESULT CWinSockMgr::DelUserQuery(int nIndex)
-{
-	USERQUERYINFO_MAP_IT it = m_mapUserQuery.begin();
-
-	for(int i = 0; it != m_mapUserQuery.end(); i++, it++)
-	{
-		if(i == nIndex)
-		{
-			//it->second.pSock->Close();
-			//SAFE_DELETE(it->second.pSock);
-			m_mapUserQuery.erase(it);
-
-			return S_OK;
-		}
-	}
-
-	return E_FAIL;
-}
-
-void CWinSockMgr::ClearUserQuery()
-{
-	m_mapUserQuery.clear();
-}
-
-PUSERQUERYINFO CWinSockMgr::GetUserQuery(int nIndex)
-{
-	USERQUERYINFO_MAP_IT it = m_mapUserQuery.begin();
-
-	for(int i = 0; it != m_mapUserQuery.end(); it++, i++)
-	{
-		if(i == nIndex)
-			return &it->second;
-	}	
-
-	return 0;
-}
-
-int CWinSockMgr::UnknownedQuery(MSG_DATA msgData, CClientSock* pSock)
-{
-	USERQUERYINFO Query;
-
-	Query.pSock = pSock;
-	Query.nCommandData = m_MSGParser.m_msgData.msgHeader.nCommandData;
-
-	return AddUserQuery(Query);
-
-	// 서버 매니저로 쿼리 전송
-	// 쿼리를 전송할 때 메시지 부분에 쿼리 맵 인덱스를 넣어서 보냄
-
-	//MSG_ID_Check_Req(nIndex);   
-}
-
-void CWinSockMgr::KnownedQuery(MSG_DATA msgData)
-{
-
-}
-
-void CWinSockMgr::ProcessQuery()
-{
-	USERQUERYINFO_MAP_IT it = m_mapUserQuery.begin();
-
-	for( ; it != m_mapUserQuery.end(); it++)
-	{
-		//if(it->second.pSock == 
-	}
 }
 
 void CWinSockMgr::OnAccept()
@@ -358,12 +293,15 @@ MSG_RET CWinSockMgr::OnReceiveFromClient(SOCKET Socket)
 			if(strcmp(szID, "Unknowned User") == 0)
 			{
 				// 메시지 제일 마지막 부분에 인덱스를 저장
-				m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1] = UnknownedQuery(m_MSGParser.m_msgData, it->second.pSock);
+				sprintf(&m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1], "%d", i);
+				//m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1] = i;//UnknownedQuery(m_MSGParser.m_msgData, it->second.pSock);
 			}
 			/*else
 			{
 				KnownedQuery(m_MSGParser.m_msgData);
 			}*/
+
+			int nIndex = m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1];
 
 			szID[0] = NULL;
 
