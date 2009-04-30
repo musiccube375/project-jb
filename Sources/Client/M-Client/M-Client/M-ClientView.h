@@ -6,9 +6,15 @@
 #pragma once
 #include "afxwin.h"
 
-#define IDC_ID_AXIS_X 0.258883248730
-#define IDC_ID_AXIS_Y 0.051912568306
-
+#define IDC_ID_AXIS_Y		0.06970509
+#define IDC_PASS_AXIS_Y		0.11260053
+#define IDC_EDIT1_AXIS_Y	0.06166219
+#define IDC_EDIT2_AXIS_Y	0.10455764
+#define IDC_CHECK2_AXIS_Y	0.16353887
+#define IDC_CHECK1_AXIS_Y	0.19839142
+#define IDC_BUTTON3_AXIS_Y	0.23860589
+#define IDC_BUTTON2_AXIS_Y	0.49061662
+#define IDC_BUTTON1_AXIS_Y	0.49061662
 
 class CMClientView : public CFormView
 {
@@ -79,7 +85,7 @@ public:
 	CButton m_btnLogin;
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 public:
-	void RePositionControl(int x, int y);
+	void RePositionControl();
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnLogOut();
 };

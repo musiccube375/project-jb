@@ -120,6 +120,7 @@ BOOL CMClientView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CMClientView::OnInitialUpdate()
 {
+
 	CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
@@ -298,22 +299,49 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 
 	//int nX = rt.left + nWidth / 2 - (CFG_DIALOG_WIDTH / 2);
 
-	RePositionControl(cx, cy);
+	RePositionControl();
 }
 
-void CMClientView::RePositionControl(int x, int y)
+void CMClientView::RePositionControl()
 {
-	if(GetDlgItem(IDC_STATIC_ID) != NULL)
-	GetDlgItem(IDC_STATIC_ID)->SetWindowPos(NULL, IDC_ID_AXIS_X*x, 
-		IDC_ID_AXIS_Y*y, 0, 0, SWP_NOSIZE);
-	/*GetDlgItem(IDC_STATIC_PASSWORDS	)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);*/
-	//GetDlgItem(IDC_EDIT1				)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
-	//GetDlgItem(IDC_EDIT2				)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
-	//GetDlgItem(IDC_CHECK2				)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
-	//GetDlgItem(IDC_CHECK1				)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
-	//GetDlgItem(IDC_BUTTON3			)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
-	//GetDlgItem(IDC_BUTTON1			)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
-	//GetDlgItem(IDC_BUTTON2			)->SetWindowPos(	NULL, , , 0, 0, SWP_NOSIZE);
+	CRect rt;
+	GetClientRect(rt);
+
+	if( GetDlgItem(IDC_STATIC_ID) != NULL )
+		GetDlgItem(IDC_STATIC_ID)->SetWindowPos(NULL, rt.Width()/2-84, 
+		IDC_ID_AXIS_Y*rt.Height(), 0, 0, SWP_NOSIZE);
+	
+	if( GetDlgItem(IDC_STATIC_PASSWORDS) != NULL )
+		GetDlgItem(IDC_STATIC_PASSWORDS	)->SetWindowPos(NULL, rt.Width()/2-105,
+		IDC_PASS_AXIS_Y*rt.Height(), 0, 0, SWP_NOSIZE);
+	
+	if( GetDlgItem( IDC_EDIT1 ) != NULL )
+		GetDlgItem(IDC_EDIT1)->SetWindowPos(NULL, rt.Width()/2-38.5,
+		IDC_EDIT1_AXIS_Y*rt.Height(), 0, 0, SWP_NOSIZE);
+	
+	if( GetDlgItem( IDC_EDIT2 ) != NULL )
+		GetDlgItem(IDC_EDIT2)->SetWindowPos(NULL, rt.Width()/2-38.5,
+		IDC_EDIT2_AXIS_Y*rt.Height(), 0, 0, SWP_NOSIZE);
+	
+	if( GetDlgItem( IDC_CHECK2 ) != NULL )
+		GetDlgItem(IDC_CHECK2)->SetWindowPos(NULL, rt.Width()/2-108.5,
+		IDC_CHECK2_AXIS_Y*rt.Height(), 0, 0, SWP_NOSIZE);
+	
+	if( GetDlgItem( IDC_CHECK1 ) != NULL )
+		GetDlgItem(IDC_CHECK1)->SetWindowPos(NULL, rt.Width()/2-108.5,
+		IDC_CHECK1_AXIS_Y*rt.Height(), 0, 0, SWP_NOSIZE);
+	
+	if( GetDlgItem( IDC_BUTTON3 ) != NULL )
+		GetDlgItem(IDC_BUTTON3)->SetWindowPos(NULL, rt.Width()/2+5.25,
+		IDC_BUTTON3_AXIS_Y*rt.Height(), 0, 0, SWP_NOSIZE);
+	
+	if( GetDlgItem( IDC_BUTTON2 ) != NULL )
+		GetDlgItem(IDC_BUTTON2)->SetWindowPos(NULL, rt.Width()/2+12.25,
+		IDC_BUTTON2_AXIS_Y*rt.Height(), 0, 0, SWP_NOSIZE);
+	
+	if( GetDlgItem( IDC_BUTTON1 ) != NULL )
+		GetDlgItem(IDC_BUTTON1)->SetWindowPos(	NULL, rt.Width()/2-108.5,
+		IDC_BUTTON1_AXIS_Y*rt.Height(), 0, 0, SWP_NOSIZE);
 
 }
 
