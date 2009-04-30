@@ -2,7 +2,7 @@
 	Author				: 김정훈(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Common Define
-	Version				: 1.00.05
+	Version				: 1.00.06
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -58,6 +58,24 @@ using namespace std;
 #define TAG_CLIENT				0x03
 
 #define MAX_INT_SIZE			214783600
+
+enum MSG_RET
+{
+	MSG_RET_ERROR = 0,
+	MSG_RET_NONE,
+
+	MSG_CONNECT_SUCCESS,
+	MSG_CONNECT_FAIL,
+
+	MSG_PARSING_ID_CHECK_OK,
+	MSG_PARSING_ID_CHECK_FAIL,
+
+	MSG_PARSING_ADD_ID_OK,
+	MSG_PARSING_ADD_ID_FAIL,
+
+	MSG_PARSING_LOGIN_OK,
+	MSG_PARSING_LOGIN_FAIL,
+};
 
 typedef map<int, CClientSock*>					CLIENTSOCK_MAP;
 typedef map<int, CClientSock*>::iterator		CLIENTSOCK_MAP_IT;
@@ -152,16 +170,23 @@ typedef map<int, MSERVERINFO>				MSERVERINFO_MAP;
 typedef map<int, MSERVERINFO>::iterator		MSERVERINFO_MAP_IT;
 typedef map<int, MSERVERINFO>::value_type	MSERVERINFO_MAP_VALUE;
 
-enum MSG_RET
+/*
+	Structure : USER INFO Structure
+
+	Release Date		: 2008. 04. 15.
+	Version				: 1.00.00
+*/
+
+/*typedef struct _USERINFO
 {
-	MSG_RET_ERROR = 0,
-	MSG_RET_NONE,
-	MSG_CONNECT_SUCCESS,
-	MSG_CONNECT_FAIL,
+	CClientSock*	pSock;
+	USERBASEINFO	UserBase;
 
-	MSG_PARSING_ID_CHECK_OK,
-	MSG_PARSING_ID_CHECK_FAIL,
+	서버
+	아이디
+	친구 리스트
+}USERINFO, *PUSERINFO;
 
-	MSG_PARSING_ADD_ID_OK,
-	MSG_PARSING_ADD_ID_FAIL,
-};
+typedef map<int, USERINFO>					USERINFO_MAP;
+typedef map<int, USERINFO>::iterator		USERINFO_MAP_IT;
+typedef map<int, USERINFO>::value_type		USERINFO_MAP_VALUE;*/

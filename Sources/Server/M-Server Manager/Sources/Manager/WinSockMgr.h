@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: WinSock Manager
-	Version				: 1.00.02
+	Version				: 1.00.03
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -25,7 +25,7 @@
 	Class : WinSock Manager Class
 
 	Release Date		: 2009. 04. 15.
-	Version				: 1.00.02
+	Version				: 1.00.03
 */
 
 class CWinSockMgr

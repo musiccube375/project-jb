@@ -36,3 +36,7 @@ void MSG_ID_Check_Ack(MSG_DATA msgData);
 void MSG_Add_ID_Req(MSG_DATA msgData);
 void MSG_Add_ID_Ack(MSG_DATA msgData);
 
+// ·Î±×ÀÎ
+void MSG_Login_Req(MSG_DATA msgData);
+void MSG_Login_Ack(MSG_DATA msgData);
+
