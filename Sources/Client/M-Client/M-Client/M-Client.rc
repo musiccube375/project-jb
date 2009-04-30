@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// 한국어 resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -205,11 +205,11 @@ BEGIN
     LTEXT           "Passwords",IDC_STATIC_PASSWORDS,46,42,33,8,0,WS_EX_TRANSPARENT
     EDITTEXT        IDC_EDIT1,85,23,64,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT2,85,39,64,14,ES_PASSWORD | ES_AUTOHSCROLL
-    PUSHBUTTON      "Register ID",IDC_BUTTON1,45,183,50,14
+    PUSHBUTTON      "Register ID",IDC_BUTTON1,44,183,50,14
     PUSHBUTTON      "Check ID/PW",IDC_BUTTON2,99,183,50,14
     PUSHBUTTON      "Log In",IDC_BUTTON3,109,89,40,14
-    CONTROL         "오프라인으로 표시",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,45,74,73,10
-    CONTROL         "아이디 기억",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,45,61,53,10
+    CONTROL         "오프라인으로 표시",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,44,74,73,10
+    CONTROL         "아이디 기억",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,44,61,53,10
     LTEXT           "Static",IDC_STATIC_LOGIN_ID,19,11,107,8,0,WS_EX_TRANSPARENT
 END
 
@@ -292,13 +292,14 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 204
         VERTGUIDE, 1
-        VERTGUIDE, 7
+        VERTGUIDE, 44
         VERTGUIDE, 46
         VERTGUIDE, 58
         VERTGUIDE, 85
-        VERTGUIDE, 98
+        VERTGUIDE, 99
+        VERTGUIDE, 106
         VERTGUIDE, 109
-        VERTGUIDE, 149
+        VERTGUIDE, 179
         VERTGUIDE, 204
         TOPMARGIN, 7
         BOTTOMMARGIN, 366
@@ -451,12 +452,12 @@ BEGIN
     IDS_EDIT_MENU           "편집"
 END
 
-#endif    // Korean resources
+#endif    // 한국어 resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// 영어(미국) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -502,7 +503,7 @@ IDB_FRM_BTN_CLOSE       BITMAP                  "res\\Frame Image\\close box_c.b
 IDB_FRM_BOTTOM_RIGHT    BITMAP                  "res\\Frame Image\\frm_bottom_right.bmp"
 IDB_FRM_BOTTOM_LEFT     BITMAP                  "res\\Frame Image\\frm_bottom_left.bmp"
 IDB_FRM_BOTTOM_CEN      BITMAP                  "res\\Frame Image\\frm_bottom_cen.bmp"
-#endif    // English (U.S.) resources
+#endif    // 영어(미국) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
