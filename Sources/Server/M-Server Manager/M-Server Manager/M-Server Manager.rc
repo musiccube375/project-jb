@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// 한국어 resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -206,7 +206,9 @@ IDD_DIALOG_USER DIALOGEX 0, 0, 506, 324
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_LIST1,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,0,0,416,252
+    CONTROL         "",IDC_LIST1,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,0,24,499,293
+    LTEXT           "유저 수",IDC_STATIC,5,7,27,8
+    EDITTEXT        IDC_EDIT1,35,4,44,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
 END
 
 IDD_DIALOG_ACCOUNT DIALOGEX 0, 0, 236, 166
@@ -486,12 +488,12 @@ BEGIN
     ID_BUTTON_STOP          "서버 관리자를 중지합니다.\n서버 관리자 중지"
 END
 
-#endif    // Korean resources
+#endif    // 한국어 resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// 영어(미국) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -537,7 +539,7 @@ IDB_FRM_BTN_CLOSE       BITMAP                  "res\\Frame Image\\close box_c.b
 IDB_FRM_BOTTOM_RIGHT    BITMAP                  "res\\Frame Image\\frm_bottom_right.bmp"
 IDB_FRM_BOTTOM_LEFT     BITMAP                  "res\\Frame Image\\frm_bottom_left.bmp"
 IDB_FRM_BOTTOM_CEN      BITMAP                  "res\\Frame Image\\frm_bottom_cen.bmp"
-#endif    // English (U.S.) resources
+#endif    // 영어(미국) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

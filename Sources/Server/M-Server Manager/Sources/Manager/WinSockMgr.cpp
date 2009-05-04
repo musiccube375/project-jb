@@ -74,6 +74,47 @@ void CWinSockMgr::ClearMServer()
 	m_mapMServer.clear();
 }
 
+HRESULT CWinSockMgr::AddMSUserInfo(MSUSERINFO MSUserInfo)
+{
+	if(m_nMSUserInfoCount > MAX_INT_SIZE) m_nMServerCount = 0;
+
+	m_mapMSUserInfo.insert(MSUSERINFO_MAP_VALUE(m_nMSUserInfoCount++, MSUserInfo));
+
+	return S_OK;
+}
+
+HRESULT CWinSockMgr::DelMSUserInfo(const char* pszID)
+{
+	MSUSERINFO_MAP_IT it = m_mapMSUserInfo.begin();
+
+	for( ; it != m_mapMSUserInfo.end(); it++)
+	{
+		if(strcmp(it->second.UserBase.szID, pszID) == 0)
+		{
+			//it->second.UserInfo.pSock->Close();
+			//SAFE_DELETE(it->second.UserInfo.pSock);
+			m_mapMSUserInfo.erase(it);
+
+			return S_OK;
+		}
+	}
+
+	return E_FAIL;
+}
+
+void CWinSockMgr::ClearMSUserInfo()
+{
+	MSUSERINFO_MAP_IT it = m_mapMSUserInfo.begin();
+
+	//for( ; it != m_mapMSUserInfo.end(); it++)
+	{
+		//it->second.UserInfo.pSock->Close();
+		//SAFE_DELETE(it->second.UserInfo.pSock);
+	}
+
+	m_mapMSUserInfo.clear();
+}
+
 HRESULT CWinSockMgr::InitWinSockMgr()
 {
 	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_TOOLWORK, "소켓 관리자 초기화 작업 시작...");
@@ -92,6 +133,7 @@ HRESULT CWinSockMgr::InitWinSockMgr()
 void CWinSockMgr::ReleaseWinSockMgr()
 {
 	ClearMServer();
+	ClearMSUserInfo();
 	CloseServerSock();
 }
 

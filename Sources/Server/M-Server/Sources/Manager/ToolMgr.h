@@ -24,7 +24,7 @@
 /*
 	Class : Tool Manager Class
 
-	Release Date		: 2008. 04. 22.
+	Release Date		: 2009. 04. 22.
 	Version				: 1.00.01
 */
 

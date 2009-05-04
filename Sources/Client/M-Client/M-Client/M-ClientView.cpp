@@ -54,6 +54,7 @@ void CMClientView::CheckMSG(MSG_RET ret)
 
 		m_editID.GetWindowTextA(strID);
 		g_sToolMgr.SetLoginID(strID.GetBuffer(0));
+		g_sToolMgr.SetUserState(USER_STATE_ONLINE);
 
 		SetLoginStatus(false);
 	}
@@ -440,4 +441,5 @@ void CMClientView::OnLogOut()
 	MSG_Exit_Server_Req(g_sToolMgr.GetLoginID());
 	// 로그아웃시의 적절한 요청 메시지 작성 필요
 	SetLoginStatus(true);
+	g_sToolMgr.SetUserState(USER_STATE_OFFLINE);
 }

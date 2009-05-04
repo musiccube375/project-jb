@@ -1,0 +1,35 @@
+* 주간 일지에 주간 작업에 대한 내용을 업데이트 했음.
+
+김정훈
+로그인 시 메인 서버에 등록, 친구 추가, 쪽찌 보내기
+
+백승택
+팀 로고, 메신저 로고, 친구 추가 아이콘 이미지 수집
+로그인 된 화면에서 내 상태 표시(로그인, 로그아웃, 자리비움 등), 내 아이디, 닉네임 구현(네이트온 참고)
+참고로 네이트온은 내 상태 표시 부분을 누르면 팝업 메뉴 형태로 선택할 수 있는 상태가 나오며 하나를
+선택하면 그 상태로 변경됨
+
+Common_Define.h 파일 속에 enum 으로 유저 상태를 정의해 놓았음.
+
+enum USER_STATE
+{
+	USER_STATE_ONLINE = 0,		// 온라인
+	USER_STATE_OFFLINE,		// 오프라인
+	USER_STATE_BUSY,		// 다른 용무중
+	USER_STATE_NOT_MY_DESK,		// 자리 비움
+	USER_STATE_ON_THE_PHONE,	// 통화중
+	USER_STATE_BE_RIGHT_BACK,	// 곧 돌아오겠음
+};
+
+CToolMgr(ToolMgr.h) 클래스 안에 이러한 상태를 저장할 멤버 변수가 저장되어있음.
+
+USER_STATE m_UserState;	// 유저 상태
+
+M-ClientView 클래스 내부에서 적절히 상태에 따른 UI를 배치시키고 상태가 변할 때만다
+
+g_sToolMgr.SetUserState(USER_STATE_ONLINE);
+g_sToolMgr.SetUserState(USER_STATE_BUSY);
+...
+
+등등으로 상태를 변경하면 됨.. 일단은 이런식으로 상태만 변경시켜주고..
+차후 나중에 이 변한 상태를 서버로 보내는 것은 내가 일단 예를 보여서 구현해줄께..

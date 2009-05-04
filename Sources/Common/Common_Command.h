@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 22.
 	Project	Name		: Common Command
-	Version				: 1.00.02
+	Version				: 1.00.03
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -33,7 +33,7 @@
 #define CD_ADD_FRIEND_RET_TO_CLIENT			0x05
 #define CD_ID_CHECK_REQ_TO_CLIENT			0x06
 #define CD_ID_CHECK_RET_TO_CLIENT			0x07
-#define CD_EXIT_SERVER_REQ_TO_CLIENT		0x08
+#define CD_EXIT_SERVER_REQ_TO_MAIN			0x08
 #define CD_LOGIN_REQ_TO_CLIENT				0x09
 #define CD_LOGIN_RET_TO_CLIENT				0x10
 

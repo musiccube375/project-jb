@@ -111,11 +111,40 @@ void MSG_Login_Ack(MSG_DATA msgData, CClientSock* pSock)
 	bool bSuccess = g_sToolMgr.GetSQLMgr()->CheckUser(id, pw);
 
 	if(bSuccess)
+	{
 		msg[0] = MSG_PARSING_LOGIN_OK;
+	
+		MSUSERINFO MSUserInfo;
+
+		strcpy(MSUserInfo.UserBase.szID, id);
+
+		g_sToolMgr.GetWinSockMgr()->AddMSUserInfo(MSUserInfo);
+		g_sToolMgr.GetDialogMgr()->m_UserDlg.AddList(id, id, "¿Â¶óÀÎ");
+		g_sToolMgr.GetDialogMgr()->m_UserDlg.SetUserCount(g_sToolMgr.GetWinSockMgr()->GetMSUserInfoCount());
+	}
 	else msg[0] = MSG_PARSING_LOGIN_FAIL;
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
 		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_LOGIN_RET_TO_MIDDLE, msg);
 
 	MSG_SendToServer(pSock, send); 
+}
+
+void MSG_LogOut_Ack(MSG_DATA msgData)
+{
+	char id[256];
+
+	memset(id, 0, 256);
+
+	for(int i = 0; i < 256; i++)
+	{
+		if(msgData.msgHeader.szFromID[i] == '0')
+			break;
+
+		id[i] = msgData.msgHeader.szFromID[i];
+	}
+
+	g_sToolMgr.GetWinSockMgr()->DelMSUserInfo(id);
+	g_sToolMgr.GetDialogMgr()->m_UserDlg.DelList(id);
+	g_sToolMgr.GetDialogMgr()->m_UserDlg.SetUserCount(g_sToolMgr.GetWinSockMgr()->GetMSUserInfoCount());
 }

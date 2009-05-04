@@ -20,7 +20,7 @@
 /*
 	Class : CMD Handler MDS Class
 
-	Release Date		: 2008. 04. 27.
+	Release Date		: 2009. 04. 27.
 	Version				: 1.00.00
 */
 

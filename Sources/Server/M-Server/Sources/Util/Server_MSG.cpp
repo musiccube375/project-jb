@@ -16,19 +16,13 @@ void MSG_Exit_Server_Req(MSG_DATA msgData)
 	char send[512];
 	char szID[512];
 
-	//strcpy(szID, msgData.msgHeader.szFromID);
-	//szID[MAX_ID_SIZE-2] = NULL;
-
 	int nIndex = msgData.msgMessage[MSG_MAX_SIZE-1];
 	g_sToolMgr.GetWinSockMgr()->DelUser(nIndex);
 
-	/*if(strcmp(szID, "Unknowned User") == 0)
-	{
-		int nIndex = msgData.msgMessage[MSG_MAX_SIZE-1];
-		g_sToolMgr.GetWinSockMgr()->DelUser(nIndex);
-	}
-	else
-		MSG_SendToServerMgr(send); */
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_EXIT_SERVER_REQ_TO_MAIN, msgData.msgMessage);
+
+	MSG_SendToServerMgr(send); 
 }
 
 void MSG_SendToQueryClient(const char* pszSend, int nIndex)

@@ -15,6 +15,7 @@ HRESULT	CToolMgr::InitToolMgr(HWND hWnd)
 	m_bConnected = false;
 
 	SetLoginID(UNKNOWNED_USER);
+	SetUserState(USER_STATE_OFFLINE);
 
 	return S_OK;
 }
@@ -37,4 +38,9 @@ void CToolMgr::SetLoginID(const char* pszID)
 	if(pszID == NULL) return;
 
 	strcpy(m_szLoginID, pszID);
+}
+
+void CToolMgr::SetUserState(USER_STATE UserState)
+{
+	m_UserState = UserState;
 }
