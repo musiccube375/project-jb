@@ -24,7 +24,7 @@
 /*
 	Structure : USER QUERY INFO Structure
 
-	Release Date		: 2008. 04. 28.
+	Release Date		: 2009. 04. 28.
 	Version				: 1.00.00
 */
 

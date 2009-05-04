@@ -2,7 +2,7 @@
 	Author				: 김정훈(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Tool Manager
-	Version				: 1.00.02
+	Version				: 1.00.03
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -32,8 +32,8 @@ typedef struct _SERVERLIST
 /*
 	Class : Tool Manager Class
 
-	Release Date		: 2008. 04. 15.
-	Version				: 1.00.02
+	Release Date		: 2009. 04. 15.
+	Version				: 1.00.03
 */
 
 class CToolMgr
@@ -50,6 +50,7 @@ public:
 	char m_ServerIP[64];
 	SERVERLIST m_ServerList[MAX_SERVER_LIST];	// 서버 아이피 리스트
 	char m_szLoginID[64];
+	USER_STATE m_UserState;	// 유저 상태
 
 public:
 	inline HWND GethWnd() { return m_hWnd; }
@@ -65,6 +66,7 @@ public:
 	void SetLogView(bool bLogView);
 
 	void SetLoginID(const char* pszID);
+	void SetUserState(USER_STATE UserState);
 
 public:
 	HRESULT	InitToolMgr(HWND hWnd);

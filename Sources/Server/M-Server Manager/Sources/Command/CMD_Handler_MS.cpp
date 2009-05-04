@@ -58,9 +58,9 @@ PMSG_DATA CCMDHandlerMS::CMD_MS_Handle(MSG_DATA msgData, CClientSock* pSock)
 		}
 		break;
 
-	case CD_EXIT_SERVER_REQ_TO_CLIENT:
+	case CD_EXIT_SERVER_REQ_TO_MAIN:
 		{
-			// 유저 삭제
+			MSG_LogOut_Ack(msgData);			
 		}
 		break;
 	}

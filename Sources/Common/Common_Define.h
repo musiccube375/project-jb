@@ -2,7 +2,7 @@
 	Author				: 김정훈(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Common Define
-	Version				: 1.00.06
+	Version				: 1.00.08
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -77,6 +77,16 @@ enum MSG_RET
 	MSG_PARSING_LOGIN_FAIL,
 };
 
+enum USER_STATE
+{
+	USER_STATE_ONLINE = 0,		// 온라인
+	USER_STATE_OFFLINE,			// 오프라인
+	USER_STATE_BUSY,			// 다른 용무중
+	USER_STATE_NOT_MY_DESK,		// 자리 비움
+	USER_STATE_ON_THE_PHONE,	// 통화중
+	USER_STATE_BE_RIGHT_BACK,	// 곧 돌아오겠음
+};
+
 typedef map<int, CClientSock*>					CLIENTSOCK_MAP;
 typedef map<int, CClientSock*>::iterator		CLIENTSOCK_MAP_IT;
 typedef map<int, CClientSock*>::value_type		CLIENTSOCK_MAP_VALUE;
@@ -84,7 +94,7 @@ typedef map<int, CClientSock*>::value_type		CLIENTSOCK_MAP_VALUE;
 /*
 	Structure : USER BASEINFO Structure
 
-	Release Date		: 2008. 04. 15.
+	Release Date		: 2009. 04. 15.
 	Version				: 1.00.00
 */
 
@@ -97,7 +107,7 @@ typedef struct _USERBASEINFO
 /*
 	Structure : USER INFO Structure
 
-	Release Date		: 2008. 04. 15.
+	Release Date		: 2009. 04. 15.
 	Version				: 1.00.00
 */
 
@@ -114,7 +124,7 @@ typedef map<int, USERINFO>::value_type		USERINFO_MAP_VALUE;
 /*
 	Structure : MSG HEADER Structure
 
-	Release Date		: 2008. 04. 27.
+	Release Date		: 2009. 04. 27.
 	Version				: 1.00.00
 */
 
@@ -132,7 +142,7 @@ typedef struct _MSG_HEADER
 /*
 	Structure : MSG DATA Structure
 
-	Release Date		: 2008. 04. 27.
+	Release Date		: 2009. 04. 27.
 	Version				: 1.00.01
 */
 
@@ -156,7 +166,7 @@ typedef struct _MSG_DATA
 /*
 	Structure : MSERVER Structure
 
-	Release Date		: 2008. 04. 28.
+	Release Date		: 2009. 04. 28.
 	Version				: 1.00.00
 */
 
@@ -171,22 +181,21 @@ typedef map<int, MSERVERINFO>::iterator		MSERVERINFO_MAP_IT;
 typedef map<int, MSERVERINFO>::value_type	MSERVERINFO_MAP_VALUE;
 
 /*
-	Structure : USER INFO Structure
+	Structure : MAIN SERVER USER INFO Structure
 
-	Release Date		: 2008. 04. 15.
+	Release Date		: 2009. 05. 04.
 	Version				: 1.00.00
 */
 
-/*typedef struct _USERINFO
+typedef struct _MSUSERINFO
 {
-	CClientSock*	pSock;
-	USERBASEINFO	UserBase;
+	USERBASEINFO UserBase;
 
-	서버
-	아이디
-	친구 리스트
-}USERINFO, *PUSERINFO;
+	// 서버
+	// 아이디
+	// 친구 리스트
+}MSUSERINFO, *PMSUSERINFO;
 
-typedef map<int, USERINFO>					USERINFO_MAP;
-typedef map<int, USERINFO>::iterator		USERINFO_MAP_IT;
-typedef map<int, USERINFO>::value_type		USERINFO_MAP_VALUE;*/
+typedef map<int, MSUSERINFO>				MSUSERINFO_MAP;
+typedef map<int, MSUSERINFO>::iterator		MSUSERINFO_MAP_IT;
+typedef map<int, MSUSERINFO>::value_type	MSUSERINFO_MAP_VALUE;

@@ -22,7 +22,7 @@
 /*
 	Class : MSG Handler Manager Class
 
-	Release Date		: 2008. 04. 29.
+	Release Date		: 2009. 04. 29.
 	Version				: 1.00.00
 */
 
