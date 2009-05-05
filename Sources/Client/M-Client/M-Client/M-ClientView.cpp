@@ -290,16 +290,6 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
-	//RECT rt;
-
-	//GetClientRect(&rt);
-	////GetWindowRect(GetDesktopWindow(), &rt);
-
-	//int nWidth = rt.right - rt.left;
-	//int nHeight = rt.bottom - rt.top;
-
-	//int nX = rt.left + nWidth / 2 - (CFG_DIALOG_WIDTH / 2);
-
 	RePositionControl();
 }
 
