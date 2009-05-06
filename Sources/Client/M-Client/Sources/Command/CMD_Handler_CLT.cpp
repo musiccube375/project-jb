@@ -44,7 +44,7 @@ MSG_RET CCMDHandlerCLT::CMD_MDS_Handle(MSG_DATA msgData)
 
 	case CD_ADD_FRIEND_RET_TO_CLIENT:
 		{
-
+			ret = MSG_Add_Friend_Ack(msgData);
 		}
 		break;
 

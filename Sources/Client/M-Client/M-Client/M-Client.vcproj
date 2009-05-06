@@ -560,6 +560,14 @@
 				RelativePath=".\RegisterNewUserDlg.h"
 				>
 			</File>
+			<File
+				RelativePath=".\ReqAddFriendDlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ReqAddFriendDlg.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Util"

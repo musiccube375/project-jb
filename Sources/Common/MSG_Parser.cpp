@@ -84,3 +84,7 @@ HRESULT CMSGParser::ParseMSGTail(const char* pszMsg)
 	return S_OK;
 }
 
+char* CMSGParser::GetMessage()
+{
+	return m_msgData.msgMessage;
+}

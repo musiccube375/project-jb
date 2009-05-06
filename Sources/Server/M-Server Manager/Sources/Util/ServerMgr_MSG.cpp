@@ -165,8 +165,10 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 	strcpy(msg, msgData.msgMessage);
 
 	char friendid[MAX_ID_SIZE];
+	char reqmsg[256];
 
 	MSG_Seperator(0, msg, friendid);
+	MSG_Seperator(1, msg, reqmsg);
 
 	// DB 에서 친구 ID 체크
 	bool bSuccess = g_sToolMgr.GetSQLMgr()->IsValidUserIDFromDB(friendid);
@@ -181,6 +183,11 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 			break;
 
 		id[i] = msgData.msgHeader.szFromID[i];
+	}
+
+	for(int i = 1; i < 256; i++)
+	{
+		msg[i] = reqmsg[i-1];
 	}
 
 	// 친구 ID 를 찾았다면 친구 리스트 DB 에 추가한다.

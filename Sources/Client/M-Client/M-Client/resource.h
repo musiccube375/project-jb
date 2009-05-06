@@ -68,6 +68,7 @@
 #define IDB_FRM_TOP_LEFT                311
 #define IDD_DIALOG_REGISTER_NEW_USER    311
 #define IDD_DIALOG_ADD_FRIEND           312
+#define IDD_DIALOG_REQ_ADD_FRIEND       313
 #define IDC_BUTTON1                     1000
 #define IDC_EDIT1                       1001
 #define IDC_EDIT2                       1002
@@ -88,7 +89,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        313
+#define _APS_NEXT_RESOURCE_VALUE        314
 #define _APS_NEXT_COMMAND_VALUE         32772
 #define _APS_NEXT_CONTROL_VALUE         1013
 #define _APS_NEXT_SYMED_VALUE           310

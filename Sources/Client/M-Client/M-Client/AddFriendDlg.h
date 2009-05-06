@@ -30,4 +30,5 @@ public:
 	afx_msg void OnBnClickedOk();
 	CEdit m_editFriendID;
 	afx_msg void OnBnClickedIDCheck();
+	CEdit m_editMessage;
 };
