@@ -23,7 +23,7 @@ MSG_RET CCMDHandlerMDS::CMD_MS_Handle(MSG_DATA msgData)
 
 	case CM_ADD_FRIEND_RET_TO_MIDDLE:
 		{
-			
+			MSG_Add_Friend_Ack(msgData);	
 		}
 		break;		
 

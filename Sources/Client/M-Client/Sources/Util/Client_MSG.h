@@ -38,5 +38,5 @@ void MSG_Login_Req(const char* pszID, const char* pszPasswords, const char* pszS
 MSG_RET MSG_Login_Ack(MSG_DATA msgData);
 
 // 친구 추가
-void MSG_Add_Friend_Req(const char* pszID, const char* pszFriendID);
+void MSG_Add_Friend_Req(const char* pszID, const char* pszFriendID, const char* pszMessage);
 MSG_RET MSG_Add_Friend_Ack(MSG_DATA msgData);

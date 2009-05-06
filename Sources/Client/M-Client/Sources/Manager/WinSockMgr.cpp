@@ -41,7 +41,7 @@ void CWinSockMgr::ReleaseWinSockMgr()
 bool CWinSockMgr::ConnectToServer()
 {
 	if(!m_bConnectTry || m_bConnected) return false;
-
+ 
 	CloseServerSock();
 	m_ServerSock.m_Tag = TAG_CLIENT;
 	m_ServerSock.Create();

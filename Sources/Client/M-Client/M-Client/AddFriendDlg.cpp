@@ -24,6 +24,7 @@ void CAddFriendDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogSkin::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDIT1, m_editFriendID);
+	DDX_Control(pDX, IDC_EDIT2, m_editMessage);
 }
 
 
@@ -122,11 +123,12 @@ void CAddFriendDlg::OnBnClickedOk()
 {
 	// TODO: Add your control notification handler code here
 
-	CString strID;
+	CString strID, strMessage;
 
 	m_editFriendID.GetWindowTextA(strID);
+	m_editMessage.GetWindowTextA(strMessage);
 
-	MSG_Add_Friend_Req(g_sToolMgr.GetLoginID(), strID);
+	MSG_Add_Friend_Req(g_sToolMgr.GetLoginID(), strID.GetBuffer(0), strMessage.GetBuffer(0));
 }
 
 void CAddFriendDlg::OnBnClickedIDCheck()

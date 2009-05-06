@@ -8,7 +8,11 @@ void MSG_SendToServerMgr(const char* pszSend)
 
 void MSG_SendToClient(const char* pszSend, char* pszID)
 {
-	g_sToolMgr.GetWinSockMgr()->GetUser(pszID)->pSock->Send(pszSend, 512);
+	PUSERINFO pUserInfo = g_sToolMgr.GetWinSockMgr()->GetUser(pszID);
+
+	if(pUserInfo == NULL) return;
+
+	pUserInfo->pSock->Send(pszSend, 512);
 }
 
 void MSG_Exit_Server_Req(MSG_DATA msgData)
@@ -104,5 +108,10 @@ void MSG_Add_Friend_Req(MSG_DATA msgData)
 
 void MSG_Add_Friend_Ack(MSG_DATA msgData)
 {
+	char send[512];
 
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_CLIENT, MIDDLE_CMD, CD_ADD_FRIEND_RET_TO_CLIENT, msgData.msgMessage);
+
+	MSG_SendToClient(send, msgData.msgHeader.szToID);
 }

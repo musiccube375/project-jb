@@ -19,6 +19,7 @@
 
 #include "RegisterNewUserDlg.h"
 #include "AddFriendDlg.h"
+#include "ReqAddFriendDlg.h"
 
 /*
 	Class : Dialog Manager Class
@@ -32,6 +33,7 @@ class CDialogMgr
 public:
 	CRegisterNewUserDlg		m_RegisterNewUserDlg;
 	CAddFriendDlg			m_AddFriendDlg;
+	CReqAddFriendDlg		m_ReqAddFriendDlg;
 
 public:
 	HRESULT InitDialogMgr();

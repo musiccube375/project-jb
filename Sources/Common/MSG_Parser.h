@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 27.
 	Project	Name		: MSG Parser
-	Version				: 1.00.00
+	Version				: 1.00.01
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -21,7 +21,7 @@
 	Class : MSG Parser Class
 
 	Release Date		: 2008. 04. 27.
-	Version				: 1.00.00
+	Version				: 1.00.01
 */
 
 class CMSGParser 
@@ -39,6 +39,9 @@ protected:
 	HRESULT ParseMSGHeader(const char* pszMsg);
 	HRESULT ParseMSGMessage(const char* pszMsg);
 	HRESULT ParseMSGTail(const char* pszMsg);
+
+public:
+	char* GetMessage();
 
 public:
 	CMSGParser();

@@ -12,7 +12,7 @@
 #define new DEBUG_NEW
 #endif
 
-void CMClientView::CheckMSG(MSG_RET ret)
+void CMClientView::CheckMSG(MSG_RET ret, char* pszMessage)
 {
 	if(ret == MSG_CONNECT_FAIL)
 	{
@@ -61,6 +61,19 @@ void CMClientView::CheckMSG(MSG_RET ret)
 	else if(ret == MSG_PARSING_LOGIN_FAIL)
 	{
 		AfxMessageBox("아이디 또는 비밀번호가 틀렸습니다.");
+	}
+	else if(ret == MSG_PARSING_ADD_FRIEND_OK)
+	{
+		//AfxMessageBox("친구 추가를 요청하였습니다.");
+	}
+	else if(ret == MSG_PARSING_ADD_FRIEND_FAIL)
+	{
+		//AfxMessageBox("친구 추가 요청을 실패하였습니다.");
+	}
+	else if(ret == MSG_PARSING_ADD_FRIEND_REQ)
+	{
+		// Request to Add Friend
+		g_sToolMgr.GetDialogMgr()->m_ReqAddFriendDlg.DoModal();
 	}
 }
 
@@ -329,7 +342,7 @@ LRESULT CMClientView::OnClientReceive(WPARAM wParam, LPARAM lParam)
 {
 	MSG_RET ret = g_sToolMgr.GetWinSockMgr()->OnReceive((SOCKET) wParam, (int) lParam);
 
-	CheckMSG(ret);
+	CheckMSG(ret, g_sToolMgr.GetWinSockMgr()->GetMSGParser()->GetMessage());
 
 	return S_OK;
 }
