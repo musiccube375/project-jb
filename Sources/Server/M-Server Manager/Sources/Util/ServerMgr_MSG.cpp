@@ -85,7 +85,12 @@ void MSG_Add_ID_Ack(MSG_DATA msgData, CClientSock* pSock)
 	bool bSuccess = g_sToolMgr.GetSQLMgr()->AddClientUser(id, pw);
 
 	if(bSuccess)
+	{
+		// Friend table 도 같이 생성
+		g_sToolMgr.GetSQLMgr()->CreateTableFriendDB(id);
+
 		msg[0] = MSG_PARSING_ADD_ID_OK;
+	}
 	else msg[0] = MSG_PARSING_ADD_ID_FAIL;
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
@@ -103,9 +108,11 @@ void MSG_Login_Ack(MSG_DATA msgData, CClientSock* pSock)
 
 	char id[MAX_ID_SIZE];
 	char pw[MAX_PASSWORD_SIZE];
+	char server[256];
 
 	MSG_Seperator(0, msg, id);
 	MSG_Seperator(1, msg, pw);
+	MSG_Seperator(2, msg, server);
 
 	// DB 에서 유저 체크
 	bool bSuccess = g_sToolMgr.GetSQLMgr()->CheckUser(id, pw);
@@ -117,6 +124,7 @@ void MSG_Login_Ack(MSG_DATA msgData, CClientSock* pSock)
 		MSUSERINFO MSUserInfo;
 
 		strcpy(MSUserInfo.UserBase.szID, id);
+		strcpy(MSUserInfo.szServer, server);
 
 		g_sToolMgr.GetWinSockMgr()->AddMSUserInfo(MSUserInfo);
 		g_sToolMgr.GetDialogMgr()->m_UserDlg.AddList(id, id, "온라인");
@@ -147,4 +155,48 @@ void MSG_LogOut_Ack(MSG_DATA msgData)
 	g_sToolMgr.GetWinSockMgr()->DelMSUserInfo(id);
 	g_sToolMgr.GetDialogMgr()->m_UserDlg.DelList(id);
 	g_sToolMgr.GetDialogMgr()->m_UserDlg.SetUserCount(g_sToolMgr.GetWinSockMgr()->GetMSUserInfoCount());
+}
+
+void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
+{
+	char send[512];
+	char msg[512];
+
+	strcpy(msg, msgData.msgMessage);
+
+	char friendid[MAX_ID_SIZE];
+
+	MSG_Seperator(0, msg, friendid);
+
+	// DB 에서 친구 ID 체크
+	bool bSuccess = g_sToolMgr.GetSQLMgr()->IsValidUserIDFromDB(friendid);
+
+	char id[256];
+
+	memset(id, 0, 256);
+
+	for(int i = 0; i < 256; i++)
+	{
+		if(msgData.msgHeader.szFromID[i] == '0')
+			break;
+
+		id[i] = msgData.msgHeader.szFromID[i];
+	}
+
+	// 친구 ID 를 찾았다면 친구 리스트 DB 에 추가한다.
+	if(bSuccess)
+	{
+		g_sToolMgr.GetSQLMgr()->AddFriendUser(id, friendid); 
+
+		msg[0] = MSG_PARSING_ADD_FRIEND_OK;
+	}
+	else
+	{
+		msg[0] = MSG_PARSING_ADD_FRIEND_FAIL;
+	}
+
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ADD_FRIEND_RET_TO_MIDDLE, msg);
+
+	MSG_SendToServer(pSock, send); 
 }

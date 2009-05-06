@@ -67,6 +67,7 @@
 #define IDS_EDIT_MENU                   306
 #define IDB_FRM_TOP_LEFT                311
 #define IDD_DIALOG_REGISTER_NEW_USER    311
+#define IDD_DIALOG_ADD_FRIEND           312
 #define IDC_BUTTON1                     1000
 #define IDC_EDIT1                       1001
 #define IDC_EDIT2                       1002
@@ -79,15 +80,17 @@
 #define IDC_CHECK1                      1008
 #define IDC_CHECK2                      1009
 #define IDC_STATIC_LOGIN_ID             1010
+#define IDC_BUTTON4                     1011
+#define IDC_BUTTON5                     1012
 #define ID_32771                        32771
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        312
+#define _APS_NEXT_RESOURCE_VALUE        313
 #define _APS_NEXT_COMMAND_VALUE         32772
-#define _APS_NEXT_CONTROL_VALUE         1011
+#define _APS_NEXT_CONTROL_VALUE         1013
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

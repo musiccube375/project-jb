@@ -91,3 +91,18 @@ void MSG_Login_Ack(MSG_DATA msgData)
 
 	MSG_SendToQueryClient(send, atoi(&msgData.msgMessage[MSG_MAX_SIZE-1]));
 }
+
+void MSG_Add_Friend_Req(MSG_DATA msgData)
+{
+	char send[512];
+
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_ADD_FRIEND_REQ_TO_MAIN, msgData.msgMessage);
+
+	MSG_SendToServerMgr(send); 
+}
+
+void MSG_Add_Friend_Ack(MSG_DATA msgData)
+{
+
+}

@@ -2,7 +2,7 @@
 	Author				: ±èÁ¤ÈÆ(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Common Define
-	Version				: 1.00.08
+	Version				: 1.00.10
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -75,6 +75,9 @@ enum MSG_RET
 
 	MSG_PARSING_LOGIN_OK,
 	MSG_PARSING_LOGIN_FAIL,
+
+	MSG_PARSING_ADD_FRIEND_OK,
+	MSG_PARSING_ADD_FRIEND_FAIL,
 };
 
 enum USER_STATE
@@ -184,12 +187,13 @@ typedef map<int, MSERVERINFO>::value_type	MSERVERINFO_MAP_VALUE;
 	Structure : MAIN SERVER USER INFO Structure
 
 	Release Date		: 2009. 05. 04.
-	Version				: 1.00.00
+	Version				: 1.00.01
 */
 
 typedef struct _MSUSERINFO
 {
 	USERBASEINFO UserBase;
+	char szServer[16];
 
 	// ¼­¹ö
 	// ¾ÆÀÌµð

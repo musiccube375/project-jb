@@ -49,7 +49,7 @@ bool CWinSockMgr::ConnectToServer()
 
 	int nRet = m_ServerSock.Send("CONNECT_REQ", 16);
 
-	if(nRet <= SOCKET_ERROR)
+	/*if(nRet <= SOCKET_ERROR)
 	{
 		if(++m_nServerCount > MAX_SERVER_COUNT)
 		{
@@ -60,7 +60,7 @@ bool CWinSockMgr::ConnectToServer()
 
 			g_sToolMgr.GetLog()->AddLog(LOG_TYPE_CONN, "서버 접속 최종 실패...");
 		}
-	}
+	}*/
 
 	return true;
 }

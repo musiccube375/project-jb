@@ -82,6 +82,7 @@ BEGIN_MESSAGE_MAP(CMClientView, CFormView)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_BUTTON3, &CMClientView::OnBnClickedButton3)
 	ON_COMMAND(ID_32771, &CMClientView::OnLogOut)
+	ON_BN_CLICKED(IDC_BUTTON4, &CMClientView::OnBnClickedAddFriend)
 END_MESSAGE_MAP()
 
 // CMClientView 생성/소멸
@@ -109,6 +110,8 @@ void CMClientView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CHECK2, m_chkboxRememberID);
 	DDX_Control(pDX, IDC_CHECK1, m_chkboxOffline);
 	DDX_Control(pDX, IDC_BUTTON3, m_btnLogin);
+	DDX_Control(pDX, IDC_BUTTON5, m_btnStatus);
+	DDX_Control(pDX, IDC_BUTTON4, m_btnAddFriend);
 }
 
 BOOL CMClientView::PreCreateWindow(CREATESTRUCT& cs)
@@ -235,6 +238,9 @@ void CMClientView::SetLoginStatus(bool bLogin)
 
 		GetDlgItem(IDC_STATIC_LOGIN_ID)->ShowWindow(true);
 		GetDlgItem(IDC_STATIC_LOGIN_ID)->SetWindowTextA(g_sToolMgr.GetLoginID());
+
+		m_btnStatus.ShowWindow(true);
+		m_btnAddFriend.ShowWindow(true);
 	}
 	else
 	{
@@ -254,6 +260,9 @@ void CMClientView::SetLoginStatus(bool bLogin)
 		m_chkboxRememberID.ShowWindow(true);
 
 		GetDlgItem(IDC_STATIC_LOGIN_ID)->ShowWindow(false);
+
+		m_btnStatus.ShowWindow(false);
+		m_btnAddFriend.ShowWindow(false);
 	}
 }
 
@@ -382,7 +391,8 @@ HRESULT CMClientView::LoadServerConfig()
 		strcpy(g_sToolMgr.m_ServerList[i].szServerIP, buff);
 	}*/
 
-	strcpy(g_sToolMgr.m_ServerList[0].szServerIP, "127.0.0.1");
+	//strcpy(g_sToolMgr.m_ServerList[0].szServerIP, "127.0.0.1");
+	strcpy(g_sToolMgr.m_ServerList[0].szServerIP, "59.27.230.110");
 
 	return S_OK;
 }
@@ -421,7 +431,11 @@ void CMClientView::OnBnClickedButton3()
 		return;
 	}
 
-	MSG_Login_Req(strID.GetBuffer(0), strPW.GetBuffer(0));
+	CString strServer;
+
+	strServer.Format("Server%d", g_sToolMgr.GetWinSockMgr()->m_nServerCount+1);
+
+	MSG_Login_Req(strID.GetBuffer(0), strPW.GetBuffer(0), strServer.GetBuffer(0));
 }
 
 void CMClientView::OnLogOut()
@@ -432,4 +446,12 @@ void CMClientView::OnLogOut()
 	// 로그아웃시의 적절한 요청 메시지 작성 필요
 	SetLoginStatus(true);
 	g_sToolMgr.SetUserState(USER_STATE_OFFLINE);
+}
+
+void CMClientView::OnBnClickedAddFriend()
+{
+	// TODO: Add your control notification handler code here
+
+	// Add Friend
+	g_sToolMgr.GetDialogMgr()->m_AddFriendDlg.DoModal();
 }
