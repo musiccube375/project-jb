@@ -305,44 +305,24 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 void CMClientView::RePositionControl()
 {
 	CRect rt;
-	GetClientRect(rt);
+	GetClientRect(&rt);
 
-	if( GetDlgItem(IDC_STATIC_ID) != NULL )
-		GetDlgItem(IDC_STATIC_ID)->SetWindowPos(NULL, rt.Width()/2-84, 
-		45, 0, 0, SWP_NOSIZE);
-	
-	if( GetDlgItem(IDC_STATIC_PASSWORDS) != NULL )
-		GetDlgItem(IDC_STATIC_PASSWORDS	)->SetWindowPos(NULL, rt.Width()/2-105,
-		73, 0, 0, SWP_NOSIZE);
-	
-	if( GetDlgItem( IDC_EDIT1 ) != NULL )
-		GetDlgItem(IDC_EDIT1)->SetWindowPos(NULL, rt.Width()/2-38.5,
-		40, 0, 0, SWP_NOSIZE);
-	
-	if( GetDlgItem( IDC_EDIT2 ) != NULL )
-		GetDlgItem(IDC_EDIT2)->SetWindowPos(NULL, rt.Width()/2-38.5,
-		68, 0, 0, SWP_NOSIZE);
-	
-	if( GetDlgItem( IDC_CHECK2 ) != NULL )
-		GetDlgItem(IDC_CHECK2)->SetWindowPos(NULL, rt.Width()/2-108.5,
-		107, 0, 0, SWP_NOSIZE);
-	
-	if( GetDlgItem( IDC_CHECK1 ) != NULL )
-		GetDlgItem(IDC_CHECK1)->SetWindowPos(NULL, rt.Width()/2-108.5,
-		129, 0, 0, SWP_NOSIZE);
-	
-	if( GetDlgItem( IDC_BUTTON3 ) != NULL )
-		GetDlgItem(IDC_BUTTON3)->SetWindowPos(NULL, rt.Width()/2+5.25,
-		156, 0, 0, SWP_NOSIZE);
-	
-	if( GetDlgItem( IDC_BUTTON2 ) != NULL )
-		GetDlgItem(IDC_BUTTON2)->SetWindowPos(NULL, rt.Width()/2+12.25,
-		320, 0, 0, SWP_NOSIZE);
-	
-	if( GetDlgItem( IDC_BUTTON1 ) != NULL )
-		GetDlgItem(IDC_BUTTON1)->SetWindowPos(	NULL, rt.Width()/2-108.5,
-		320, 0, 0, SWP_NOSIZE);
-
+	if( (GetDlgItem( IDC_EDIT2 ) != NULL) && (GetDlgItem( IDC_EDIT1 ) != NULL) && 
+		(GetDlgItem( IDC_CHECK1 ) != NULL) && (GetDlgItem( IDC_CHECK2 ) != NULL) &&
+		(GetDlgItem( IDC_BUTTON3 ) != NULL) && (GetDlgItem( IDC_BUTTON2 ) != NULL) &&
+		(GetDlgItem( IDC_BUTTON1 ) != NULL) && (GetDlgItem(IDC_STATIC_PASSWORDS) != NULL) &&
+		(GetDlgItem(IDC_STATIC_ID) != NULL))
+	{
+		GetDlgItem(IDC_STATIC_ID)->SetWindowPos(NULL, rt.Width()/2-84, 45, 0, 0, SWP_NOSIZE);
+		GetDlgItem(IDC_STATIC_PASSWORDS	)->SetWindowPos(NULL, rt.Width()/2-105,73, 0, 0, SWP_NOSIZE);
+		GetDlgItem(IDC_BUTTON2)->SetWindowPos(NULL, rt.Width()/2+17,320, 0, 0, SWP_NOSIZE);
+		GetDlgItem(IDC_BUTTON1)->SetWindowPos(	NULL, rt.Width()/2-95.5,320, 0, 0, SWP_NOSIZE);
+		GetDlgItem(IDC_BUTTON3)->SetWindowPos(NULL, rt.Width()/2+5.25,156, 0, 0, SWP_NOSIZE);
+		GetDlgItem(IDC_CHECK1)->SetWindowPos(NULL, rt.Width()/2-108.5,129, 0, 0, SWP_NOSIZE);
+		GetDlgItem(IDC_CHECK2)->SetWindowPos(NULL, rt.Width()/2-108.5,107, 0, 0, SWP_NOSIZE);
+		GetDlgItem(IDC_EDIT2)->SetWindowPos(NULL, rt.Width()/2-38.5,68, 0, 0, SWP_NOSIZE);
+		GetDlgItem(IDC_EDIT1)->SetWindowPos(NULL, rt.Width()/2-38.5,40, 0, 0, SWP_NOSIZE);
+	}
 }
 
 LRESULT CMClientView::OnClientReceive(WPARAM wParam, LPARAM lParam)
