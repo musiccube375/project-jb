@@ -59,6 +59,7 @@ public:
 	HRESULT AddMSUserInfo(MSUSERINFO MSUserInfo);
 	HRESULT DelMSUserInfo(const char* pszID);
 	void ClearMSUserInfo();
+	PMSUSERINFO GetMSUserInfo(const char* pszID);
 
 public:
 	HRESULT InitWinSockMgr();

@@ -123,6 +123,7 @@ void MSG_Login_Ack(MSG_DATA msgData, CClientSock* pSock)
 	
 		MSUSERINFO MSUserInfo;
 
+		MSUserInfo.pSock = pSock;
 		strcpy(MSUserInfo.UserBase.szID, id);
 		strcpy(MSUserInfo.szServer, server);
 
@@ -206,4 +207,17 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ADD_FRIEND_RET_TO_MIDDLE, msg);
 
 	MSG_SendToServer(pSock, send); 
+
+	// 친구 리스트 DB 를 저장하였다면, 친구한테 요청 메시지를 날려준다.
+	if(bSuccess)
+	{
+		msg[0] = MSG_PARSING_ADD_FRIEND_REQ;
+
+		MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+			          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ADD_FRIEND_RET_TO_MIDDLE, msg);
+
+		CClientSock* pFriendServer = g_sToolMgr.GetWinSockMgr()->GetMSUserInfo(friendid)->pSock;
+
+		MSG_SendToServer(pFriendServer, send); 
+	}
 }

@@ -254,11 +254,11 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\res\Frame Image\bitmap1.bmp"
+				RelativePath=".\res\bitmap1.bmp"
 				>
 			</File>
 			<File
-				RelativePath=".\res\bitmap1.bmp"
+				RelativePath=".\res\Frame Image\bitmap1.bmp"
 				>
 			</File>
 			<File
