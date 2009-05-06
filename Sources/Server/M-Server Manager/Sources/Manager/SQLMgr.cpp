@@ -14,6 +14,7 @@ CSQLMgr::~CSQLMgr()
 HRESULT CSQLMgr::InitSQLMgr()
 {
 	m_SQLDB.InitSQL("root", "1124", "mmuser");
+	m_SQLFriendDB.InitSQL("root", "1124", "friendinfo");
 
 	return S_OK;
 }
@@ -21,6 +22,7 @@ HRESULT CSQLMgr::InitSQLMgr()
 void CSQLMgr::ReleaseSQLMgr()
 {
 	m_SQLDB.ReleaseSQL();	
+	m_SQLFriendDB.ReleaseSQL();
 }
 
 bool CSQLMgr::IsValidAdminIDFromDB(const char* pszID)
@@ -107,4 +109,37 @@ bool CSQLMgr::CheckUser(const char* pszID, const char* passwords)
 		return true;
 
 	return false;
+}
+
+bool CSQLMgr::CreateTableFriendDB(const char* pszID)
+{
+	char query[256];
+	char table[128];
+
+	memset(table, 0, 256);
+
+	sprintf(table, "%s_friend_list", pszID);
+	sprintf(query, "CREATE TABLE %s(id VARCHAR(32))", table);
+
+	int query_stat = m_SQLFriendDB.Query(query);
+
+	if(query_stat != 0) return false;
+
+	return true;
+}
+
+bool CSQLMgr::AddFriendUser(const char* pszID, const char* pszFriendID)
+{
+	char query[256];
+	char table[128];
+
+	memset(table, 0, 256);
+	sprintf(table, "%s_friend_list", pszID);
+	
+	sprintf(query, "INSERT INTO %s VALUES('%s')", table, pszFriendID);
+	int query_stat = m_SQLFriendDB.Query(query);
+
+	if(query_stat != 0) return false;
+
+	return true;
 }

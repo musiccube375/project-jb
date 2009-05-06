@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 한국어 resources
+// Korean resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -201,16 +201,18 @@ IDD_MCLIENT_FORM DIALOGEX 0, 0, 212, 373
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_EDIT1,85,23,64,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT2,85,39,64,14,ES_PASSWORD | ES_AUTOHSCROLL
-    PUSHBUTTON      "Log In",IDC_BUTTON3,109,89,40,14
-    PUSHBUTTON      "Register ID",IDC_BUTTON1,44,183,50,14
-    PUSHBUTTON      "Check ID/PW",IDC_BUTTON2,99,183,50,14
-    CONTROL         "아이디 기억",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,44,61,53,10
-    CONTROL         "오프라인으로 표시",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,44,74,73,10
-    LTEXT           "Static",IDC_STATIC_LOGIN_ID,19,11,107,8,0,WS_EX_TRANSPARENT
-    LTEXT           "ID",IDC_STATIC_ID,58,26,8,8,0,WS_EX_TRANSPARENT
-    LTEXT           "Passwords",IDC_STATIC_PASSWORDS,46,42,33,8,0,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_EDIT1,88,261,64,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,88,277,64,14,ES_PASSWORD | ES_AUTOHSCROLL
+    PUSHBUTTON      "Log In",IDC_BUTTON3,111,325,41,14
+    PUSHBUTTON      "Register ID",IDC_BUTTON1,47,343,50,14
+    PUSHBUTTON      "Check ID/PW",IDC_BUTTON2,102,343,50,14
+    CONTROL         "아이디 기억",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,299,53,10
+    CONTROL         "오프라인으로 표시",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,313,73,10
+    LTEXT           "Static",IDC_STATIC_LOGIN_ID,7,11,107,8,0,WS_EX_TRANSPARENT
+    LTEXT           "ID",IDC_STATIC_ID,61,265,8,8,0,WS_EX_TRANSPARENT
+    LTEXT           "Passwords",IDC_STATIC_PASSWORDS,49,281,33,8,0,WS_EX_TRANSPARENT
+    PUSHBUTTON      "+",IDC_BUTTON4,188,26,17,14
+    PUSHBUTTON      "내 상태",IDC_BUTTON5,6,26,89,14
 END
 
 IDD_DIALOG_REGISTER_NEW_USER DIALOGEX 0, 0, 212, 78
@@ -220,13 +222,28 @@ FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,103,58,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,156,58,50,14
-    LTEXT           "User ID",IDC_STATIC,30,9,25,8
-    LTEXT           "Passwords",IDC_STATIC,24,26,35,8
+    LTEXT           "User ID",IDC_STATIC,30,9,25,8,0,WS_EX_TRANSPARENT
+    LTEXT           "Passwords",IDC_STATIC,24,26,35,8,0,WS_EX_TRANSPARENT
     EDITTEXT        IDC_EDIT1,73,6,77,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT2,73,23,77,14,ES_PASSWORD | ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT3,73,40,77,14,ES_PASSWORD | ES_AUTOHSCROLL
-    LTEXT           "Verify Passwords",IDC_STATIC,13,42,56,8
+    LTEXT           "Verify Passwords",IDC_STATIC,13,42,56,8,0,WS_EX_TRANSPARENT
     PUSHBUTTON      "Check ID",IDC_BUTTON1,156,6,50,14
+END
+
+IDD_DIALOG_ADD_FRIEND DIALOGEX 0, 0, 179, 138
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "친구 추가"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,68,116,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,122,116,50,14
+    LTEXT           "추가하고자 하는 친구의 ID 를 입력하세요.",IDC_STATIC,12,12,149,8
+    LTEXT           "친구 ID",IDC_STATIC,12,32,26,8
+    EDITTEXT        IDC_EDIT1,42,29,79,14,ES_AUTOHSCROLL
+    LTEXT           "-------------------- 요청 메시지 --------------------",IDC_STATIC,14,56,154,8
+    EDITTEXT        IDC_EDIT2,10,68,161,43,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL
+    PUSHBUTTON      "ID 체크",IDC_BUTTON1,123,29,36,14
 END
 
 
@@ -291,25 +308,11 @@ BEGIN
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 204
-        VERTGUIDE, 1
-        VERTGUIDE, 44
-        VERTGUIDE, 46
-        VERTGUIDE, 58
-        VERTGUIDE, 85
-        VERTGUIDE, 99
-        VERTGUIDE, 109
-        VERTGUIDE, 179
+        VERTGUIDE, 7
         VERTGUIDE, 204
         TOPMARGIN, 7
-        BOTTOMMARGIN, 366
-        HORZGUIDE, 23
-        HORZGUIDE, 26
-        HORZGUIDE, 39
-        HORZGUIDE, 42
-        HORZGUIDE, 61
-        HORZGUIDE, 74
-        HORZGUIDE, 89
-        HORZGUIDE, 183
+        HORZGUIDE, 7
+        HORZGUIDE, 365
     END
 
     IDD_DIALOG_REGISTER_NEW_USER, DIALOG
@@ -318,6 +321,14 @@ BEGIN
         RIGHTMARGIN, 205
         TOPMARGIN, 6
         BOTTOMMARGIN, 71
+    END
+
+    IDD_DIALOG_ADD_FRIEND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 172
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 131
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -451,12 +462,12 @@ BEGIN
     IDS_EDIT_MENU           "편집"
 END
 
-#endif    // 한국어 resources
+#endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// 영어(미국) resources
+// English (U.S.) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -502,7 +513,7 @@ IDB_FRM_BTN_CLOSE       BITMAP                  "res\\Frame Image\\close box_c.b
 IDB_FRM_BOTTOM_RIGHT    BITMAP                  "res\\Frame Image\\frm_bottom_right.bmp"
 IDB_FRM_BOTTOM_LEFT     BITMAP                  "res\\Frame Image\\frm_bottom_left.bmp"
 IDB_FRM_BOTTOM_CEN      BITMAP                  "res\\Frame Image\\frm_bottom_cen.bmp"
-#endif    // 영어(미국) resources
+#endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

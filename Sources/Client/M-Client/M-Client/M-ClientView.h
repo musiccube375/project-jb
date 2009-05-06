@@ -78,6 +78,9 @@ public:
 	void RePositionControl();
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnLogOut();
+	CButton m_btnStatus;
+	CButton m_btnAddFriend;
+	afx_msg void OnBnClickedAddFriend();
 };
 
 #ifndef _DEBUG  // M-ClientView.cpp의 디버그 버전

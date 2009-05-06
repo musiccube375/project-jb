@@ -13,11 +13,15 @@ int main(int argc, char **argv)
 {
 	char query[256];
 
-	// Backup
-	sprintf(query, "mysqldump -uroot -p1124 mmuser > mmuser.sql");
-	system(query); 
+	//sprintf(query, "mysqldump -uroot -p1124 mmuser > mmuser.sql");
+	//system(query); 
 	//sprintf(query, "mysqldump -uroot -p1124 mmuser > ..\\..\\..\\..\\DB(MY-SQL)\\mmuser.sql");
 	//system(query); 
+
+	//sprintf(query, "mysqldump -uroot -p1124 friendinfo > friendinfo.sql");
+	//system(query); 
+	sprintf(query, "mysql -uroot -p1124 friendinfo < friendinfo.sql");
+	system(query); 
 
 	// Restore
 	//sprintf(query, "mysql -uroot -p1124 mmuser < mmuser.sql");

@@ -2,7 +2,7 @@
 	Author				: 김정훈(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: WinSock Manager
-	Version				: 1.00.02
+	Version				: 1.00.03
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -25,13 +25,12 @@
 	Class : WinSock Manager Class
 
 	Release Date		: 2009. 04. 15.
-	Version				: 1.00.02
+	Version				: 1.00.03
 */
 
 class CWinSockMgr
 {
 private:
-	int m_nServerCount;					// 서버의 인덱스
 	bool m_bConnectTry;					// 접속 시도 여부	
 
 	bool m_bConnected;
@@ -39,6 +38,9 @@ private:
 
 	CMSGParser m_MSGParser;
 	CCMDHandlerMgr m_CMDHandlerMgr;
+
+public:
+	int m_nServerCount;					// 서버의 인덱스
 
 public:
 	inline CClientSock* GetServerSock() { return &m_ServerSock; }

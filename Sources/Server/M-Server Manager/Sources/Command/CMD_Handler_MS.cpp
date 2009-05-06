@@ -30,7 +30,7 @@ PMSG_DATA CCMDHandlerMS::CMD_MS_Handle(MSG_DATA msgData, CClientSock* pSock)
 
 	case CD_ADD_FRIEND_REQ_TO_MAIN:
 		{
-
+			MSG_Add_Friend_Ack(msgData, pSock);
 		}
 		break;
 

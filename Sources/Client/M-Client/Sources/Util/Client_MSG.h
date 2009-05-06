@@ -2,7 +2,7 @@
 	Author				: ±èÁ¤ÈÆ(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 28.
 	Project	Name		: Client Message
-	Version				: 1.00.02
+	Version				: 1.00.03
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -34,5 +34,9 @@ void MSG_Add_ID_Req(const char* pszID, const char* pszPasswords);
 MSG_RET MSG_Add_ID_Ack(MSG_DATA msgData);
 
 // ·Î±×ÀÎ
-void MSG_Login_Req(const char* pszID, const char* pszPasswords);
+void MSG_Login_Req(const char* pszID, const char* pszPasswords, const char* pszServer);
 MSG_RET MSG_Login_Ack(MSG_DATA msgData);
+
+// Ä£±¸ Ãß°¡
+void MSG_Add_Friend_Req(const char* pszID, const char* pszFriendID);
+MSG_RET MSG_Add_Friend_Ack(MSG_DATA msgData);

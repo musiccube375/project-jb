@@ -545,6 +545,14 @@
 			Name="Dialog"
 			>
 			<File
+				RelativePath=".\AddFriendDlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\AddFriendDlg.h"
+				>
+			</File>
+			<File
 				RelativePath=".\RegisterNewUserDlg.cpp"
 				>
 			</File>

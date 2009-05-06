@@ -4,7 +4,7 @@
 
 // CRegisterNewUserDlg 대화 상자입니다.
 
-class CRegisterNewUserDlg : public CDialog
+class CRegisterNewUserDlg : public CDialogSkin
 {
 	DECLARE_DYNAMIC(CRegisterNewUserDlg)
 
@@ -22,6 +22,8 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 
+	HICON m_hIcon;
+
 public:
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedOk();
@@ -33,4 +35,8 @@ public:
 	CEdit m_editPasswords;
 	CEdit m_editPasswords2;
 	virtual BOOL OnInitDialog();
+	afx_msg void OnPaint();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 };
