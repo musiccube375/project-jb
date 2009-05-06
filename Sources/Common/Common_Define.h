@@ -195,6 +195,7 @@ typedef struct _MSUSERINFO
 {
 	USERBASEINFO UserBase;
 	char szServer[16];
+	CClientSock* pSock;
 
 	// 서버
 	// 아이디

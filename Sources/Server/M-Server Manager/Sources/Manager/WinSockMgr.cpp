@@ -115,6 +115,21 @@ void CWinSockMgr::ClearMSUserInfo()
 	m_mapMSUserInfo.clear();
 }
 
+PMSUSERINFO CWinSockMgr::GetMSUserInfo(const char* pszID)
+{
+	MSUSERINFO_MAP_IT it = m_mapMSUserInfo.begin();
+
+	for( ; it != m_mapMSUserInfo.end(); it++)
+	{
+		if(strcmp(it->second.UserBase.szID, pszID) == 0)
+		{
+			return &it->second;
+		}
+	}
+
+	return 0;
+}
+
 HRESULT CWinSockMgr::InitWinSockMgr()
 {
 	g_sToolMgr.GetLog()->AddLog(LOG_TYPE_TOOLWORK, "소켓 관리자 초기화 작업 시작...");
