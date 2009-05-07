@@ -60,7 +60,7 @@ void MSG_ID_Check_Ack(MSG_DATA msgData, CClientSock* pSock)
 	else msgData.msgMessage[0] = MSG_PARSING_ID_CHECK_FAIL;
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
-		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ID_CHECK_RET_TO_MIDDLE, msgData.msgMessage);
+		          MSG_MAIN_TO_MIDDLE, MAIN_CMD, CM_ID_CHECK_RET_TO_MIDDLE, msgData.msgMessage);
 
 	MSG_SendToServer(pSock, send); 
 }
@@ -91,7 +91,7 @@ void MSG_Add_ID_Ack(MSG_DATA msgData, CClientSock* pSock)
 	else msg[0] = MSG_PARSING_ADD_ID_FAIL;
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
-		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ADD_ID_RET_TO_MIDDLE, msg);
+		          MSG_MAIN_TO_MIDDLE, MAIN_CMD, CM_ADD_ID_RET_TO_MIDDLE, msg);
 
 	MSG_SendToServer(pSock, send); 
 }
@@ -136,7 +136,7 @@ void MSG_Login_Ack(MSG_DATA msgData, CClientSock* pSock)
 	}
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
-		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_LOGIN_RET_TO_MIDDLE, msg);
+		          MSG_MAIN_TO_MIDDLE, MAIN_CMD, CM_LOGIN_RET_TO_MIDDLE, msg);
 
 	MSG_SendToServer(pSock, send); 
 }
@@ -221,7 +221,7 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 	}
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
-		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ADD_FRIEND_RET_TO_MIDDLE, msg);
+		          MSG_MAIN_TO_MIDDLE, MAIN_CMD, CM_ADD_FRIEND_RET_TO_MIDDLE, msg);
 
 	MSG_SendToServer(pSock, send); 
 
@@ -233,7 +233,7 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 	{
 		msg[0] = MSG_PARSING_ADD_FRIEND_REQ;
 
-		/*int j;
+		int j;
 		int nCnt = 0;
 
 		for(j = 1; j < strlen(id)+1; j++)
@@ -247,10 +247,13 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 		for( ; j < 256; j++)
 		{
 			msg[j] = reqmsg[nCnt++];
-		}*/
+		}
 
-		MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
-			          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ADD_FRIEND_RET_TO_MIDDLE, msg);
+		//MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		//	          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ADD_FRIEND_RET_TO_MIDDLE, msg);
+
+		MSG_Generator(send, friendid, msgData.msgHeader.szToID, 
+			          MSG_MAIN_TO_MIDDLE, MAIN_CMD, CM_ADD_FRIEND_RET_TO_MIDDLE, msg);
 
 		CClientSock* pFriendServer = g_sToolMgr.GetWinSockMgr()->GetMSUserInfoSock(friendid);
 
