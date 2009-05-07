@@ -64,15 +64,20 @@ void CMClientView::CheckMSG(MSG_RET ret, char* pszMessage)
 	}
 	else if(ret == MSG_PARSING_ADD_FRIEND_OK)
 	{
-		//AfxMessageBox("친구 추가를 요청하였습니다.");
+		AfxMessageBox("친구 추가를 요청하였습니다.");
 	}
 	else if(ret == MSG_PARSING_ADD_FRIEND_FAIL)
 	{
-		//AfxMessageBox("친구 추가 요청을 실패하였습니다.");
+		AfxMessageBox("친구 추가 요청을 실패하였습니다.");
+	}
+	else if(ret == MSG_PARSING_ADD_FRIEND_ALREADY_HAVE)
+	{
+		AfxMessageBox("이미 친구 추가 요청을 하셨습니다.");
 	}
 	else if(ret == MSG_PARSING_ADD_FRIEND_REQ)
 	{
 		// Request to Add Friend
+		//g_sToolMgr.GetDialogMgr()->m_ReqAddFriendDlg.Init(pszMessage);
 		g_sToolMgr.GetDialogMgr()->m_ReqAddFriendDlg.DoModal();
 	}
 }
@@ -384,8 +389,8 @@ HRESULT CMClientView::LoadServerConfig()
 		strcpy(g_sToolMgr.m_ServerList[i].szServerIP, buff);
 	}*/
 
-	//strcpy(g_sToolMgr.m_ServerList[0].szServerIP, "127.0.0.1");
-	strcpy(g_sToolMgr.m_ServerList[0].szServerIP, "59.27.230.110");
+	strcpy(g_sToolMgr.m_ServerList[0].szServerIP, "127.0.0.1");
+	//strcpy(g_sToolMgr.m_ServerList[0].szServerIP, "59.27.230.110");
 
 	return S_OK;
 }
