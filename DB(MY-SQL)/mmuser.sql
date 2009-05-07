@@ -80,7 +80,7 @@ CREATE TABLE `userinfo` (
   `nickname` varchar(128) DEFAULT NULL,
   `passwords` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`idx`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +89,7 @@ CREATE TABLE `userinfo` (
 
 LOCK TABLES `userinfo` WRITE;
 /*!40000 ALTER TABLE `userinfo` DISABLE KEYS */;
-INSERT INTO `userinfo` VALUES (1,'Joyce','Joy','1124'),(2,'Bill','Billy','6957'),(3,'Jill','Jilly','1111'),(4,'Jack','JJ','0000');
+INSERT INTO `userinfo` VALUES (1,'Joyce','Joy','1124'),(3,'Jill','Jilly','1111'),(4,'Jack','JJ','0000'),(6,'Bill','NONE','6957');
 /*!40000 ALTER TABLE `userinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -102,4 +102,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-04-25 15:32:48
+-- Dump completed on 2009-05-07  9:06:14
