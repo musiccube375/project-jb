@@ -34,10 +34,17 @@ void MSG_SendToClient(const char* pszSend, char* pszID)
 void MSG_Exit_Server_Req(MSG_DATA msgData)
 {
 	char send[512];
-	char szID[MAX_ID_SIZE];
+	char szID[256];
 
-	int nIndex = 48 - msgData.msgMessage[MSG_MAX_SIZE-1];
-	g_sToolMgr.GetWinSockMgr()->DelUser(nIndex);
+	strcpy(szID, msgData.msgHeader.szFromID);
+	szID[MAX_ID_SIZE-2] = NULL;
+
+	if(strcmp(szID, "Unknowned User") == 0)
+	{
+		int nIndex = msgData.msgMessage[MSG_MAX_SIZE-1] - 48;
+		g_sToolMgr.GetWinSockMgr()->DelUser(nIndex);
+	}
+	else g_sToolMgr.GetWinSockMgr()->DelUser(szID);
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
 		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_EXIT_SERVER_REQ_TO_MAIN, msgData.msgMessage);
