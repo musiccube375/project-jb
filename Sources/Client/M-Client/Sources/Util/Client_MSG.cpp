@@ -2,6 +2,48 @@
 #include "Client_MSG.h"
 #include "Common_MSG_Generator.h"
 
+void MSG_Seperator(int nIndex, const char* msg, char* pOut)
+{
+	int nMsgCount = 0;
+	int nMsgIndex = 0;
+	int nMsgSize = strlen(msg);
+
+	while(1)
+	{
+		char buff[512];
+
+		memset(buff, 0, 512);
+
+		int i;
+
+		for(i = 0; i < 512; i++)
+		{
+			if(msg[i] == '_')
+			{
+				nMsgCount++;
+				i++;
+			}
+			else if(msg[i] == '\0')
+			{
+				return;
+			}
+
+			if(nIndex == nMsgCount)
+			{
+				pOut[nMsgIndex++] = msg[i];
+			}
+			else if(nIndex < nMsgCount)
+			{
+				pOut[nMsgIndex] = NULL;
+				return;
+			}
+
+			if(nMsgSize <= i)
+				return;
+		}
+	}
+}
+
 void MSG_SendToServer(const char* pszSend)
 {
 	g_sToolMgr.GetWinSockMgr()->GetServerSock()->Send(pszSend, 512);
@@ -52,13 +94,8 @@ void MSG_Add_ID_Req(const char* pszID, const char* pszPasswords)
 	char send[512];
 	char msg[MSG_MAX_SIZE];
 
-	int nIDSize = 0, nPWSize = 0;
-
-	nIDSize = strlen(pszID);
-	nPWSize = strlen(pszPasswords);
-
 	memset(msg, 0, MSG_MAX_SIZE);
-	sprintf(msg, "%d%s%d%s\0", nIDSize, pszID, nPWSize, pszPasswords);
+	sprintf(msg, "%s_%s_\0", pszID, pszPasswords);
 
 	MSG_Generator(send, UNKNOWNED_USER, UNKNOWNED_USER, MSG_CLIENT_TO_MIDDLE, 
 		          CLIENT_CMD, CC_ADD_ID_REQ_TO_MIDDLE, msg);
@@ -85,14 +122,9 @@ void MSG_Login_Req(const char* pszID, const char* pszPasswords, const char* pszS
 	char send[512];
 	char msg[MSG_MAX_SIZE];
 
-	int nIDSize = 0, nPWSize = 0, nServerSize = 0;
-
-	nIDSize = strlen(pszID);
-	nPWSize = strlen(pszPasswords);
-	nServerSize = strlen(pszServer);
-
 	memset(msg, 0, MSG_MAX_SIZE);
-	sprintf(msg, "%d%s%d%s%d%s\0", nIDSize, pszID, nPWSize, pszPasswords, nServerSize, pszServer);
+
+	sprintf(msg, "%s_%s_%s_\0", pszID, pszPasswords, pszServer);
 
 	MSG_Generator(send, UNKNOWNED_USER, UNKNOWNED_USER, MSG_CLIENT_TO_MIDDLE, 
 		          CLIENT_CMD, CC_LOGIN_REQ_TO_MIDDLE, msg);
@@ -119,14 +151,10 @@ void MSG_Add_Friend_Req(const char* pszID, const char* pszFriendID, const char* 
 	char send[512];
 	char msg[MSG_MAX_SIZE];
 
-	int nFriendIDSize = 0, nMsgSize = 0;
-
-	nFriendIDSize = strlen(pszFriendID);
-
 	memset(msg, 0, MSG_MAX_SIZE);
-	sprintf(msg, "%d%s%d%s\0", nFriendIDSize, pszFriendID, nMsgSize, pszMessage);
+	sprintf(msg, "%s_%s_\0", pszFriendID, pszMessage);
 
-	MSG_Generator(send, (char *) pszID, (char *) pszFriendID, MSG_CLIENT_TO_MIDDLE, CLIENT_CMD, CC_ADD_FRIENT_REQ_TO_MIDDLE);
+	MSG_Generator(send, (char *) pszID, (char *) pszFriendID, MSG_CLIENT_TO_MIDDLE, CLIENT_CMD, CC_ADD_FRIENT_REQ_TO_MIDDLE, msg);
 
 	MSG_SendToServer(send);	
 }
@@ -139,6 +167,10 @@ MSG_RET MSG_Add_Friend_Ack(MSG_DATA msgData)
 		return MSG_PARSING_ADD_FRIEND_OK;
 	else if(msgData.msgMessage[0] == MSG_PARSING_ADD_FRIEND_FAIL)
 		return MSG_PARSING_ADD_FRIEND_FAIL;
+	else if(msgData.msgMessage[0] == MSG_PARSING_ADD_FRIEND_ALREADY_HAVE)
+		return MSG_PARSING_ADD_FRIEND_ALREADY_HAVE;
+	else if(msgData.msgMessage[0] == MSG_PARSING_ADD_FRIEND_REQ)
+		return MSG_PARSING_ADD_FRIEND_REQ;
 
 	return MSG_RET_NONE;
 }
