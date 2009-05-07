@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 28.
 	Project	Name		: Server Manager Message
-	Version				: 1.00.04
+	Version				: 1.00.05
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3

@@ -10,45 +10,42 @@ void MSG_SendToServer(CClientSock* pSock, const char* pszSend)
 
 void MSG_Seperator(int nIndex, const char* msg, char* pOut)
 {
-	int nMsgCount = -1;
+	int nMsgCount = 0;
 	int nMsgIndex = 0;
 	int nMsgSize = strlen(msg);
 
-	while(nMsgCount < nMsgSize)
+	while(1)
 	{
 		char buff[512];
-		char szNum[2];
-
-		szNum[0] = msg[nMsgIndex++];
-		szNum[1] = NULL;
-
-		int nSize = atoi(szNum);
 
 		memset(buff, 0, 512);
 
 		int i;
 
-		for(i = 0; i < nSize; i++)
+		for(i = 0; i < 512; i++)
 		{
-			buff[i] = msg[nMsgIndex++];
-		}
-
-		buff[i] = NULL;
-
-		nMsgCount++;
-
-		if(nIndex <= nMsgCount)
-		{
-			int nBuffSize = strlen(buff);
-
-			for(i = 0; i < nBuffSize; i++)
+			if(msg[i] == '_')
 			{
-				pOut[i] = buff[i];
+				nMsgCount++;
+				i++;
+			}
+			else if(msg[i] == '\0')
+			{
+				return;
 			}
 
-			pOut[i] = NULL;
+			if(nIndex == nMsgCount)
+			{
+				pOut[nMsgIndex++] = msg[i];
+			}
+			else if(nIndex < nMsgCount)
+			{
+				pOut[nMsgIndex] = NULL;
+				return;
+			}
 
-			return;
+			if(nMsgSize <= i)
+				return;
 		}
 	}
 }
@@ -133,6 +130,11 @@ void MSG_Login_Ack(MSG_DATA msgData, CClientSock* pSock)
 	}
 	else msg[0] = MSG_PARSING_LOGIN_FAIL;
 
+	for(int i = 0; i < MAX_ID_SIZE; i++)
+	{
+		msg[i+1] = msgData.msgMessage[i];
+	}
+
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
 		          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_LOGIN_RET_TO_MIDDLE, msg);
 
@@ -171,14 +173,20 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 	MSG_Seperator(0, msg, friendid);
 	MSG_Seperator(1, msg, reqmsg);
 
+	if(friendid == "" || reqmsg == "")
+	{
+		return;
+	}
+
 	// DB 에서 친구 ID 체크
 	bool bSuccess = g_sToolMgr.GetSQLMgr()->IsValidUserIDFromDB(friendid);
 
+	int i;
 	char id[256];
 
 	memset(id, 0, 256);
 
-	for(int i = 0; i < 256; i++)
+	for(i = 0; i < 256; i++)
 	{
 		if(msgData.msgHeader.szFromID[i] == '0')
 			break;
@@ -186,17 +194,26 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 		id[i] = msgData.msgHeader.szFromID[i];
 	}
 
+	id[i] = NULL;
+
+	strcpy(msgData.msgHeader.szFromID, id);
+
 	for(int i = 1; i < 256; i++)
 	{
 		msg[i] = reqmsg[i-1];
 	}
 
-	// 친구 ID 를 찾았다면 친구 리스트 DB 에 추가한다.
-	if(bSuccess)
-	{
-		g_sToolMgr.GetSQLMgr()->AddFriendUser(id, friendid); 
+	bool bNewAdd;
 
-		msg[0] = MSG_PARSING_ADD_FRIEND_OK;
+	// 친구 ID 를 찾았다면 친구 리스트 DB 에 추가한다.
+	if(!bSuccess)
+	{
+		bNewAdd = g_sToolMgr.GetSQLMgr()->AddFriendUser(id, friendid);
+
+		if(!bNewAdd)
+			msg[0] = MSG_PARSING_ADD_FRIEND_ALREADY_HAVE;
+		else
+			msg[0] = MSG_PARSING_ADD_FRIEND_OK;
 	}
 	else
 	{
@@ -208,15 +225,34 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 
 	MSG_SendToServer(pSock, send); 
 
+	// 이미 추가되어있다면 추가한 친구에게는 추가 요청 메시지를 날릴 필요가 없다.
+	//if(!bNewAdd) return;
+
 	// 친구 리스트 DB 를 저장하였다면, 친구한테 요청 메시지를 날려준다.
-	if(bSuccess)
+	//if(!bSuccess)
 	{
 		msg[0] = MSG_PARSING_ADD_FRIEND_REQ;
+
+		/*int j;
+		int nCnt = 0;
+
+		for(j = 1; j < strlen(id)+1; j++)
+		{
+			msg[j] = id[nCnt++];
+		}
+		
+		nCnt = 0;
+		msg[j++] = '_';
+
+		for( ; j < 256; j++)
+		{
+			msg[j] = reqmsg[nCnt++];
+		}*/
 
 		MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
 			          MSG_MIDDLE_TO_MAIN, MAIN_CMD, CM_ADD_FRIEND_RET_TO_MIDDLE, msg);
 
-		CClientSock* pFriendServer = g_sToolMgr.GetWinSockMgr()->GetMSUserInfo(friendid)->pSock;
+		CClientSock* pFriendServer = g_sToolMgr.GetWinSockMgr()->GetMSUserInfoSock(friendid);
 
 		MSG_SendToServer(pFriendServer, send); 
 	}

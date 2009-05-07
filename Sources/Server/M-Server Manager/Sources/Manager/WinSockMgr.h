@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: WinSock Manager
-	Version				: 1.00.05
+	Version				: 1.00.06
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -59,7 +59,7 @@ public:
 	HRESULT AddMSUserInfo(MSUSERINFO MSUserInfo);
 	HRESULT DelMSUserInfo(const char* pszID);
 	void ClearMSUserInfo();
-	PMSUSERINFO GetMSUserInfo(const char* pszID);
+	CClientSock* GetMSUserInfoSock(const char* pszID);
 
 public:
 	HRESULT InitWinSockMgr();

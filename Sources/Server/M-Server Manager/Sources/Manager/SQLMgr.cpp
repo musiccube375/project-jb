@@ -114,12 +114,12 @@ bool CSQLMgr::CheckUser(const char* pszID, const char* passwords)
 bool CSQLMgr::CreateTableFriendDB(const char* pszID)
 {
 	char query[256];
-	char table[128];
+	char table[256];
 
 	memset(table, 0, 256);
 
 	sprintf(table, "%s_friend_list", pszID);
-	sprintf(query, "CREATE TABLE %s(id VARCHAR(32), verify INT, deny INT)", table);
+	sprintf(query, "CREATE TABLE %s(id VARCHAR(32) PRIMARY KEY, verify INT, deny INT)", table);
 
 	int query_stat = m_SQLFriendDB.Query(query);
 
@@ -131,7 +131,7 @@ bool CSQLMgr::CreateTableFriendDB(const char* pszID)
 bool CSQLMgr::AddFriendUser(const char* pszID, const char* pszFriendID)
 {
 	char query[256];
-	char table[128];
+	char table[256];
 
 	memset(table, 0, 256);
 	sprintf(table, "%s_friend_list", pszID);
