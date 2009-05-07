@@ -115,7 +115,7 @@ void CWinSockMgr::ClearMSUserInfo()
 	m_mapMSUserInfo.clear();
 }
 
-PMSUSERINFO CWinSockMgr::GetMSUserInfo(const char* pszID)
+CClientSock* CWinSockMgr::GetMSUserInfoSock(const char* pszID)
 {
 	MSUSERINFO_MAP_IT it = m_mapMSUserInfo.begin();
 
@@ -123,7 +123,7 @@ PMSUSERINFO CWinSockMgr::GetMSUserInfo(const char* pszID)
 	{
 		if(strcmp(it->second.UserBase.szID, pszID) == 0)
 		{
-			return &it->second;
+			return it->second.pSock;
 		}
 	}
 

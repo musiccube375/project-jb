@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 15.
 	Project	Name		: Common Define
-	Version				: 1.00.10
+	Version				: 1.01.00
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -78,6 +78,7 @@ enum MSG_RET
 
 	MSG_PARSING_ADD_FRIEND_OK,
 	MSG_PARSING_ADD_FRIEND_FAIL,
+	MSG_PARSING_ADD_FRIEND_ALREADY_HAVE,
 	MSG_PARSING_ADD_FRIEND_REQ,
 };
 
@@ -106,6 +107,11 @@ typedef struct _USERBASEINFO
 {
 	char	szID[32];
 	char	szNick[128];
+
+	void	SetID(char* pszID)
+	{
+		strcpy(szID, pszID);
+	}
 }USERBASEINFO, *PUSERBASEINFO;
 
 /*

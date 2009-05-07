@@ -2,7 +2,7 @@
 	Author				: 김정훈(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 28.
 	Project	Name		: Server Message
-	Version				: 1.00.02
+	Version				: 1.00.03
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -24,6 +24,7 @@ void MSG_SendToServerMgr(const char* pszSend);
 
 // 클라이언트 유저로 메시지 전송
 void MSG_SendToClient(const char* pszSend, char* pszID);
+void MSG_SendToQueryClient(const char* pszSend, int nIndex, char* pszID = NULL);
 
 // 클라이언트 유저 서버 나가기
 void MSG_Exit_Server_Req(MSG_DATA msgData);

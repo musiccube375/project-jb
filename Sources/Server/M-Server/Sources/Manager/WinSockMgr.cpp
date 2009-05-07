@@ -106,13 +106,32 @@ HRESULT CWinSockMgr::DelUser(int nIndex)
 {
 	USERINFO_MAP_IT it = m_mapUserInfo.begin();
 
-	for( ; it != m_mapUserInfo.end(); it++)
+	for(int i = 0; it != m_mapUserInfo.end(); i++, it++)
 	{
-		/*if(it->second._ID == ID)
+		if(nIndex == i)
 		{
-			it->second._pSock->Close();
-			SAFE_DELETE(it->second._pSock);
-			m_mapWPInfo.erase(it);
+			it->second.pSock->Close();
+			SAFE_DELETE(it->second.pSock);
+			m_mapUserInfo.erase(it);
+
+			return S_OK;
+		}
+	}
+
+	return E_FAIL;
+}
+
+HRESULT CWinSockMgr::DelUser(char* pszID)
+{
+	USERINFO_MAP_IT it = m_mapUserInfo.begin();
+
+	for(int i = 0; it != m_mapUserInfo.end(); i++, it++)
+	{
+		/*if(nIndex == i)
+		{
+			it->second.pSock->Close();
+			SAFE_DELETE(it->second.pSock);
+			m_mapUserInfo.erase(it);
 
 			return S_OK;
 		}*/
@@ -158,9 +177,24 @@ PUSERINFO CWinSockMgr::GetUser(char* pszID)
 {
 	USERINFO_MAP_IT it = m_mapUserInfo.begin();
 
+	char id[64];
+
 	for( ; it != m_mapUserInfo.end(); it++)
 	{
-		if(strcmp(it->second.UserBase.szID, pszID) == 0)
+		int i;
+		int nSize = strlen(it->second.UserBase.szID);
+
+		for(i = 0; i < nSize; i++)
+		{
+			if(it->second.UserBase.szID[i] == '0')
+				break;
+
+			id[i] = it->second.UserBase.szID[i]; 
+		}
+
+		id[i] = NULL;
+
+		if(strcmp(id, pszID) == 0)
 			return &it->second;
 	}
 

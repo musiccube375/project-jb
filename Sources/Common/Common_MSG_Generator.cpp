@@ -7,6 +7,8 @@ HRESULT MSG_Generator(char* pszOutMessage, char* pszFrom, char* pszTo,
 	int nCount = 0;
 	int nMsgLenght = 0;//MSG_MAX_SIZE;
 	
+	//memset(pszOutMessage, 0x30, 512);
+
 	if(pszMessage != NULL)
 		nMsgLenght = strlen(pszMessage);
 
