@@ -37,6 +37,7 @@ BEGIN_MESSAGE_MAP(CReqAddFriendDlg, CDialogSkin)
 	ON_WM_PAINT()
 	ON_WM_ERASEBKGND()
 	ON_WM_CTLCOLOR()
+	ON_EN_CHANGE(IDC_EDIT2, &CReqAddFriendDlg::OnEnChangeEdit2)
 END_MESSAGE_MAP()
 
 
@@ -125,7 +126,7 @@ HBRUSH CReqAddFriendDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 	int nRet = pWnd->GetDlgCtrlID();
 
-	if(nRet == IDC_STATIC)
+	if(nRet == IDC_STATIC_ID)
 	{
 		CRect rc;
 
@@ -137,4 +138,26 @@ HBRUSH CReqAddFriendDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 	// TODO:  Return a different brush if the default is not desired
 	return hbr;
+}
+
+void CReqAddFriendDlg::OnEnChangeEdit2()
+{
+	// TODO:  If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialogSkin::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+
+	// TODO:  Add your control notification handler code here
+}
+
+void CReqAddFriendDlg::Init(char* pszMessage)
+{
+	char id[16];
+	char msg[256];
+
+	MSG_Seperator(0, pszMessage, id);
+	MSG_Seperator(1, pszMessage, msg);
+
+	GetDlgItem(IDC_STATIC_ID)->SetWindowTextA(id);
+	m_editMessage.SetWindowTextA(msg);
 }

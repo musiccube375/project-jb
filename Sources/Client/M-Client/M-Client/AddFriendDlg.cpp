@@ -34,6 +34,8 @@ BEGIN_MESSAGE_MAP(CAddFriendDlg, CDialogSkin)
 	ON_WM_CTLCOLOR()
 	ON_BN_CLICKED(IDOK, &CAddFriendDlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON1, &CAddFriendDlg::OnBnClickedIDCheck)
+	ON_EN_CHANGE(IDC_EDIT1, &CAddFriendDlg::OnEnChangeEdit1)
+	ON_EN_CHANGE(IDC_EDIT2, &CAddFriendDlg::OnEnChangeEdit2)
 END_MESSAGE_MAP()
 
 
@@ -47,6 +49,11 @@ BOOL CAddFriendDlg::OnInitDialog()
 
 	SetIcon(m_hIcon, TRUE);			// 큰 아이콘을 설정합니다.
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
+
+	CString strMessage;
+
+	strMessage.Format("안녕하세요. %s 입니다.", g_sToolMgr.GetLoginID());
+	m_editMessage.SetWindowTextA(strMessage);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
@@ -128,10 +135,48 @@ void CAddFriendDlg::OnBnClickedOk()
 	m_editFriendID.GetWindowTextA(strID);
 	m_editMessage.GetWindowTextA(strMessage);
 
+	if(strID == "")
+	{
+		AfxMessageBox("친구 ID 를 입력하세요.");
+
+		return;
+	}
+
+	if(strMessage == "")
+	{
+		AfxMessageBox("요청 메시지를 입력하세요.");
+
+		return;
+	}
+
 	MSG_Add_Friend_Req(g_sToolMgr.GetLoginID(), strID.GetBuffer(0), strMessage.GetBuffer(0));
 }
 
 void CAddFriendDlg::OnBnClickedIDCheck()
 {
 	// TODO: Add your control notification handler code here
+}
+
+void CAddFriendDlg::OnEnChangeEdit1()
+{
+	// TODO:  If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialogSkin::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+
+	// TODO:  Add your control notification handler code here
+
+	m_editFriendID.Invalidate();
+}
+
+void CAddFriendDlg::OnEnChangeEdit2()
+{
+	// TODO:  If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialogSkin::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+
+	// TODO:  Add your control notification handler code here
+
+	m_editMessage.Invalidate();
 }

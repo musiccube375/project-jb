@@ -15,6 +15,8 @@ public:
 // Dialog Data
 	enum { IDD = IDD_DIALOG_REQ_ADD_FRIEND };
 
+	void Init(char* pszMessage);
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
@@ -34,4 +36,5 @@ public:
 	afx_msg void OnPaint();
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnEnChangeEdit2();
 };
