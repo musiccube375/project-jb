@@ -21,7 +21,7 @@
 	Class : Dialog Manager Class
 
 	Release Date		: 2009. 04. 22.
-	Version				: 1.00.00
+	Version				: 1.00.01
 */
 
 class CDialogMgr

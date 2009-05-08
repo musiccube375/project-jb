@@ -46,18 +46,30 @@ END_MESSAGE_MAP()
 void CReqAddFriendDlg::OnBnClickedOk()
 {
 	// TODO: Add your control notification handler code here
-	OnOK();
+
+	g_sToolMgr.GetDialogMgr()->DestroyReqAddFriendDlg();
+
+	MSG_Update_Friend_Req(g_sToolMgr.GetLoginID(), m_szReqID, true, false);
+
+	//OnOK();
 }
 
 void CReqAddFriendDlg::OnBnClickedCancel()
 {
 	// TODO: Add your control notification handler code here
-	OnCancel();
+
+	MSG_Delete_Friend_Req(g_sToolMgr.GetLoginID(), m_szReqID);
+
+	g_sToolMgr.GetDialogMgr()->DestroyReqAddFriendDlg();
+
+	//OnCancel();
 }
 
 void CReqAddFriendDlg::OnBnClickedLater()
 {
 	// TODO: Add your control notification handler code here
+
+	g_sToolMgr.GetDialogMgr()->DestroyReqAddFriendDlg();
 }
 
 BOOL CReqAddFriendDlg::OnInitDialog()
@@ -126,7 +138,8 @@ HBRUSH CReqAddFriendDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 	int nRet = pWnd->GetDlgCtrlID();
 
-	if(nRet == IDC_STATIC_ID)
+	if(nRet == IDC_STATIC ||
+	   nRet == IDC_STATIC_ID)
 	{
 		CRect rc;
 
@@ -154,10 +167,35 @@ void CReqAddFriendDlg::Init(char* pszMessage)
 {
 	char id[16];
 	char msg[256];
+	char buff[256];
 
 	MSG_Seperator(0, pszMessage, id);
-	MSG_Seperator(1, pszMessage, msg);
+	MSG_Seperator(1, pszMessage, buff);
 
-	GetDlgItem(IDC_STATIC_ID)->SetWindowTextA(id);
+	int i;
+
+	for(i = 0; i < strlen(buff); i++)
+	{
+		if(buff[i] == 'E' || buff[i] == '0')
+			break;
+
+		msg[i] = buff[i];
+	}
+
+	msg[i] = NULL;
+
+	for(i = 0; i < strlen(id); i++)
+	{
+		buff[i] = id[i+1];
+	}
+
+	buff[i] = NULL;
+
+	for(i = 0; i <strlen(buff); i++)
+	{
+		m_szReqID[i] = buff[i];
+	}
+
+	GetDlgItem(IDC_STATIC_ID)->SetWindowTextA(buff);
 	m_editMessage.SetWindowTextA(msg);
 }

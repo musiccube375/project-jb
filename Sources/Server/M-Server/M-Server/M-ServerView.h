@@ -5,7 +5,8 @@
 
 #pragma once
 #include "afxwin.h"
-
+#include "resource.h"
+#include "M-ServerDoc.h"
 
 class CMServerView : public CFormView
 {
@@ -61,6 +62,7 @@ public:
 	CButton m_btnDisconnect;
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
+	CEdit m_editUserCount;
 };
 
 #ifndef _DEBUG  // M-ServerView.cpp의 디버그 버전

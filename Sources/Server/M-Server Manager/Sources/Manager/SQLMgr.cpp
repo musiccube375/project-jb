@@ -119,7 +119,7 @@ bool CSQLMgr::CreateTableFriendDB(const char* pszID)
 	memset(table, 0, 256);
 
 	sprintf(table, "%s_friend_list", pszID);
-	sprintf(query, "CREATE TABLE %s(id VARCHAR(32) PRIMARY KEY, verify INT, deny INT)", table);
+	sprintf(query, "CREATE TABLE %s(id VARCHAR(32) PRIMARY KEY, msg VARCHAR(128), verify INT, deny INT)", table);
 
 	int query_stat = m_SQLFriendDB.Query(query);
 
@@ -128,7 +128,8 @@ bool CSQLMgr::CreateTableFriendDB(const char* pszID)
 	return true;
 }
 
-bool CSQLMgr::AddFriendUser(const char* pszID, const char* pszFriendID)
+bool CSQLMgr::AddFriendUser(const char* pszID, const char* pszFriendID, char* pszMessage, 
+							bool bVerify, bool bDeny)
 {
 	char query[256];
 	char table[256];
@@ -136,7 +137,39 @@ bool CSQLMgr::AddFriendUser(const char* pszID, const char* pszFriendID)
 	memset(table, 0, 256);
 	sprintf(table, "%s_friend_list", pszID);
 	
-	sprintf(query, "INSERT INTO %s VALUES('%s', '%d', '%d')", table, pszFriendID, false, true);
+	sprintf(query, "INSERT INTO %s VALUES('%s', '%s', '%d', '%d')", table, pszFriendID, pszMessage, bVerify, bDeny);
+	int query_stat = m_SQLFriendDB.Query(query);
+
+	if(query_stat != 0) return false;
+
+	return true;
+}
+
+bool CSQLMgr::UpdateFriendUser(const char* pszID, const char* pszFriendID, bool bVerify, bool bDeny)
+{
+	char query[256];
+	char table[256];
+
+	memset(table, 0, 256);
+	sprintf(table, "%s_friend_list", pszID);
+	
+	sprintf(query, "UPDATE %s SET verify = %d deny = %d WHERE id = '%s', table, pszFriendID, bVerify, bDeny");
+	int query_stat = m_SQLFriendDB.Query(query);
+
+	if(query_stat != 0) return false;
+
+	return true;
+}
+
+bool CSQLMgr::DeleteFriendUser(const char* pszID, const char* pszFriendID)
+{
+	char query[256];
+	char table[256];
+
+	memset(table, 0, 256);
+	sprintf(table, "%s_friend_list", pszID);
+	
+	sprintf(query, "DELETE FROM %s WHERE id = '%s'", table, pszFriendID, pszFriendID);
 	int query_stat = m_SQLFriendDB.Query(query);
 
 	if(query_stat != 0) return false;

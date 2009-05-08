@@ -24,18 +24,6 @@ MSG_RET CCMDHandlerCLT::CMD_MDS_Handle(MSG_DATA msgData)
 		}
 		break;
 
-	case CD_ADD_ID_REQ_TO_MAIN:
-		{
-			
-		}
-		break;		
-
-	case CD_ADD_FRIEND_REQ_TO_MAIN:
-		{
-
-		}
-		break;
-
 	case CD_ADD_ID_RET_TO_CLIENT:
 		{
 			ret = MSG_Add_ID_Ack(msgData);	
@@ -57,6 +45,18 @@ MSG_RET CCMDHandlerCLT::CMD_MDS_Handle(MSG_DATA msgData)
 	case CD_LOGIN_RET_TO_CLIENT:
 		{
 			ret = MSG_Login_Ack(msgData);
+		}
+		break;
+
+	case CD_UPDATE_FRIEND_RET_TO_CLIENT:
+		{
+			ret = MSG_Update_Friend_Ack(msgData);
+		}
+		break;
+
+	case CD_DELETE_FRIEND_RET_TO_CLIENT:
+		{
+			ret = MSG_Delete_Friend_Ack(msgData);
 		}
 		break;
 	}

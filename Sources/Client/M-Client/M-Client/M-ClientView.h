@@ -6,6 +6,11 @@
 #pragma once
 #include "afxwin.h"
 
+#define BUTTON_ADD_FRIEND_GAP_X		32
+#define BUTTON_ADD_FRIEND_GAP_Y		48
+#define BUTTON_ADD_FRIEND_WIDTH		28
+#define BUTTON_ADD_FRIEND_HEIGHT	28
+
 class CMClientView : public CFormView
 {
 protected: // serialization에서만 만들어집니다.
@@ -81,6 +86,7 @@ public:
 	CButton m_btnStatus;
 	CButton m_btnAddFriend;
 	afx_msg void OnBnClickedAddFriend();
+	afx_msg void OnPaint();
 };
 
 #ifndef _DEBUG  // M-ClientView.cpp의 디버그 버전

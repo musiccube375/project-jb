@@ -59,3 +59,5 @@
 //#endif
 
 #include "Tool_Define.h"
+
+extern RECT g_ClientRect;

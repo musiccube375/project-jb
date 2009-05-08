@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 25.
 	Project	Name		: SQL Manager
-	Version				: 1.00.03
+	Version				: 1.00.04
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -23,7 +23,7 @@
 	Class : SQL Manager Class
 
 	Release Date		: 2009. 04. 25.
-	Version				: 1.00.03
+	Version				: 1.00.04
 */
 
 class CSQLMgr
@@ -53,7 +53,11 @@ public:
 	// Friend DB
 public:
 	bool CreateTableFriendDB(const char* pszID);
-	bool AddFriendUser(const char* pszID, const char* pszFriendID);
+	bool AddFriendUser(const char* pszID, const char* pszFriendID, char* pszMessage,
+		               bool bVerify = true, bool bDeny = false);
+	bool UpdateFriendUser(const char* pszID, const char* pszFriendID, bool bVerify, bool bDeny);
+	bool DeleteFriendUser(const char* pszID, const char* pszFriendID);
+	// Friend DB
 
 public:
 	// The basic constructor
