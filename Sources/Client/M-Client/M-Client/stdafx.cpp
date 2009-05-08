@@ -5,4 +5,4 @@
 
 #include "stdafx.h"
 
-
+RECT g_ClientRect;

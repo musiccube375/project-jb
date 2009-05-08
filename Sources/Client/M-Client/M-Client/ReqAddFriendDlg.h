@@ -24,6 +24,9 @@ protected:
 
 	HICON m_hIcon;
 
+	int m_nDialogIndex;
+	char m_szReqID[16];
+
 public:
 	CEdit m_editMessage;
 	CButton m_btnAccept;

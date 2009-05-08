@@ -124,7 +124,21 @@ HRESULT CWinSockMgr::DelUser(int nIndex)
 HRESULT CWinSockMgr::DelUser(char* pszID)
 {
 	char id[64];
+	char InputID[64];
 	USERINFO_MAP_IT it = m_mapUserInfo.begin();
+
+	int i;
+	int nSize = strlen(pszID);
+
+	for(i = 0; i < nSize; i++)
+	{
+		if(pszID[i] == '0')
+			break;
+
+		InputID[i] = pszID[i]; 
+	}
+
+	InputID[i] = NULL;
 
 	for( ; it != m_mapUserInfo.end(); it++)
 	{
@@ -141,7 +155,7 @@ HRESULT CWinSockMgr::DelUser(char* pszID)
 
 		id[i] = NULL;
 
-		if(strcmp(id, pszID) == 0)
+		if(strcmp(id, InputID) == 0)
 		{
 			it->second.pSock->Close();
 			SAFE_DELETE(it->second.pSock);
@@ -256,6 +270,11 @@ void CWinSockMgr::OnAccept()
 	else
 	{
 		pClientSock->Send("ACCEPT_OK", 16);
+
+		CString strCount;
+		strCount.Format("%d", g_sToolMgr.GetWinSockMgr()->GetUserSize());
+
+		g_pMainDlg->m_editUserCount.SetWindowTextA(strCount);
 	}
 }
 

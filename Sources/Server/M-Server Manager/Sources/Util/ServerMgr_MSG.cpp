@@ -139,6 +139,12 @@ void MSG_Login_Ack(MSG_DATA msgData, CClientSock* pSock)
 		          MSG_MAIN_TO_MIDDLE, MAIN_CMD, CM_LOGIN_RET_TO_MIDDLE, msg);
 
 	MSG_SendToServer(pSock, send); 
+
+	if(bSuccess)
+	{
+		// 친구 리스트 DB 를 검색하여 확인하지 않은 친구가 있는지 검사
+		// 확인하지 않은 친구가 있을 시에는 그 친구 요청 메시지를 띄운다.
+	}
 }
 
 void MSG_LogOut_Ack(MSG_DATA msgData)
@@ -208,7 +214,10 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 	// 친구 ID 를 찾았다면 친구 리스트 DB 에 추가한다.
 	if(!bSuccess)
 	{
-		bNewAdd = g_sToolMgr.GetSQLMgr()->AddFriendUser(id, friendid);
+		bNewAdd = g_sToolMgr.GetSQLMgr()->AddFriendUser(id, friendid, reqmsg);
+
+		// 친구의 친구 리스트 DB 에도 내 아이디를 추가한다.
+		g_sToolMgr.GetSQLMgr()->AddFriendUser(friendid, id, reqmsg, false, false);
 
 		if(!bNewAdd)
 			msg[0] = MSG_PARSING_ADD_FRIEND_ALREADY_HAVE;
@@ -259,4 +268,94 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
 
 		MSG_SendToServer(pFriendServer, send); 
 	}
+}
+
+void MSG_Update_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
+{
+	char send[512];
+	char msg[512];
+
+	strcpy(msg, msgData.msgMessage);
+
+	char id[MAX_ID_SIZE];
+	char FriendID[MAX_ID_SIZE];
+	char verify[16];
+	char deny[16];
+
+	MSG_Seperator(0, msg, FriendID);
+	MSG_Seperator(1, msg, verify);
+	MSG_Seperator(2, msg, deny);
+
+	int i;
+
+	memset(id, 0, 256);
+
+	for(i = 0; i < 256; i++)
+	{
+		if(msgData.msgHeader.szFromID[i] == '0')
+			break;
+
+		id[i] = msgData.msgHeader.szFromID[i];
+	}
+
+	id[i] = NULL;
+
+	bool bSuccess = g_sToolMgr.GetSQLMgr()->UpdateFriendUser(id, FriendID, verify, deny);
+
+	if(bSuccess)
+	{
+		msg[0] = MSG_PARSING_UPDATE_FRIEND_OK;
+	}
+	else
+	{
+		msg[0] = MSG_PARSING_UPDATE_FRIEND_FAIL;
+	}
+
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MAIN_TO_MIDDLE, MAIN_CMD, CM_UPDATE_FRIEND_RET_TO_MIDDLE, msg);
+
+	MSG_SendToServer(pSock, send); 
+}
+
+void MSG_Delete_Friend_Ack(MSG_DATA msgData, CClientSock* pSock)
+{
+	char send[512];
+	char msg[512];
+
+	strcpy(msg, msgData.msgMessage);
+
+	char id[MAX_ID_SIZE];
+	char FriendID[MAX_ID_SIZE];
+
+	MSG_Seperator(0, msg, FriendID);
+
+	int i;
+
+	memset(id, 0, 256);
+
+	for(i = 0; i < 256; i++)
+	{
+		if(msgData.msgHeader.szFromID[i] == '0')
+			break;
+
+		id[i] = msgData.msgHeader.szFromID[i];
+	}
+
+	id[i] = NULL;
+
+	bool bSuccess = g_sToolMgr.GetSQLMgr()->DeleteFriendUser(id, FriendID);
+
+	if(bSuccess)
+	{
+		msg[0] = MSG_PARSING_DELETE_FRIEND_OK;
+	}
+	else
+	{
+		msg[0] = MSG_PARSING_DELETE_FRIEND_FAIL;
+	}
+
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MAIN_TO_MIDDLE, MAIN_CMD, CM_DELETE_FRIEND_RET_TO_MIDDLE, msg);
+
+	MSG_SendToServer(pSock, send); 
 }

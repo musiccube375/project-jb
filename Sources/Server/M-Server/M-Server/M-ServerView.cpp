@@ -46,6 +46,7 @@ void CMServerView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT1, m_editIP);
 	DDX_Control(pDX, IDC_BUTTON1, m_btnConnect);
 	DDX_Control(pDX, IDC_BUTTON2, m_btnDisconnect);
+	DDX_Control(pDX, IDC_EDIT2, m_editUserCount);
 }
 
 BOOL CMServerView::PreCreateWindow(CREATESTRUCT& cs)
@@ -70,6 +71,8 @@ void CMServerView::OnInitialUpdate()
 
 	Init();
 	InitControls();
+
+	g_pMainDlg = this;
 }
 
 void CMServerView::OnRButtonUp(UINT nFlags, CPoint point)
@@ -172,6 +175,7 @@ void CMServerView::InitControls()
 	m_editIP.SetWindowTextA("127.0.0.1");
 	m_btnConnect.EnableWindow(true);
 	m_btnDisconnect.EnableWindow(false);
+	m_editUserCount.SetWindowTextA("0");
 }
 
 void CMServerView::OnBnClickedButton1()

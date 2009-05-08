@@ -3,7 +3,8 @@
 
 void MSG_SendToServerMgr(const char* pszSend)
 {
-	g_sToolMgr.GetWinSockMgr()->GetServerMgrSock()->Send(pszSend, 512);
+	CClientSock* pSock = g_sToolMgr.GetWinSockMgr()->GetServerMgrSock();
+	pSock->Send(pszSend, 512);
 }
 
 void MSG_SendToClient(const char* pszSend, char* pszID)
@@ -46,10 +47,15 @@ void MSG_Exit_Server_Req(MSG_DATA msgData)
 	}
 	else g_sToolMgr.GetWinSockMgr()->DelUser(szID);
 
+	CString strCount;
+	strCount.Format("%d", g_sToolMgr.GetWinSockMgr()->GetUserSize());
+
+	g_pMainDlg->m_editUserCount.SetWindowTextA(strCount);
+
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
 		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_EXIT_SERVER_REQ_TO_MAIN, msgData.msgMessage);
 
-	MSG_SendToServerMgr(send); 
+	MSG_SendToServerMgr(send);
 }
 
 void MSG_SendToQueryClient(const char* pszSend, int nIndex, char* pszID)
@@ -73,7 +79,7 @@ void MSG_ID_Check_Req(MSG_DATA msgData)
 	char send[512];
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
-		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_ID_CHECK_REQ_TO_CLIENT, msgData.msgMessage);
+		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_ID_CHECK_REQ_TO_MAIN, msgData.msgMessage);
 
 	MSG_SendToServerMgr(send); 
 }
@@ -113,7 +119,7 @@ void MSG_Login_Req(MSG_DATA msgData)
 	char send[512];
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
-		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_LOGIN_REQ_TO_CLIENT, msgData.msgMessage);
+		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_LOGIN_REQ_TO_MAIN, msgData.msgMessage);
 
 	MSG_SendToServerMgr(send); 
 }
@@ -157,6 +163,46 @@ void MSG_Add_Friend_Ack(MSG_DATA msgData)
 
 	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
 		          MSG_MIDDLE_TO_CLIENT, MIDDLE_CMD, CD_ADD_FRIEND_RET_TO_CLIENT, msgData.msgMessage);
+
+	MSG_SendToClient(send, msgData.msgHeader.szFromID);
+}
+
+void MSG_Update_Friend_Req(MSG_DATA msgData)
+{
+	char send[512];
+
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_UPDATE_FRIEND_REQ_TO_CLIENT, msgData.msgMessage);
+
+	MSG_SendToServerMgr(send); 
+}
+
+void MSG_Update_Friend_Ack(MSG_DATA msgData)
+{
+	char send[512];
+
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_CLIENT, MIDDLE_CMD, CD_UPDATE_FRIEND_RET_TO_CLIENT, msgData.msgMessage);
+
+	MSG_SendToClient(send, msgData.msgHeader.szFromID);
+}
+
+void MSG_Delete_Friend_Req(MSG_DATA msgData)
+{
+	char send[512];
+
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_MAIN, MIDDLE_CMD, CD_DELETE_FRIEND_REQ_TO_CLIENT, msgData.msgMessage);
+
+	MSG_SendToServerMgr(send); 
+}
+
+void MSG_Delete_Friend_Ack(MSG_DATA msgData)
+{
+	char send[512];
+
+	MSG_Generator(send, msgData.msgHeader.szFromID, msgData.msgHeader.szToID, 
+		          MSG_MIDDLE_TO_CLIENT, MIDDLE_CMD, CD_DELETE_FRIEND_RET_TO_CLIENT, msgData.msgMessage);
 
 	MSG_SendToClient(send, msgData.msgHeader.szFromID);
 }

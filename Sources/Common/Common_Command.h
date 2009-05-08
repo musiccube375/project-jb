@@ -2,7 +2,7 @@
 	Author				: ±Ë¡§»∆(Bill) (kjh_900@hanmail.net)	
 	Release Date		: 2009. 04. 22.
 	Project	Name		: Common Command
-	Version				: 1.00.03
+	Version				: 1.00.04
 
 	Test PC				: CPU - Pentium(R) 4 2.40Ghz, RAM - 1 GB Graphic - Radeon 9600
 	Test OS				: Windows XP Professional + SP3
@@ -23,6 +23,8 @@
 #define CM_ADD_FRIEND_RET_TO_MIDDLE			0x02
 #define CM_ID_CHECK_RET_TO_MIDDLE			0x03
 #define CM_LOGIN_RET_TO_MIDDLE				0x04
+#define CM_UPDATE_FRIEND_RET_TO_MIDDLE		0x05
+#define CM_DELETE_FRIEND_RET_TO_MIDDLE		0x06
 
 // Middle Server Command
 #define MIDDLE_CMD							0x0002		// 0xCD
@@ -31,17 +33,23 @@
 #define CD_ADD_FRIEND_REQ_TO_MAIN			0x03
 #define CD_ADD_ID_RET_TO_CLIENT				0x04
 #define CD_ADD_FRIEND_RET_TO_CLIENT			0x05
-#define CD_ID_CHECK_REQ_TO_CLIENT			0x06
+#define CD_ID_CHECK_REQ_TO_MAIN				0x06
 #define CD_ID_CHECK_RET_TO_CLIENT			0x07
 #define CD_EXIT_SERVER_REQ_TO_MAIN			0x08
-#define CD_LOGIN_REQ_TO_CLIENT				0x09
+#define CD_LOGIN_REQ_TO_MAIN				0x09
 #define CD_LOGIN_RET_TO_CLIENT				0x10
+#define CD_UPDATE_FRIEND_REQ_TO_CLIENT		0x11
+#define CD_UPDATE_FRIEND_RET_TO_CLIENT		0x12
+#define CD_DELETE_FRIEND_REQ_TO_CLIENT		0x13
+#define CD_DELETE_FRIEND_RET_TO_CLIENT		0x14
 
 // Client Command
 #define CLIENT_CMD							0x0003		// 0xCC
 #define CC_CONNECT_REQ_TO_MIDDLE			0x01
 #define CC_ADD_ID_REQ_TO_MIDDLE				0x02
-#define CC_ADD_FRIENT_REQ_TO_MIDDLE			0x03
+#define CC_ADD_FRIEND_REQ_TO_MIDDLE			0x03
 #define CC_ID_CHECK_REQ_TO_MIDDLE			0x04
 #define CC_EXIT_SERVER_REQ_TO_MIDDLE		0x05
 #define CC_LOGIN_REQ_TO_MIDDLE				0x06
+#define CC_UPDATE_FRINED_REQ_TO_MIDDLE		0x07
+#define CC_DELETE_FRINED_REQ_TO_MIDDLE		0x08

@@ -87,12 +87,41 @@ HRESULT CWinSockMgr::DelMSUserInfo(const char* pszID)
 {
 	MSUSERINFO_MAP_IT it = m_mapMSUserInfo.begin();
 
+	char id[64];
+	char InputID[64];
+
+	int i;
+	int nSize = strlen(pszID);
+
+	for(i = 0; i < nSize; i++)
+	{
+		if(pszID[i] == '0')
+			break;
+
+		InputID[i] = pszID[i]; 
+	}
+
+	InputID[i] = NULL;
+
 	for( ; it != m_mapMSUserInfo.end(); it++)
 	{
-		if(strcmp(it->second.UserBase.szID, pszID) == 0)
+		int i;
+		int nSize = strlen(it->second.UserBase.szID);
+
+		for(i = 0; i < nSize; i++)
 		{
-			//it->second.UserInfo.pSock->Close();
-			//SAFE_DELETE(it->second.UserInfo.pSock);
+			if(it->second.UserBase.szID[i] == '0')
+				break;
+
+			id[i] = it->second.UserBase.szID[i]; 
+		}
+
+		id[i] = NULL;
+
+		if(strcmp(id, InputID) == 0)
+		{
+			//it->second.pSock->Close();
+			//SAFE_DELETE(it->second.pSock);
 			m_mapMSUserInfo.erase(it);
 
 			return S_OK;
@@ -106,10 +135,10 @@ void CWinSockMgr::ClearMSUserInfo()
 {
 	MSUSERINFO_MAP_IT it = m_mapMSUserInfo.begin();
 
-	//for( ; it != m_mapMSUserInfo.end(); it++)
+	for( ; it != m_mapMSUserInfo.end(); it++)
 	{
-		//it->second.UserInfo.pSock->Close();
-		//SAFE_DELETE(it->second.UserInfo.pSock);
+		it->second.pSock->Close();
+		SAFE_DELETE(it->second.pSock);
 	}
 
 	m_mapMSUserInfo.clear();

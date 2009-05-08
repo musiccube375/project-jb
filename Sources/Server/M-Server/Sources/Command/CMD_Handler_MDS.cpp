@@ -38,6 +38,18 @@ MSG_RET CCMDHandlerMDS::CMD_MS_Handle(MSG_DATA msgData)
 			MSG_Login_Ack(msgData);
 		}
 		break;	
+
+	case CM_UPDATE_FRIEND_RET_TO_MIDDLE:
+		{
+			MSG_Update_Friend_Ack(msgData);
+		}
+		break;
+
+	case CM_DELETE_FRIEND_RET_TO_MIDDLE:
+		{
+			MSG_Delete_Friend_Ack(msgData);
+		}
+		break;
 	}
 
 	return MSG_RET_NONE;
@@ -59,7 +71,7 @@ MSG_RET CCMDHandlerMDS::CMD_CLT_Handle(MSG_DATA msgData)
 		}
 		break;		
 
-	case CC_ADD_FRIENT_REQ_TO_MIDDLE:
+	case CC_ADD_FRIEND_REQ_TO_MIDDLE:
 		{
 			MSG_Add_Friend_Req(msgData);
 		}
@@ -80,6 +92,18 @@ MSG_RET CCMDHandlerMDS::CMD_CLT_Handle(MSG_DATA msgData)
 	case CC_LOGIN_REQ_TO_MIDDLE:
 		{
 			MSG_Login_Req(msgData);
+		}
+		break;
+
+	case CC_UPDATE_FRINED_REQ_TO_MIDDLE:
+		{	
+			MSG_Update_Friend_Req(msgData);	
+		}
+		break;
+
+	case CC_DELETE_FRINED_REQ_TO_MIDDLE:
+		{
+			MSG_Delete_Friend_Req(msgData);
 		}
 		break;
 	}

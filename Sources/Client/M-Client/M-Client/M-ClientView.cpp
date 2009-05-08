@@ -68,7 +68,7 @@ void CMClientView::CheckMSG(MSG_RET ret, char* pszMessage)
 	}
 	else if(ret == MSG_PARSING_ADD_FRIEND_FAIL)
 	{
-		AfxMessageBox("친구 추가 요청을 실패하였습니다.");
+		AfxMessageBox("친구 ID 가 존재하지 않습니다.");
 	}
 	else if(ret == MSG_PARSING_ADD_FRIEND_ALREADY_HAVE)
 	{
@@ -77,8 +77,23 @@ void CMClientView::CheckMSG(MSG_RET ret, char* pszMessage)
 	else if(ret == MSG_PARSING_ADD_FRIEND_REQ)
 	{
 		// Request to Add Friend
-		//g_sToolMgr.GetDialogMgr()->m_ReqAddFriendDlg.Init(pszMessage);
-		g_sToolMgr.GetDialogMgr()->m_ReqAddFriendDlg.DoModal();
+		g_sToolMgr.GetDialogMgr()->CreatReqAddFriendDlg(pszMessage);
+	}
+	else if(ret == MSG_PARSING_UPDATE_FRIEND_OK)
+	{
+		//AfxMessageBox("친구 리스트 DB 수정을 성공하였습니다.");
+	}
+	else if(ret == MSG_PARSING_UPDATE_FRIEND_FAIL)
+	{
+		//AfxMessageBox("친구 리스트 DB 수정을 실패하였습니다.");
+	}
+	else if(ret == MSG_PARSING_DELETE_FRIEND_OK)
+	{
+		//AfxMessageBox("친구 리스트 DB 삭제를 성공하였습니다.");
+	}
+	else if(ret == MSG_PARSING_DELETE_FRIEND_FAIL)
+	{
+		//AfxMessageBox("친구 리스트 DB 삭제를 성공하였습니다.");
 	}
 }
 
@@ -101,6 +116,7 @@ BEGIN_MESSAGE_MAP(CMClientView, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON3, &CMClientView::OnBnClickedButton3)
 	ON_COMMAND(ID_32771, &CMClientView::OnLogOut)
 	ON_BN_CLICKED(IDC_BUTTON4, &CMClientView::OnBnClickedAddFriend)
+	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 // CMClientView 생성/소멸
@@ -142,7 +158,6 @@ BOOL CMClientView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CMClientView::OnInitialUpdate()
 {
-
 	CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
@@ -322,6 +337,10 @@ void CMClientView::OnSize(UINT nType, int cx, int cy)
 
 void CMClientView::RePositionControl()
 {
+	if(!m_hWnd) return;
+
+	GetWindowRect(&g_ClientRect);
+
 	CRect rt;
 	GetClientRect(&rt);
 
@@ -340,6 +359,12 @@ void CMClientView::RePositionControl()
 		GetDlgItem(IDC_CHECK2)->SetWindowPos(NULL, rt.Width()/2-108.5,107, 0, 0, SWP_NOSIZE);
 		GetDlgItem(IDC_EDIT2)->SetWindowPos(NULL, rt.Width()/2-38.5,68, 0, 0, SWP_NOSIZE);
 		GetDlgItem(IDC_EDIT1)->SetWindowPos(NULL, rt.Width()/2-38.5,40, 0, 0, SWP_NOSIZE);
+	}
+
+	if(m_btnAddFriend.m_hWnd)
+	{
+		m_btnAddFriend.MoveWindow(rt.right - BUTTON_ADD_FRIEND_GAP_X, rt.top + BUTTON_ADD_FRIEND_GAP_Y, 
+		                          BUTTON_ADD_FRIEND_WIDTH, BUTTON_ADD_FRIEND_HEIGHT);
 	}
 }
 
@@ -452,4 +477,13 @@ void CMClientView::OnBnClickedAddFriend()
 
 	// Add Friend
 	g_sToolMgr.GetDialogMgr()->m_AddFriendDlg.DoModal();
+}
+
+void CMClientView::OnPaint()
+{
+	CPaintDC dc(this); // device context for painting
+	// TODO: Add your message handler code here
+	// Do not call CFormView::OnPaint() for painting messages
+
+	GetWindowRect(&g_ClientRect);
 }
