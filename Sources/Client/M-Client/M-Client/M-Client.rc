@@ -16,7 +16,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// 한국어 resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -289,10 +289,10 @@ BEGIN
             VALUE "InternalName", "M-Client.exe"
             VALUE "LegalCopyright", "2009 (c) MIS.  All rights reserved."
             VALUE "OriginalFilename", "M-Client.exe"
-            VALUE "PrivateBuild", "Build 100090430003"
+            VALUE "PrivateBuild", "Build 100090508004"
             VALUE "ProductName", "M-Client"
             VALUE "ProductVersion", "1.0.0.0"
-            VALUE "SpecialBuild", "Build 100090430003"
+            VALUE "SpecialBuild", "Build 100090508004"
         END
     END
     BLOCK "VarFileInfo"
@@ -484,12 +484,12 @@ BEGIN
     IDS_EDIT_MENU           "편집"
 END
 
-#endif    // Korean resources
+#endif    // 한국어 resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// 영어(미국) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -535,7 +535,7 @@ IDB_FRM_BTN_CLOSE       BITMAP                  "res\\Frame Image\\close box_c.b
 IDB_FRM_BOTTOM_RIGHT    BITMAP                  "res\\Frame Image\\frm_bottom_right.bmp"
 IDB_FRM_BOTTOM_LEFT     BITMAP                  "res\\Frame Image\\frm_bottom_left.bmp"
 IDB_FRM_BOTTOM_CEN      BITMAP                  "res\\Frame Image\\frm_bottom_cen.bmp"
-#endif    // English (U.S.) resources
+#endif    // 영어(미국) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
