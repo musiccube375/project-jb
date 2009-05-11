@@ -77,7 +77,8 @@ void CMClientView::CheckMSG(MSG_RET ret, char* pszMessage)
 	else if(ret == MSG_PARSING_ADD_FRIEND_REQ)
 	{
 		// Request to Add Friend
-		g_sToolMgr.GetDialogMgr()->CreatReqAddFriendDlg(pszMessage);
+		//g_sToolMgr.GetDialogMgr()->CreatReqAddFriendDlg(pszMessage);
+		g_sToolMgr.GetDialogMgr()->AddReqAddFriendDlg(IDD_DIALOG_REQ_ADD_FRIEND, g_ClientRect, pszMessage);
 	}
 	else if(ret == MSG_PARSING_UPDATE_FRIEND_OK)
 	{

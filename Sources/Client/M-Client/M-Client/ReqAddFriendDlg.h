@@ -15,6 +15,8 @@ public:
 // Dialog Data
 	enum { IDD = IDD_DIALOG_REQ_ADD_FRIEND };
 
+	int m_nIndex;
+
 	void Init(char* pszMessage);
 
 protected:

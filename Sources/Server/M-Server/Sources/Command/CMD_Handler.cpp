@@ -27,6 +27,8 @@ MSG_RET CCMDHandlerMgr::CMD_Main_Handle(MSG_DATA msgData)
 		}
 		break;
 	}
+
+	return MSG_RET_NONE;
 }
 
 

@@ -8,7 +8,7 @@ CDialogMgr::CDialogMgr()
 
 CDialogMgr::~CDialogMgr()
 {
-	
+	ClearDialogMgr();
 }
 
 HRESULT CDialogMgr::InitDialogMgr()
@@ -16,41 +16,58 @@ HRESULT CDialogMgr::InitDialogMgr()
 	//m_LogDlg.Create(CLogDlg::IDD, &m_mfcTab);
 	//m_UserDlg.Create(CUserDlg::IDD, &m_mfcTab);
 
-	m_bShowReqAddFriendDlg = false;
-
 	return S_OK;
 }
 
-void CDialogMgr::CreatReqAddFriendDlg(char* pszMessage)
+void CDialogMgr::ClearDialogMgr()
 {
-	if(m_bShowReqAddFriendDlg) return;
-
-	m_pReqAddFriendDlg = new CReqAddFriendDlg;
-	m_pReqAddFriendDlg->Create(IDD_DIALOG_REQ_ADD_FRIEND);
-
-	RECT rt = g_ClientRect;
-
-	int nWidth = rt.right - rt.left;
-	int nHeight = rt.bottom - rt.top;
-
-	m_pReqAddFriendDlg->MoveWindow(rt.left + nWidth / 2 - (REQADDFRINED_DIALOG_WIDTH / 2), 
-									rt.top + nHeight / 2 - (REQADDFRINED_DIALOG_HEIGHT / 2), 
-									REQADDFRINED_DIALOG_WIDTH, REQADDFRINED_DIALOG_HEIGHT);
-
-	m_pReqAddFriendDlg->ShowWindow(SW_SHOW); 
-
-	m_bShowReqAddFriendDlg = true;
-
-	m_pReqAddFriendDlg->Init(pszMessage);
+	ClearReqAddFriendDlg();
 }
 
-void CDialogMgr::DestroyReqAddFriendDlg()
+// Add ReqAddFriendDialog
+
+void CDialogMgr::AddReqAddFriendDlg(UINT nDialogID, RECT rt, char* pszMessage)
 {
-	if(m_pReqAddFriendDlg != NULL)   
+	ML_DIALOG<CReqAddFriendDlg> mlDialog;
+
+	mlDialog.SetSize(REQADDFRINED_DIALOG_WIDTH, REQADDFRINED_DIALOG_HEIGHT);
+	mlDialog.CreateMLDialog(nDialogID, rt, pszMessage);
+
+	if(m_nReqAddFriendDlgCount > MAX_INT_SIZE) m_nReqAddFriendDlgCount = 0;
+
+	if(mlDialog.pDialog == NULL) return;
+
+	mlDialog.pDialog->m_nIndex = m_nReqAddFriendDlgCount;
+
+	m_mapReqAddFriendDlg.insert(ML_REQ_ADD_FRINED_MAP_VALUE(m_nReqAddFriendDlgCount++, mlDialog));
+}
+
+void CDialogMgr::DelReqAddFriendDlg(int nIndex)
+{
+	ML_REQ_ADD_FRINED_MAP_IT it = m_mapReqAddFriendDlg.begin();
+
+	for( ; it != m_mapReqAddFriendDlg.end(); it++)
 	{
-		m_pReqAddFriendDlg->DestroyWindow();
-		SAFE_DELETE(m_pReqAddFriendDlg);
+		if(it->second.pDialog->m_nIndex == nIndex)
+		{
+			it->second.DestroyMLDialog();	
+			m_mapReqAddFriendDlg.erase(it);
+			return;
+		}
+	}
+}
+
+void CDialogMgr::ClearReqAddFriendDlg()
+{
+	ML_REQ_ADD_FRINED_MAP_IT it = m_mapReqAddFriendDlg.begin();
+
+	for( ; it != m_mapReqAddFriendDlg.end(); it++)
+	{
+		it->second.DestroyMLDialog();	
 	}
 
-	m_bShowReqAddFriendDlg = false;
+	m_mapReqAddFriendDlg.clear();
 }
+
+// Add ReqAddFriendDialog
+
