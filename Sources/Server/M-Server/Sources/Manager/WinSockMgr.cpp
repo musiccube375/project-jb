@@ -329,7 +329,7 @@ MSG_RET CWinSockMgr::OnReceiveFromServerMgr(SOCKET Socket)
 
 MSG_RET CWinSockMgr::OnReceiveFromClient(SOCKET Socket)
 {
-	char recv[512];
+	char recv[1024];
 
 	USERINFO_MAP_IT it = m_mapUserInfo.begin();
   
@@ -352,10 +352,18 @@ MSG_RET CWinSockMgr::OnReceiveFromClient(SOCKET Socket)
 		{
 			m_MSGParser.ParseMSG(recv);
 
-			char szID[512];
+			int i;
+			char szID[32];
 
-			strcpy(szID, m_MSGParser.m_msgData.msgHeader.szFromID);
-			szID[MAX_ID_SIZE-2] = NULL;
+			for(i = 0; i < MAX_ID_SIZE; i++)
+			{
+				szID[i] = m_MSGParser.m_msgData.msgHeader.szFromID[i];
+			}
+
+			szID[i] = NULL;
+
+			//strcpy(szID, m_MSGParser.m_msgData.msgHeader.szFromID);
+			//szID[MAX_ID_SIZE-2] = NULL;
 
 			if(strcmp(szID, "Unknowned User") == 0)
 			{
@@ -363,14 +371,10 @@ MSG_RET CWinSockMgr::OnReceiveFromClient(SOCKET Socket)
 				sprintf(&m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1], "%d", i);
 				//m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1] = i;//UnknownedQuery(m_MSGParser.m_msgData, it->second.pSock);
 			}
-			/*else
-			{
-				KnownedQuery(m_MSGParser.m_msgData);
-			}*/
 
 			int nIndex = m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1];
 
-			szID[0] = NULL;
+			//szID[0] = NULL;
 
 			return m_CMDHandlerMgr.CMD_Main_Handle(m_MSGParser.m_msgData);
 		}

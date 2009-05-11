@@ -47,7 +47,8 @@ void CReqAddFriendDlg::OnBnClickedOk()
 {
 	// TODO: Add your control notification handler code here
 
-	g_sToolMgr.GetDialogMgr()->DestroyReqAddFriendDlg();
+	g_sToolMgr.GetDialogMgr()->DelReqAddFriendDlg(m_nIndex);
+	//g_sToolMgr.GetDialogMgr()->DestroyReqAddFriendDlg();
 
 	MSG_Update_Friend_Req(g_sToolMgr.GetLoginID(), m_szReqID, true, false);
 
@@ -60,7 +61,8 @@ void CReqAddFriendDlg::OnBnClickedCancel()
 
 	MSG_Delete_Friend_Req(g_sToolMgr.GetLoginID(), m_szReqID);
 
-	g_sToolMgr.GetDialogMgr()->DestroyReqAddFriendDlg();
+	g_sToolMgr.GetDialogMgr()->DelReqAddFriendDlg(m_nIndex);
+	//g_sToolMgr.GetDialogMgr()->DestroyReqAddFriendDlg();
 
 	//OnCancel();
 }
@@ -69,7 +71,8 @@ void CReqAddFriendDlg::OnBnClickedLater()
 {
 	// TODO: Add your control notification handler code here
 
-	g_sToolMgr.GetDialogMgr()->DestroyReqAddFriendDlg();
+	g_sToolMgr.GetDialogMgr()->DelReqAddFriendDlg(m_nIndex);
+	//g_sToolMgr.GetDialogMgr()->DestroyReqAddFriendDlg();
 }
 
 BOOL CReqAddFriendDlg::OnInitDialog()
