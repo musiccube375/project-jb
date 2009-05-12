@@ -42,7 +42,7 @@ void MSG_Exit_Server_Req(MSG_DATA msgData)
 
 	if(strcmp(szID, "Unknowned User") == 0)
 	{
-		int nIndex = msgData.msgMessage[MSG_MAX_SIZE-1] - 48;
+		int nIndex = msgData.msgMessage[MSG_MAX_SIZE-1];// - '0';
 		g_sToolMgr.GetWinSockMgr()->DelUser(nIndex);
 	}
 	else g_sToolMgr.GetWinSockMgr()->DelUser(szID);
@@ -67,6 +67,8 @@ void MSG_SendToQueryClient(const char* pszSend, int nIndex, char* pszID)
 	pSock->Send(pszSend, 512);
 
 	g_sToolMgr.GetWinSockMgr()->GetUser(nIndex)->pSock = pSock;
+
+	if(pszID == NULL) return;
 
 	for(int i = 0; i < MAX_ID_SIZE; i++)
 	{

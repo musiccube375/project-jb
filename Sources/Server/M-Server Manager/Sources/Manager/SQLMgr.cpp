@@ -85,7 +85,7 @@ bool CSQLMgr::AddClientUser(const char* pszID, const char* passwords)
 {
 	char query[256];
 
-	sprintf(query, "INSERT INTO userinfo VALUES('%d', '%s', '%s', '%d')", 0, pszID, "NONE", atoi(passwords));
+	sprintf(query, "INSERT INTO userinfo VALUES('%d', '%s', '%s', '%s')", 0, pszID, "NONE", passwords);
 	int query_stat = m_SQLDB.Query(query);
 
 	if(query_stat != 0) return false;
