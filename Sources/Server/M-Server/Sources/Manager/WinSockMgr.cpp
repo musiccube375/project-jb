@@ -352,23 +352,28 @@ MSG_RET CWinSockMgr::OnReceiveFromClient(SOCKET Socket)
 		{
 			m_MSGParser.ParseMSG(recv);
 
-			int i;
+			int j;
 			char szID[32];
 
-			for(i = 0; i < MAX_ID_SIZE; i++)
+			for(j = 0; j < MAX_ID_SIZE; j++)
 			{
-				szID[i] = m_MSGParser.m_msgData.msgHeader.szFromID[i];
+				szID[j] = m_MSGParser.m_msgData.msgHeader.szFromID[j];
 			}
 
-			szID[i] = NULL;
+			szID[j] = NULL;
 
 			//strcpy(szID, m_MSGParser.m_msgData.msgHeader.szFromID);
 			//szID[MAX_ID_SIZE-2] = NULL;
 
-			if(strcmp(szID, "Unknowned User") == 0)
+			if(szID[0] == 'U' && szID[1] == 'n' && szID[2] == 'k' && szID[3] == 'n' &&
+			   szID[4] == 'o' && szID[5] == 'w' && szID[6] == 'n' && szID[7] == 'e' &&
+			   szID[8] == 'd' && szID[9] == ' ' && szID[10] == 'U' && szID[11] == 's' &&
+			   szID[12] == 'e' && szID[13] == 'r')
+			//if(strcmp(szID, "Unknowned User\0") == 0)
 			{
 				// 메시지 제일 마지막 부분에 인덱스를 저장
-				sprintf(&m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1], "%d", i);
+				m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1] = i;
+				//sprintf(&m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1], "%d", i-1);
 				//m_MSGParser.m_msgData.msgMessage[MSG_MAX_SIZE-1] = i;//UnknownedQuery(m_MSGParser.m_msgData, it->second.pSock);
 			}
 
