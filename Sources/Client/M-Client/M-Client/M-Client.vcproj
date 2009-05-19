@@ -464,6 +464,26 @@
 				RelativePath=".\UserImages.bmp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\..\Bin\Resources\Images\꾸미기\꾸미기_다른 용무중.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\Bin\Resources\Images\꾸미기\꾸미기_오프라인.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\Bin\Resources\Images\꾸미기\꾸미기_온라인.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\Bin\Resources\Images\꾸미기\꾸미기_자리비움.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\Bin\Resources\Images\온라인.bmp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Main"

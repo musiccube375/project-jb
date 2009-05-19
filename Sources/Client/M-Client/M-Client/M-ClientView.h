@@ -87,6 +87,7 @@ public:
 	CButton m_btnAddFriend;
 	afx_msg void OnBnClickedAddFriend();
 	afx_msg void OnPaint();
+	afx_msg void OnBnClickedButton5();
 };
 
 #ifndef _DEBUG  // M-ClientView.cpp의 디버그 버전
