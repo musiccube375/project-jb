@@ -118,6 +118,7 @@ BEGIN_MESSAGE_MAP(CMClientView, CFormView)
 	ON_COMMAND(ID_32771, &CMClientView::OnLogOut)
 	ON_BN_CLICKED(IDC_BUTTON4, &CMClientView::OnBnClickedAddFriend)
 	ON_WM_PAINT()
+	ON_BN_CLICKED(IDC_BUTTON5, &CMClientView::OnBnClickedButton5)
 END_MESSAGE_MAP()
 
 // CMClientView 생성/소멸
@@ -126,7 +127,6 @@ CMClientView::CMClientView()
 	: CFormView(CMClientView::IDD)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
-
 }
 
 CMClientView::~CMClientView()
@@ -345,6 +345,10 @@ void CMClientView::RePositionControl()
 	CRect rt;
 	GetClientRect(&rt);
 
+	//CString str;
+	//str.Format(_T("%d"), rt.Width() );
+	//AfxMessageBox(str);
+
 	if( (GetDlgItem( IDC_EDIT2 ) != NULL) && (GetDlgItem( IDC_EDIT1 ) != NULL) && 
 		(GetDlgItem( IDC_CHECK1 ) != NULL) && (GetDlgItem( IDC_CHECK2 ) != NULL) &&
 		(GetDlgItem( IDC_BUTTON3 ) != NULL) && (GetDlgItem( IDC_BUTTON2 ) != NULL) &&
@@ -486,5 +490,22 @@ void CMClientView::OnPaint()
 	// TODO: Add your message handler code here
 	// Do not call CFormView::OnPaint() for painting messages
 
-	GetWindowRect(&g_ClientRect);
+	GetWindowRect(&g_ClientRect);	
+}
+
+void CMClientView::OnBnClickedButton5()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CRect rt;
+	GetClientRect(&rt);
+
+	CPoint pt;
+	pt.x = rt.Width()-316;
+	pt.y = 63;
+	ClientToScreen(&pt);
+
+	CMenu menu;
+	menu.LoadMenuA(IDR_MAINFRAME);
+	CMenu *pButton5Menu = pButton5Menu = menu.GetSubMenu(2);
+	pButton5Menu->TrackPopupMenu(TPM_LEFTALIGN, pt.x, pt.y, this);
 }

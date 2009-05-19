@@ -137,6 +137,16 @@ BEGIN
     BEGIN
         MENUITEM "M-Client 정보(&A)...",          ID_APP_ABOUT
     END
+    POPUP "설정(&S)"
+    BEGIN
+        POPUP "내 상태 변경(&U)"
+        BEGIN
+            MENUITEM "온라인",                         ID_32773
+            MENUITEM "자리비움",                        ID_32774
+            MENUITEM "다른 용무중",                      ID_32775
+            MENUITEM "오프라인",                        ID_32776
+        END
+    END
 END
 
 IDR_POPUP_EDIT MENU 
@@ -205,12 +215,12 @@ BEGIN
     EDITTEXT        IDC_EDIT2,88,277,64,14,ES_PASSWORD | ES_AUTOHSCROLL
     PUSHBUTTON      "Log In",IDC_BUTTON3,111,325,41,14
     PUSHBUTTON      "Register ID",IDC_BUTTON1,47,343,50,14
-    PUSHBUTTON      "Check ID/PW",IDC_BUTTON2,102,343,50,14
+    PUSHBUTTON      "Check ID/PW",IDC_BUTTON2,106,343,50,14
     CONTROL         "아이디 기억",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,299,53,10
     CONTROL         "오프라인으로 표시",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,313,73,10
     LTEXT           "Static",IDC_STATIC_LOGIN_ID,7,11,107,8,0,WS_EX_TRANSPARENT
     LTEXT           "ID",IDC_STATIC_ID,61,265,8,8,0,WS_EX_TRANSPARENT
-    LTEXT           "Passwords",IDC_STATIC_PASSWORDS,49,281,33,8,0,WS_EX_TRANSPARENT
+    LTEXT           "Passwords",IDC_STATIC_PASSWORDS,50,281,33,8,0,WS_EX_TRANSPARENT
     PUSHBUTTON      "+",IDC_BUTTON4,188,26,17,14
     PUSHBUTTON      "내 상태",IDC_BUTTON5,6,29,89,14
 END
@@ -323,9 +333,13 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 204
         VERTGUIDE, 7
+        VERTGUIDE, 50
+        VERTGUIDE, 106
         VERTGUIDE, 204
         TOPMARGIN, 7
         HORZGUIDE, 7
+        HORZGUIDE, 36
+        HORZGUIDE, 185
         HORZGUIDE, 365
     END
 
